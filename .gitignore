@@ -91,6 +91,11 @@ dist
 # vuepress build output
 .vuepress/dist
 
+# Git ignore matching app
+ node_modules
+.env
+.DS_Store
+.vs
 # Serverless directories
 .serverless/
 
