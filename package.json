@@ -21,6 +21,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.4",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "passport":"7.5.2"
   }
 }
