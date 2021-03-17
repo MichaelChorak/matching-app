@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/MichaelChorak/matching-app.git"
   },
-  "author": "Wouter Bijnsdorp, Tim Hart, Sofya Gerges, Thuan Hoa Le",
+  "author": "Wouter Bijnsdorp, Tim Hart, Sofya Gerges, Thuan Hoa Le, Michael Chorak",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MichaelChorak/matching-app/issues"
