@@ -5,7 +5,7 @@ body {
 }
 
 #form { 
-    background: rgba(0, 0, 0, 0.15); 
+    background: rgb(248, 157, 139); 
     padding: 0.25rem; 
     position: fixed; 
     bottom: 0; 
@@ -14,20 +14,21 @@ body {
     display: flex; 
     height: 3rem; 
     box-sizing: border-box; 
-    backdrop-filter: blur(10px); 
+    /* backdrop-filter: blur(10px);  */
 }
+
 #input { 
     border: none; 
     padding: 0 1rem; 
     flex-grow: 1; 
     border-radius: 2rem; 
-    margin: 0.25rem; 
+    margin: .2em .2em .2em 4em; 
 }
 #input:focus { 
     outline: none; 
 }
 #form > button { 
-    background: #333; 
+    background: grey; 
     border: none; 
     padding: 0 1rem; 
     margin: 0.25rem; 
@@ -41,9 +42,23 @@ body {
     margin: 0; 
     padding: 0; 
 }
+
 #messages > li { 
     padding: 0.5rem 1rem; 
+    border-radius: .5em;
 }
+
+
+
 #messages > li:nth-child(odd) { 
-    background: #efefef; 
+    background: rgb(248, 157, 139); 
+    text-align: left;
+    margin: 1em 2em 1em 11em;
+    color: white;
+}
+
+#messages > li:nth-child(even) {
+    background: rgb(201, 189, 149);
+    margin: 1em 11em 1em 2em;
+    color: white;
 }
