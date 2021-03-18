@@ -3,16 +3,12 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose');
+const bCrypt = require('bcryptjs');
 require('dotenv').config();
 const expressSession = require('express-session');
 const ejs = require('ejs');
 const app = express();
 const port = process.env.PORT;
-
-// Generates hash using bCrypt
-const createHash = function(password){
-  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
- }
 
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
@@ -28,6 +24,13 @@ mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: t
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
+// Generates hash using bCrypt
+const createHash = function(password){
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+ }
+const isValidPassword = function(user, password){
+  return bCrypt.compareSync(password, user.password);
+}
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -53,25 +56,46 @@ app.get("/login", (req, res)=>{
   res.render('login');
 });
 
-app.post('/signup', passport.authenticate('signup', {
-  successRedirect: '/',
-  failureRedirect: '/signup',
-}));
-
 app.post('/login', passport.authenticate('login', {
   successRedirect: '/home',
   failureRedirect: '/',
+}));
+
+passport.use('login', new LocalStrategy({
+  passReqToCallback : true
+},
+function(req, username, password, done) { 
+  User.findOne({ 'username' :  username }, 
+    function(err, user) {
+      // In case of any error, return using the done method
+      if (err)
+        return done(err);
+      // Username does not exist, log error and redirect
+      if (!user){
+        console.log('User Not Found with username '+username);
+        return done(null, false, 
+              req.flash('message', 'User Not found.'));                 
+      }
+      // User exists, wrong password, log the error 
+      if (!isValidPassword(user, password)){
+        console.log('Invalid Password');
+        return done(null, false, 
+            req.flash('message', 'Invalid Password'));
+      }
+      // User & password  match, return user 
+      return done(null, user);
+    }
+  );
 }));
 
 app.get('/signup', function(req, res){
   res.render('register',);
 });
 
-// when error hapens render the error page
-app.use(function (req, res){
-  res.status(404).render('error'); 
-  res.status(500).render('error'); 
-});
+app.post('/signup', passport.authenticate('signup', {
+  successRedirect: '/',
+  failureRedirect: '/signup',
+}));
 
 passport.use('signup', new LocalStrategy({
   passReqToCallback : true
@@ -117,3 +141,10 @@ function(req, username, password, done) {
   // the method in the next tick of the event loop
   process.nextTick(findOrCreateUser);
 }));
+
+
+// when error hapens render the error page
+app.use(function (req, res){
+  res.status(404).render('error'); 
+  res.status(500).render('error'); 
+});
