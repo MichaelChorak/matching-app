@@ -12,9 +12,9 @@ app.listen(port, () => console.log(
 
 // if statement soonTM to make sure it only redirects if not logged in
 app.get("/", (req, res)=>{
-    res.send('/login');
+    res.redirect('/login');
 });
 
 app.get("/login", (req, res)=>{
-    res.send('login');
+  res.sendFile(__dirname + '/views/login.html');
 });
