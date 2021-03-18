@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require('passport');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const expressSession = require('express-session');
 const ejs = require('ejs');
 const app = express();
@@ -38,4 +39,10 @@ app.get("/", (req, res)=>{
 
 app.get("/login", (req, res)=>{
   res.sendFile(__dirname + '/views/login.html');
+});
+
+// when error hapens render the error page
+app.use(function (req, res){
+  res.status(404).render('error'); 
+  res.status(500).render('error'); 
 });
