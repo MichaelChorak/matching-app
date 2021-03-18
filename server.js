@@ -12,9 +12,10 @@ app.get('/', (req, res) => {
   res.send('index');
 });
 
-
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
 });
 
 http.listen(3000, () => {
