@@ -82,13 +82,13 @@ function(req, username, password, done) {
       if (!user){
         console.log('User Not Found with username '+username);
         return done(null, false, 
-              req.flash('message', 'User Not found.'));                 
+              console.log('User Not found.'));                 
       }
       // User exists, wrong password, log the error 
       if (!isValidPassword(user, password)){
         console.log('Invalid Password');
         return done(null, false, 
-            req.flash('message', 'Invalid Password'));
+          console.log('Invalid Password'));
       }
       // User & password  match, return user 
       return done(null, user);
@@ -110,21 +110,20 @@ passport.use('signup', new LocalStrategy({
 },
 function(req, username, password, done) {
   findOrCreateUser = function(){
-    // find a user in Mongo with provided username
+    // find a user in the db with the provided username
     User.findOne({'username':username},function(err, user) {
-      // In case of any error return
+      // In case of any error return the following
       if (err){
         console.log('Error in SignUp: '+err);
         return done(err);
       }
-      // already exists
+      // already exists?
       if (user) {
         console.log('User already exists');
         return done(null, false, 
-           req.flash('message','User Already Exists'));
+          console.log('User Already Exists'));
       } else {
-        // if there is no user with that email
-        // create the user
+        // if there is no user with that email, create them
         const newCreatedUser = new User();
         // set the user's local credentials
         newCreatedUser.username = username;
