@@ -32,6 +32,12 @@ const isValidPassword = function(user, password){
   return bCrypt.compareSync(password, user.password);
 }
 
+const isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/');
+}
+
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
@@ -52,7 +58,9 @@ app.get("/", (req, res)=>{
     console.log('not logged in');
 });
 
-app.get("/login", (req, res)=>{
+//app.get('/', isAuthenticated, function(req, res){res.render('home', { user: req.user });});
+
+app.get('/login', (req, res)=>{
   res.render('login');
 });
 
@@ -142,6 +150,11 @@ function(req, username, password, done) {
   process.nextTick(findOrCreateUser);
 }));
 
+// if someone tries going to the 'signout' url they will be signed out, logout is passport middleware
+app.get('/signout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 // when error hapens render the error page
 app.use(function (req, res){
