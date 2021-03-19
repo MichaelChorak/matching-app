@@ -36,33 +36,10 @@ app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
 //route
-/*
-app.get('/profiles', (req, res) => {
-  res.render('profile', {title:'My Profile', age:'20',name:'Frans', gender:'Man', favorite:'Pasta'});
-});*/
-
-//route
-/*
 app.get("/profiles", async (req, res) => {
-  // create an empty list of chefs
+  // create an empty list of profiles
   let profileData = {};
-  // look for alle chefs in database and sort them by age and name into an array
-  profileData = await db
-    .collection("profile")
-    .find({}, { sort: { age:1, name:1} })
-    .toArray([0]);
-  res.render("profile.ejs", {
-    title: "My profile",
-    profileData,
-  });
-}); */
-
-
-
-app.get("/profiles", async (req, res) => {
-  // create an empty list of chefs
-  let profileData = {};
-  // look for alle chefs in database and sort them by age and name into an array
+  // look for profile and show one
   profileData = await db
     .collection("profile")
     .find({},{id:1})
@@ -73,9 +50,6 @@ app.get("/profiles", async (req, res) => {
     profileData,
   });
 });
-
-
-
 
 // page not found
 app.use(function (req, res, next) {
