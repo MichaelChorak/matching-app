@@ -1,0 +1,30 @@
+/* title */
+main.profilePage>section:first-of-type {
+    text-align      : center;
+    background-color: #f9edc3;
+}
+
+main.profilePage>div.container {
+    margin-left: 20%;
+}
+
+/* edit button */
+main.profilePage>section:nth-of-type(2) {
+    text-align: center;
+}
+
+main.profilePage>section:nth-of-type(2)>button {
+    text-align      : center;
+    width           : 5em;
+    height          : 2em;
+    cursor          : pointer;
+    background-color: #f2c1b7;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* recept */
+main.profilePage>section:nth-of-type(3){
+    text-align: center;
+}
