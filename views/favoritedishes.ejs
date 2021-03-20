@@ -3,8 +3,26 @@
     <%- include('../views/partials/head.ejs') %>
 <body>
     <%- include('../views/partials/header.ejs') %>
-<main>
-    <h1>Filteren</h1>
+<main id="favorite">
+    <section>
+        <button id="headMenu"><</button>     
+        <h1>Favorites</h1>
+    </section>
+
+    <%  savedDishes.forEach(function(dish){ %>
+        <article>
+            <img src="<%= dish.image %>">
+            <div>
+            <h2><%= dish.name %></h2>
+            <h3>👤<%= dish.persons %></h3>
+            </div>
+            <h3>@<%= dish.username %></h3>
+            <h4><%= dish.dish %></h4>
+            <p><%= dish.description %></p>
+            
+            <a href="/thedishes/<%= dish.id %>">Read More</a>
+        </article>
+        <% }) %>
 </main>
     
 </body>

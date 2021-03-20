@@ -8,57 +8,77 @@
     <section>
         <button id="headMenu">&#129171;</button>
     </section>
-    <form action='/dishes' method="post">
+    <form action='/thedishes' method="post">
         <ul id="wholeMenu">
             <li id="submenu1"><a>Dishes</a></li>
             <ul id="menuOne">
+            <div>
               <input type="checkbox" name=" " value=" " />
               <label>Japanese</label>
 
               <input type="checkbox" name=" " value=" " />
-              <label>Italian</label>  
-
+              <label>Italian</label>
+            </div>
+            <div>
               <input type="checkbox" name=" " value=" " />
-              <label>Argentinian</label>  
-
+              <label>Argentinian</label> 
+        
               <input type="checkbox" name=" " value=" " />
-              <label>Moroccan</label>  
-
+              <label>Moroccan</label>
+            </div>
+            <div>
               <input type="checkbox" name=" " value=" " />
               <label>Mexican</label> 
 
               <input type="checkbox" name=" " value=" " />
-              <label>Turkish</label> 
+              <label>Turkish</label>
+            </div>
             </ul>
             
             <li id="submenu2"><a>Persons</a></li>
             <ul id="menuSecond">
+            <div>
               <input type="checkbox" name=" " value=" " />
               <label>1</label>
 
               <input type="checkbox" name=" " value=" " />
-              <label>2</label>  
-
+              <label>2</label>
+            </div>
+            <div>
               <input type="checkbox" name=" " value=" " />
               <label>3</label>  
 
               <input type="checkbox" name=" " value=" " />
-              <label>4</label>  
-
+              <label>4</label>
+            </div>
+            <div>
               <input type="checkbox" name=" " value=" " />
               <label>5</label> 
 
               <input type="checkbox" name=" " value=" " />
               <label>6</label> 
+            </div>
             </ul>
-  
-            <button id=" " type="submit" class=" ">Search</button>
+            <button type="submit" class="searchButton">Search</button>
           </ul>
         </form>
 
+        
+       <%  dishes.forEach(function(dish){ %>
     <article>
-
+        <img src="<%= dish.image %>">
+        <div>
+        <h2><%= dish.name %></h2>
+        <h3>👤<%= dish.persons %></h3>
+        </div>
+        <h3>@<%= dish.username %></h3>
+        <h4><%= dish.dish %></h4>
+        <p><%= dish.description %></p>
+        
+        <a href="/thedishes/<%= dish.id %>">Read More</a>
     </article>
+    <% }) %>
+          
 
 </main>
 <script src="/js/script.js"></script>
