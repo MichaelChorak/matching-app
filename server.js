@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bCrypt = require('bcryptjs');
 require('dotenv').config();
 const expressSession = require('express-session');
+const userModel = require('./models/user');
 const ejs = require('ejs');
 const app = express();
 const port = process.env.PORT;
@@ -124,13 +125,14 @@ function(req, username, password, done) {
           console.log('User Already Exists'));
       } else {
         // if there is no user with that email, create them
-        const newCreatedUser = new User();
+        const newCreatedUser ={
         // set the user's local credentials
-        newCreatedUser.username = username;
-        newCreatedUser.password = createHash(password);
-        newCreatedUser.email = req.param('email');
-        newCreatedUser.name = req.param('name');
-
+        username : username,
+        password : createHash(password),
+        email : req.param('email'),
+        name : req.param('name')
+        }
+        const model = new userModel.User();
         // save the user
         newUser.save(function(err) {
           if (err){
