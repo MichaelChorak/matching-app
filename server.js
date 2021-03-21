@@ -127,14 +127,14 @@ function(req, username, password, done) {
         // if there is no user with that email, create them
         const newCreatedUser ={
         // set the user's local credentials
-        username : username,
-        password : createHash(password),
-        email : req.param('email'),
-        name : req.param('name')
+        username : req.body.username,
+        password : createHash(req.body.password),
+        email : req.body.email,
+        name : req.body.name
         }
-        const model = new userModel.User();
+        const model = new userModel.User(newCreatedUser);
         // save the user
-        newUser.save(function(err) {
+        model.save(function(err) {
           if (err){
             console.log('Error in Saving user: '+err);  
             throw err;  
