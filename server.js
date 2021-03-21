@@ -137,7 +137,8 @@ function(req, username, password, done) {
         model.save(function(err) {
           if (err){
             console.log('Error in Saving user: '+err);  
-            throw err;  
+            res.sendStatus(500);
+            return;  
           }
           console.log('User Registration succesful');    
           return done(null, newUser);
