@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="css/loggedIn.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/loggedHeader'); -%>
+    </header>
+    <main>
+    <!-- we gaan een simpele form maken om werking te testen, mochten we het houden dan komt de definitieve styling!! -->
+      <section>
+        <form action="gerechtToegevoegd" method="post">
+          <label for="afbeelding">Afbeelding:</label>
+          <input type="file" name="afbeelding" value="">
+
+          <label for="titel">Titel:</label>
+          <input type="text" name="titel" value="">
+
+          <label for="ingredienten">Ingredienten:</label>
+          <input type="text" name="ingredienten" value="">
+
+          <label for="tijdsduur">Bereidingstijd:</label>
+          <input type="time" name="tijdsduur" value="" step="1">
+
+          <label for="instructies">Instructies</label>
+          <input type="text" name="instructies" value="">
+
+          <button type="submit" name="button">Voeg toe</button>
+          <input type="reset">
+        </form>
+      </section>
+    </main>
+    <%- include ('partials/footer'); -%>
+  </body>
+</html>

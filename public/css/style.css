@@ -60,6 +60,7 @@ header::after{
   background-image: url(../images/header.png);
   background-size: 100%;
   background-repeat: no-repeat;
+  filter: drop-shadow(4px 8px 7px #F8ECC4);
 }
 
 
