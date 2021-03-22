@@ -9,29 +9,64 @@
       <%- include('partials/loggedHeader'); -%>
     </header>
     <main>
+      <section>
+
+      </section>
     <!-- we gaan een simpele form maken om werking te testen, mochten we het houden dan komt de definitieve styling!! -->
       <section>
-        <form action="gerechtToegevoegd" method="post">
-          <label for="afbeelding">Afbeelding:</label>
-          <input type="file" name="afbeelding" value="">
+        <h1>Deel je passie</h1>
+        <span>Deel je gerechten met andere Foodzen's</span>
+          <form action="gerechtToegevoegd" method="post">
+            <label for="afbeelding">Afbeelding</label>
+            <input type="file" name="afbeelding" value="afbeelding" id="inputImg">
 
-          <label for="titel">Titel:</label>
-          <input type="text" name="titel" value="">
+            <label for="titel">Hoe heet je gerecht?</label>
+            <input type="text" name="titel" value="">
 
-          <label for="ingredienten">Ingredienten:</label>
-          <input type="text" name="ingredienten" value="">
+            <label for="ingredienten">Wat gaat er allemaal in?</label>
+            <textarea rows="4" cols="50" name="ingredienten" placeholder="1 Aardappel &#10;200 gram rundvlees &#10;2 uien&#10;etc..."></textarea>
 
-          <label for="tijdsduur">Bereidingstijd:</label>
-          <input type="time" name="tijdsduur" value="" step="1">
+            <label for="tijdsduur">Hoe lang gaat het duren?</label>
+            <input type="number" name="tijdsduur" value="" step="1">
+            <select id="tijdsduur" name="tijdsduur">
+              <option value="minuten">Minuten</option>
+              <option value="uren">Uur</option>
+            </select>
 
-          <label for="instructies">Instructies</label>
-          <input type="text" name="instructies" value="">
+            <label for="instructies">Hoe wordt het gemaakt?</label>
+            <textarea rows="4" cols="75" name="instructies"></textarea>
 
-          <button type="submit" name="button">Voeg toe</button>
-          <input type="reset">
-        </form>
+            <button type="submit" name="button">Deel gerecht!</button>
+
+          </form>
+
+
       </section>
     </main>
     <%- include ('partials/footer'); -%>
   </body>
 </html>
+
+
+
+<!-- <label for="afbeelding">Afbeelding:</label>
+<input type="file" name="afbeelding" value="">
+
+<label for="titel">Titel:</label>
+<input type="text" name="titel" value="">
+
+<label for="ingredienten">Ingredienten:</label>
+<input type="text" name="ingredienten" value="">
+
+<label for="tijdsduur">Bereidingstijd:</label>
+<input type="number" name="tijdsduur" value="" step="1">
+<select id="tijdsduur" name="tijdsduur">
+  <option value="minuten">Minuten</option>
+  <option value="uren">Uur</option>
+</select>
+
+<label for="instructies">Instructies</label>
+<input type="text" name="instructies" value="">
+
+<button type="submit" name="button">Voeg toe</button>
+<input type="reset"> -->
