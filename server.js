@@ -56,34 +56,36 @@ app.listen(port, () => console.log(
 // if statement soonTM to make sure it only redirects if not logged in
 app.get("/", (req, res)=>{
     res.redirect('/login');
-    console.log('not logged in');
+    console.log('homepage ping!');
 });
 
 //app.get('/', isAuthenticated, function(req, res){res.render('home', { user: req.user });});
 
 app.get('/login', (req, res)=>{
   res.render('login');
+  console.log('login ping!')
 });
 
 app.post('/login', passport.authenticate('login', {
-  successRedirect: '/home',
-  failureRedirect: '/',
+  successRedirect: '/',
+  failureRedirect: '/login',
 }));
 
 passport.use('login', new LocalStrategy({
   passReqToCallback : true
 },
-function(req, username, password, done) { 
-  User.findOne({ 'username' :  username }, 
+function(req, userName, password, done) { 
+  console.log('function: ' + userName + password);
+  User.findOne({ 'userName' :  userName }, 
     function(err, user) {
       // In case of any error, return using the done method
       if (err)
         return done(err);
       // Username does not exist, log error and redirect
       if (!user){
-        console.log('User Not Found with username '+username);
+        console.log('User Not Found with username '+userName);
         return done(null, false, 
-              console.log('User Not found.'));                 
+          console.log('User Not found.'));                 
       }
       // User exists, wrong password, log the error 
       if (!isValidPassword(user, password)){
@@ -92,11 +94,13 @@ function(req, username, password, done) {
           console.log('Invalid Password'));
       }
       // User & password  match, return user 
+      console.log('user exists and login is succeeded!')
       return done(null, user);
     }
   );
 }));
 
+/*
 app.get('/signup', function(req, res){
   res.render('register',);
 });
@@ -127,7 +131,7 @@ function(req, username, password, done) {
         // if there is no user with that email, create them
         const newCreatedUser ={
         // set the user's local credentials
-        username : req.body.username,
+        userName : req.body.userName,
         password : createHash(req.body.password),
         email : req.body.email,
         name : req.body.name
@@ -151,6 +155,7 @@ function(req, username, password, done) {
   // the method in the next tick of the event loop
   process.nextTick(findOrCreateUser);
 }));
+*/
 
 // if someone tries going to the 'signout' url they will be signed out, logout is passport middleware
 app.get('/signout', function(req, res) {
