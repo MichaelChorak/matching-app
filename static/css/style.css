@@ -1,19 +1,70 @@
+HTML,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*----------- PROFILE PAGE -----------*/
 /* title */
 main.profilePage>section:first-of-type {
     text-align      : center;
     background-color: #f9edc3;
+    top: 0;
+    height: 100%;
 }
 
+/* section two, choose a random image */
+main.profilePage>section:nth-of-type(2){
+  text-align: center;
+}
+
+main.profilePage>section:nth-of-type(2)>div img{
+  width: 50vh;
+  height: 50vh;
+}
+
+/* form upload image */
+main.profilePage>section:nth-of-type(2)>form{
+  margin-top:2em;
+}
+
+/* from button upload image*/
+main.profilePage>section:nth-of-type(2)>form>input.buttonUpload{
+  text-align      : center;
+  width           : 13em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* button choose a random image*/
+main.profilePage>section:nth-of-type(2)>button{
+  text-align      : center;
+    width           : 13em;
+    height          : 2em;
+    cursor          : pointer;
+    background-color: #f2c1b7;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* profile information */
 main.profilePage>div.container {
     margin-left: 20%;
 }
 
 /* edit button */
-main.profilePage>section:nth-of-type(2) {
+main.profilePage>section:nth-of-type(3) {
     text-align: center;
 }
 
-main.profilePage>section:nth-of-type(2)>button {
+/* edit button style */
+main.profilePage>section:nth-of-type(3)>button {
     text-align      : center;
     width           : 5em;
     height          : 2em;
@@ -23,8 +74,11 @@ main.profilePage>section:nth-of-type(2)>button {
     font-size: 1em;
     font-weight: 500;
 }
+/*---------- END PROFILE PAGE ----------*/
 
-/* recept */
-main.profilePage>section:nth-of-type(3){
-    text-align: center;
-}
+  
+  
+
+
+  
+ 

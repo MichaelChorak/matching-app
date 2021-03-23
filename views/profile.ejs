@@ -9,52 +9,59 @@
 <body>
     <!-- navigation menu -->
     <main class="profilePage">
-      
+
+        <!-- SECTION ONE -->
         <section>
             <h2>
                 <%= title %>
             </h2>
         </section>
 
-        <div class="container">
-            <section>
-                <img src="#" alt="afb">
-                <!-- name-->
-                <h2>
-                
-                </h2>
-            </section>
-            <% profileData.forEach(function(profile){ %>
-            <section>
-                <h2>Name: <%= profile.name %></h2>
-                <h2>Age: <%= profile.age %>
-                </h2>
-                <h2>Gender: <%= profile.gender %>
-                </h2>
-                <h2>Favorite dish: <%= profile.favorite %>
-                </h2>
-            </section>
+        <!-- SECTION TWO profile image-->
+        <section>
+            <div id="showImage" class="result">
+                <p>Random Image</p>
+            </div>
+            <button id="imageBtn">Choose a random img</button>
 
-            <section>
-                <h2>Settings</h2>
-                <h2>Username:  <%= profile.name %>
-                </h2>
-                <h2>Password: </h2>
-            </section>
+            <!-- upload file  -->
+            <form id="myFile" action="/profile.ejs">
+                <label for="fname">upload an image</label><br>
+                <input type="file" id="fileUpload" name="fileUpload" value="imagePerson"><br>
+                <input class="buttonUpload" type="submit" value="Submit">
+            </form>
+        </section>
+
+        <div class="container">
+            <% profileData.forEach(function(profile){ %>
+                <section>
+                    <h2>Name: <%= profile.name %>
+                    </h2>
+                    <h2>Age: <%= profile.age %>
+                    </h2>
+                    <h2>Gender: <%= profile.gender %>
+                    </h2>
+                    <h2>Favorite dish: <%= profile.favorite %>
+                    </h2>
+                </section>
+
+                <section>
+                    <h2>Settings</h2>
+                    <h2>Username: <%= profile.name %>
+                    </h2>
+                    <h2>Password: </h2>
+                </section>
         </div>
         <% }) %>
-        <section>
-            <button>Edit</button>
-        </section>
 
-
-        <section>
-            <h2>Recept</h2>
-        </section>
+            <!-- SECTION THREE -->
+            <section>
+                <button>Edit</button>
+            </section>
 
     </main>
     <!--footer-->
-    <script src="scripts/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

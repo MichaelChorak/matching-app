@@ -6,6 +6,15 @@
     "favorite": "Pasta",
     "gender": "(M)"
   },
+
+  {
+    "id": "A3",
+    "name": "Anna",
+    "age": 33,
+    "favorite": "Stampot",
+    "gender": "(V)"
+  },
+
   {
     "id": "A2",
     "name": "rans",
