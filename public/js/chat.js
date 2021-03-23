@@ -8,6 +8,8 @@ var message = document.getElementById('message'),
       output = document.getElementById('output'),
       feedback = document.getElementById('feedback');
 
+
+
 // Emit events
 btn.addEventListener('click', function(){
   socket.emit('chat', {
@@ -19,6 +21,16 @@ btn.addEventListener('click', function(){
 
 message.addEventListener('keypress', function(){
   socket.emit('typing', handle.value);
+})
+
+message.addEventListener('keyup', (e) => {
+  if(e.keyCode === 13) {
+    socket.emit('chat', {
+      message: message.value,
+      handle: handle.value
+    });
+    message.value = "";
+  }
 })
 
 // Listen for events
