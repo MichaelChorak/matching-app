@@ -244,7 +244,7 @@ div {
 
 /*favoritedishes page*/
 
-#favorite > section > button  {
+#favorite > section > a  {
     height: 40px;
     width: 40px;
     background-color: #fff;
@@ -255,6 +255,7 @@ div {
     margin: 1em;
     font-size: 1.5em;
     text-align: center;
+    text-decoration: none;
   }
 
 #favorite > section   {
@@ -326,6 +327,7 @@ div {
    color: #5B5B5B;
 }
 
+/*empty state*/
 #favorite > article:nth-of-type(1)> div {
     display: block;
     margin: 1em;

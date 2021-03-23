@@ -52,6 +52,7 @@ app.get('/', (req, res) => {
     res.render('index', { text: '' });
 });
 
+//display alle gerichten + filtermenu
 app.get('/thedishes', async (req, res) => {
     const dish = await db.collection('dish').find({}, { sort: {} }).toArray(); // data vanuit de database
     res.render('thedishes', { text: '', dish });
@@ -77,11 +78,13 @@ app.post('/thedishes', async (req, res) => {
   });
 });
 
+//Detailspagina per gerecht
 app.get('/thedishes/:dishesId', async (req, res) => { 
   const dish = await db.collection('dish').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
+//het favorieten van je favoriete gerechten
 app.get('/favoritedishes', async (req, res) => {
   const dish = await db.collection('dish'); 
   const favoriteItems = await db.collection('favoriteItems');
@@ -110,7 +113,7 @@ app.get('/favoritedishes', async (req, res) => {
 });
 
 
-//aangeklikte kledingitems opslaan op de database om dan weer te geven op de chosenclothing pagina
+//aangeklikte gerechten opslaan op de database om dan weer te geven op de favoriten pagina
 app.post('/favoritedishes', async (req, res) => {
   const dish = await db.collection('dish'); 
   const favoriteItems = await db.collection('favoriteItems'); 
