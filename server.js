@@ -1,5 +1,3 @@
-console.log('test');
-
 // imports
 const bodyParser = require('body-parser');
 const express = require('express');
