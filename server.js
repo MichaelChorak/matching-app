@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 // dynamic room route 
 app.get('/chat/:id', (req, res) => {
-  res.render(req.params);
+  res.render(req.params.id);
 });
 
 // Socket setup & pass server
