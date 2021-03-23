@@ -37,16 +37,21 @@ header > div {
 
 /* logged in menu */
 header > section {
-  height: 70vh;
-  width: 60vw;
+  height: 100vh;
+  width: 100%;
   background-color: var(--main-color);
-  opacity: 0;
   visibility: hidden;
   position: absolute;
-  transition: 0.8s;
   top: 0;
   left: 0;
   z-index: 100;
+  transform: translateY(-100vh);
+
+}
+
+@keyframes menuY {
+  0%{transform:translateY(-100vh);}
+  100%{transform: translateY(0vh);}
 }
 
 /* menu items */
@@ -87,11 +92,30 @@ header > section > div:first-child:hover {
 100% {transform: scale(0.4)}
 }
 
+@keyframes menuTerug {
+  0%{transform:translateY(-0vh);}
+  100%{transform: translateY(-100vh);}
+
+}
+
 /* Classlist Add event to show menu */
 .laatMenuZien {
   opacity: 1;
   visibility: visible;
-  transition: 0.8s;
+  animation: menuY;
+  transition: 0.7s;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.menuTerug {
+animation: menuTerug;
+animation-duration: 1s;
+transition: 0.7s;
+animation-duration: 0.7s;
+animation-fill-mode: forwards;
+animation-timing-function: ease-in-out
 }
 
 /* kruisje sluiten animatie en styling */
@@ -158,6 +182,7 @@ main > section:nth-of-type(2) > form {
   position: absolute;
   top: 17%;
   margin: 10%;
+  padding-bottom: 20%;
 }
 
 main > section:nth-of-type(2) > form > button {
@@ -181,6 +206,13 @@ main > section:nth-of-type(2) > form > input {
   border: none;
   border-bottom: 1px solid var(--main-color);
 }
+.testInput {
+  border: none;
+  border-bottom: 1px solid var(--main-color);
+  width: 100%;
+  margin-bottom: 5%;
+}
+
 main > section:nth-of-type(2) > form > label {
   margin-top: 5%;
   color: #5A5A5A;

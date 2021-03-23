@@ -63,6 +63,7 @@ app.get('/toevoegen', function (req, res, next) {
 
 //alle recepten pagina, we geven ook gerechten mee als object om te displayen.
 app.get('/recepten', function (req,res, next) {
+
   MongoClient.connect(uri, async function(err, db) {
   let dbo = db.db("plaatsGerecht");
   gerechten = await dbo.collection('gerechten').find({}, {
@@ -71,9 +72,10 @@ app.get('/recepten', function (req,res, next) {
     }
   }).toArray();
 
+
+
   console.log(gerechten);
     res.render('recepten', {
-    title: "Alle deelnemers op een rij",
     gerechten
     });
   });
@@ -83,6 +85,8 @@ app.post("/gerechtToegevoegd", (req, res) => {
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     let dbo = db.db("plaatsGerecht");
+
+
     dbo.collection("gerechten").insertOne({
         afbeelding: req.body.afbeelding,
         titel: req.body.titel,
@@ -90,10 +94,13 @@ app.post("/gerechtToegevoegd", (req, res) => {
         tijdsduur: req.body.tijdsduur,
         instructies: req.body.instructies
       },
+
+
+
       function(err, result) {
         if (err) throw err;
         res.redirect('/'); //Hier wordt je naar toe gestuurd na submit
         db.close();
-      });
+      })
   });
 });

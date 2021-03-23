@@ -16,15 +16,18 @@
       <section>
         <h1>Deel je passie</h1>
         <span>Deel je gerechten met andere Foodzen's</span>
-          <form action="gerechtToegevoegd" method="post">
+          <form action="gerechtToegevoegd" method="post" id="voegReceptForm">
             <label for="afbeelding">Afbeelding</label>
             <input type="file" name="afbeelding" value="afbeelding" id="inputImg">
 
             <label for="titel">Hoe heet je gerecht?</label>
             <input type="text" name="titel" value="">
 
-            <label for="ingredienten">Wat gaat er allemaal in?</label>
-            <textarea rows="4" cols="50" name="ingredienten" placeholder="1 Aardappel &#10;200 gram rundvlees &#10;2 uien&#10;etc..."></textarea>
+            <label for="ingredienten" id="label">Wat gaat er allemaal in?</label>
+            <input type="text" name="ingredienten" value="" ><br>
+            <input type="text" name="ingredienten" value="" /><br>
+            <input type="text" name="ingredienten" value="" /id="label"><br>
+            <button type="button" name="button" id="addBtn">Meer ingredienten</button>
 
             <label for="tijdsduur">Hoe lang gaat het duren?</label>
             <input type="number" name="tijdsduur" value="" step="1">
@@ -46,27 +49,3 @@
     <%- include ('partials/footer'); -%>
   </body>
 </html>
-
-
-
-<!-- <label for="afbeelding">Afbeelding:</label>
-<input type="file" name="afbeelding" value="">
-
-<label for="titel">Titel:</label>
-<input type="text" name="titel" value="">
-
-<label for="ingredienten">Ingredienten:</label>
-<input type="text" name="ingredienten" value="">
-
-<label for="tijdsduur">Bereidingstijd:</label>
-<input type="number" name="tijdsduur" value="" step="1">
-<select id="tijdsduur" name="tijdsduur">
-  <option value="minuten">Minuten</option>
-  <option value="uren">Uur</option>
-</select>
-
-<label for="instructies">Instructies</label>
-<input type="text" name="instructies" value="">
-
-<button type="submit" name="button">Voeg toe</button>
-<input type="reset"> -->
