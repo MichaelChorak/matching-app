@@ -8,6 +8,7 @@ const dotenv = require('dotenv').config();
 const { MongoClient, ObjectID } = require('mongodb');
 const port = 3000;
 const ejs = require('ejs');
+const uri = process.env.DATABASECONNECT;
 
 
 // verbinden met de mongo database
@@ -47,32 +48,105 @@ app.use(express.static('public/js'));
 app.use('/css', express.static('/public/css')); // link naar je css folder
 app.use('/js', express.static('/public/js')); // link naar je js folder
 app.use(bodyParser.urlencoded({ extended: false }));
-
-let dishes = null;
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.render('index', { text: '' });
 });
 
-
 app.get('/thedishes', async (req, res) => {
-    let dishes = {}; 
-    dishes = await db.collection('dishes').find({}, { sort: {} }).toArray(); // data vanuit de database
-    res.render('thedishes', { text: '', dishes });
+    const dish = await db.collection('dish').find({}, { sort: {} }).toArray(); // data vanuit de database
+    res.render('thedishes', { text: '', dish });
  });
+ 
+
+ //filteren op een bepaald gerecht
+app.post('/thedishes', async (req, res) => {
+  MongoClient.connect(uri, async function(err, db) {
+    let dbo = db.db('foodzen');
+    
+    const dish = await dbo.collection('dish').find({
+    dish: req.body.dishes,
+    persons: Number(req.body.persons),
+    }).toArray()
+    
+    
+    
+    console.log(dish);
+    console.log(req.body.dishes);
+    console.log(typeof req.body.persons);
+    res.render('thedishesresults', {dish });
+  });
+});
 
 app.get('/thedishes/:dishesId', async (req, res) => { 
-  const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
+  const dish = await db.collection('dish').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
-app.get('/', (req, res) => {
-    res.render('index', { text: '' });
+app.get('/favoritedishes', async (req, res) => {
+  const dish = await db.collection('dish'); // clothes
+  const favoriteItems = await db.collection('favoriteItems'); //savedItems
+  const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
+
+
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+    if (err) {
+      console.log(err);
+    } else {
+      dish
+        .find({ _id: { $in: favoriteItemsObject.saves } })
+        .toArray((err, savedDishes ) => {
+          if (err) {
+            console.log(err);
+          } else {
+  
+            res.render('favoritedishes', {
+              title: 'Favorite Dishes',
+              favoriteItems,
+            });
+          }
+        });
+    }
+  });
 });
 
 
-app.get('/favoritedishes', (req, res) => {
-    res.render('favoritedishes', { text: '' });
+//aangeklikte kledingitems opslaan op de database om dan weer te geven op de chosenclothing pagina
+app.post('/favoritedishes', async (req, res) => {
+  const dish = await db.collection('dish'); 
+  const favoriteItems = await db.collection('favoriteItems'); 
+  const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
+  console.log(objectID);
+  const options = { upsert: true };
+  const savedDish = new ObjectID(req.body.saveit);
+
+  await favoriteItems.updateOne(
+    { _id: objectID },
+    { $push: { saves: savedDish } }, options
+  );
+
+  //controleren
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+    if (err) {
+      console.log(err);
+    } else {
+      dish
+        .find({ _id: { $in: favoriteItemsObject.saves } })
+        .toArray((err, savedDishes) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(savedDishes);
+  
+            res.render('favoritedishes', {
+              title: 'Favorite Dishes',
+              savedDishes,
+            });
+          }
+        });
+    }
+  });
 });
 
 app.set('view engine', 'ejs');

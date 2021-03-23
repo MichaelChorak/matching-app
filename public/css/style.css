@@ -143,6 +143,7 @@ div {
 
 }
 
+
 #dishes > article > div {
      display: grid;
      grid-template-columns: 75% 50% auto;
@@ -188,7 +189,7 @@ div {
     padding-bottom: 1em;
 }
 
-#detailsarticle > form > button {
+#detailsarticle > div > form:nth-of-type(1) > button {
     background-color: #F89D8A;
     color: white;
     border-radius: 4em;
@@ -201,6 +202,26 @@ div {
     display: block;
     margin-left: 0 auto;
     margin-right: 0 auto;   
+}
+
+#detailsarticle > div > form:nth-of-type(2) > button {
+    background-color: #effd27;
+    color: white;
+    border-radius: 4em;
+    border-width: 0;
+    width: 6em;
+    height: 2.5em;
+    box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+    font-family: 'Merriweather', serif;
+    font-size: 1em;
+    display: block;
+    margin-left: 0 auto;
+    margin-right: 0 auto;   
+}
+
+#detailsarticle > div:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 55% 45% auto;
 }
 
 

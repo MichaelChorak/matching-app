@@ -5,6 +5,7 @@
 <body>
     <%- include('../views/partials/header.ejs') %>
 <main id="dishes">
+
     <section>
         <button id="headMenu">&#129171;</button>
     </section>
@@ -63,7 +64,6 @@
           </ul>
         </form>
 
-        
        <% dish.forEach(function(dish){ %>
     <article>
         <img src="<%= dish.image %>">
@@ -73,7 +73,7 @@
         </div>
         <h3>@<%= dish.username %></h3>
         <h4><%= dish.dish %></h4>
-        <p><%= dish.description %></p>
+        <p><%=  dish.description %></p>
         
         <a href="/thedishes/<%= dish.id %>">Read More</a>
     </article>

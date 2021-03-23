@@ -18,9 +18,14 @@
         <h3>👤<%= dish.persons %></h3>
         </div>
         <h3>@<%= dish.username %></h3>
+        <div>
         <form action="/favoritedishes" method="POST">
-            <button type="submit" name="saveit" value="<%= dish._id %>">&#10084;</button>
+            <button type="submit" name="" value="">&#10084;</button>
         </form>
+        <form action="/favoritedishes" method="POST">
+            <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
+        </form>
+        </div>
         <h4><%= dish.description %></h4>
         <h3>Ingredients: </h3>
         <ol>
