@@ -19,9 +19,7 @@
         </div>
         <h3>@<%= dish.username %></h3>
         <div>
-        <form action="/favoritedishes" method="POST">
-            <button type="submit" name="" value="">&#10084;</button>
-        </form>
+        <a href="/chat/:id"><button type="submit" name="" value="">&#10084;</button></a>
         <form action="/favoritedishes" method="POST">
             <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
         </form>

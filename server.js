@@ -85,8 +85,8 @@ app.get('/thedishes/:dishesId', async (req, res) => {
 });
 
 app.get('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dish'); // clothes
-  const favoriteItems = await db.collection('favoriteItems'); //savedItems
+  const dish = await db.collection('dish'); 
+  const favoriteItems = await db.collection('favoriteItems');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
@@ -103,7 +103,7 @@ app.get('/favoritedishes', async (req, res) => {
   
             res.render('favoritedishes', {
               title: 'Favorite Dishes',
-              favoriteItems,
+              savedDishes,
             });
           }
         });
