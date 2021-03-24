@@ -1,6 +1,5 @@
 # FoodZen
 Matching application team 4
-# Matching App project Warzone
 
 > *FoodZen* is een app waarbij mensen met dezelfde interesse in een bepaald gerecht, elkaar kunnen vinden om hun creaties & recepten te delen. 
 > Gebruikers kunnen met elkaar matchen op basis van hun interesse in een gerecht. Zodra ze
