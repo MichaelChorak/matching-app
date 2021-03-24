@@ -208,7 +208,3 @@ io.on('connection', (socket) => {
 // router.get('/home', isAuthenticated, function(req, res){
 //   res.render('home', { user: req.user });
 //   });
-
-http.listen(3000, () => {
-  console.log('listening on *:3000');
-});
