@@ -21,11 +21,6 @@ app.set('views',path.join(__dirname,'views'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use((req,res,next)=>{
-  console.log(req.session); 
-  console.log(req.user); 
-  next();
-})
 
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o0u7k.mongodb.net/Cluster0?retryWrites=true&w=majority`
 mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true, dbName:process.env.DB_NAME});
@@ -58,19 +53,17 @@ passport.deserializeUser(function(id, done) {
 });
 
 app.listen(port, () => console.log(
-  `Example app listening on port ${port}!`
+  `Matching app listening on port ${port}!`
 ));
 
 // if statement soonTM to make sure it only redirects if not logged in
 app.get("/", (req, res)=>{
-    console.log('homepage ping!');
+  res.render('home')
 });
 
-//app.get('/', isAuthenticated, function(req, res){res.render('home', { user: req.user });});
 
 app.get('/login', (req, res)=>{
   res.render('login');
-  console.log('login ping!')
 });
 
 app.post('/login', passport.authenticate('login', {
@@ -83,13 +76,9 @@ passport.use('login', new LocalStrategy({
   passReqToCallback : true,
 },
 function(req, username, password, done) { 
-  console.log('function: ' + username + password);
-  //User.find().exec().then(users => {console.log(users)});
   User.findOne({ 'username' :  username}, 
     function(err, user) {
       // In case of any error, return using the done method
-      console.log(err);
-      console.log(user)
       if (err)
         return done(err);
       // Username does not exist, log error and redirect
@@ -117,7 +106,7 @@ app.get('/signup', function(req, res){
 });
 
 app.post('/signup', passport.authenticate('signup', {
-  successRedirect: '/',
+  successRedirect: '/login',
   failureRedirect: '/signup',
   failureFlash: true
 }));
@@ -127,6 +116,7 @@ passport.use('signup', new LocalStrategy({
 },
 function(req, username, password, done) {
   findOrCreateUser = function(){
+    console.log('reached findorcreate!');
     // find a user in the db with the provided username
     User.findOne({'username':username},function(err, user) {
       // In case of any error return the following
@@ -141,22 +131,21 @@ function(req, username, password, done) {
           console.log('User Already Exists'));
       } else {
         // if there is no user with that email, create them
-        const newCreatedUser ={
+        const newCreatedUser = new User();
         // set the user's local credentials
-        username : req.body.username,
-        password : createHash(req.body.password),
-        email : req.body.email,
-        name : req.body.name
-        }
-        const model = new userModel.User(newCreatedUser);
+        newCreatedUser.username = req.body.username;
+        newCreatedUser.password = createHash(req.body.password);
+        newCreatedUser.email = req.body.email;
+        newCreatedUser.name = req.body.name;
+        
         // save the user
-        model.save(function(err) {
+        newCreatedUser.save(function(err) {
           if (err){
             console.log('Error in Saving user: '+err);  
             return;  
           }
           console.log('User Registration succesful');    
-          return done(null, newUser);
+          return done(null, newCreatedUser);
         });
       }
     });
@@ -177,5 +166,4 @@ app.get('/signout', function(req, res) {
 // when error hapens render the error page
 app.use(function (req, res){
   res.status(404).render('error'); 
-  res.status(500).render('error'); 
 });
