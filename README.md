@@ -1,2 +1,2 @@
-# matching-app
+# FoodZen
 Matching application team 4
