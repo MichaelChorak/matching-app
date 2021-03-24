@@ -37,7 +37,6 @@ app.set('view engine', 'ejs');
 
 //route
 app.get("/profiles", async (req, res) => {
-
   // create an empty list of profiles
   let profileData = {};
   // look for profile and show one

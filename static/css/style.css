@@ -24,23 +24,6 @@ main.profilePage>section:nth-of-type(2)>div img{
   height: 50vh;
 }
 
-/* form upload image */
-main.profilePage>section:nth-of-type(2)>form{
-  margin-top:2em;
-}
-
-/* from button upload image*/
-main.profilePage>section:nth-of-type(2)>form>input.buttonUpload{
-  text-align      : center;
-  width           : 13em;
-  height          : 2em;
-  cursor          : pointer;
-  background-color: #f2c1b7;
-  border-radius: 12px;
-  font-size: 1em;
-  font-weight: 500;
-}
-
 /* button choose a random image*/
 main.profilePage>section:nth-of-type(2)>button{
   text-align      : center;

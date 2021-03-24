@@ -21,32 +21,6 @@ function getRandomImage() {
     });
 }
 
-/* upload a file */
-/* source: https://flaviocopes.com/how-to-upload-files-fetch/ */
-document.querySelector('#fileUpload').addEventListener('change', event => {
-  handleImageUpload(event)
-});
-
-const handleImageUpload = event => {
-  const files = event.target.files
-  const formData = new FormData()
-  formData.append('#myFile', files[0])
-
-  fetch('/saveImage', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-  })
-  .catch(error => {
-    console.error(error)
-  })
-}
-
-/* test upload 2 */
-
 
 
 
