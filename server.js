@@ -6,13 +6,14 @@ const mongoose = require('mongoose');
 const bCrypt = require('bcryptjs');
 require('dotenv').config();
 const expressSession = require('express-session');
-const userModel = require('./models/user');
+const User = require('./models/user');
 const ejs = require('ejs');
 const flash = require('connect-flash');
+const { exec } = require("child_process");
 const app = express();
 const port = process.env.PORT;
 
-app.use(expressSession({secret: process.env.secretKey}));
+app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
 app.use(flash())
 app.use(passport.initialize());
 app.set('view engine', 'ejs')
@@ -35,7 +36,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 const createHash = function(password){
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
  }
-const isValidPassword = function(user, password){
+
+ const isValidPassword = function(user, password){
   return bCrypt.compareSync(password, user.password);
 }
 
@@ -79,18 +81,21 @@ app.post('/login', passport.authenticate('login', {
 }));
 
 passport.use('login', new LocalStrategy({
-  passReqToCallback : true
+  passReqToCallback : true,
 },
-function(req, userName, password, done) { 
-  console.log('function: ' + userName + password);
-  User.findOne({ 'userName' :  userName }, 
+function(req, username, password, done) { 
+  console.log('function: ' + username + password);
+  //User.find().exec().then(users => {console.log(users)});
+  User.findOne({ 'username' :  username}, 
     function(err, user) {
       // In case of any error, return using the done method
+      console.log(err);
+      console.log(user)
       if (err)
         return done(err);
       // Username does not exist, log error and redirect
       if (!user){
-        console.log('User Not Found with username '+userName);
+        console.log('User Not Found with username '+username);
         return done(null, false, 
           console.log('User Not found.'));                 
       }
@@ -138,7 +143,7 @@ function(req, username, password, done) {
         // if there is no user with that email, create them
         const newCreatedUser ={
         // set the user's local credentials
-        userName : req.body.userName,
+        username : req.body.username,
         password : createHash(req.body.password),
         email : req.body.email,
         name : req.body.name
