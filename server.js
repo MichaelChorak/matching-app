@@ -8,17 +8,23 @@ require('dotenv').config();
 const expressSession = require('express-session');
 const userModel = require('./models/user');
 const ejs = require('ejs');
+const flash = require('connect-flash');
 const app = express();
 const port = process.env.PORT;
 
-app.use(expressSession({secret: 'mySecretKey'}));
+app.use(expressSession({secret: process.env.secretKey}));
+app.use(flash())
 app.use(passport.initialize());
-app.use(passport.session());
 app.set('view engine', 'ejs')
 app.set('views',path.join(__dirname,'views'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use((req,res,next)=>{
+  console.log(req.session); 
+  console.log(req.user); 
+  next();
+})
 
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o0u7k.mongodb.net/Cluster0?retryWrites=true&w=majority`
 mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true, dbName:process.env.DB_NAME});
@@ -69,6 +75,7 @@ app.get('/login', (req, res)=>{
 app.post('/login', passport.authenticate('login', {
   successRedirect: '/',
   failureRedirect: '/login',
+  failureFlash: true
 }));
 
 passport.use('login', new LocalStrategy({
@@ -157,7 +164,7 @@ function(req, username, password, done) {
 }));
 */
 
-// if someone tries going to the 'signout' url they will be signed out, logout is passport middleware
+// if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
 app.get('/signout', function(req, res) {
   req.logout();
   res.redirect('/');

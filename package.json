@@ -19,6 +19,7 @@
   "homepage": "https://github.com/MichaelChorak/matching-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
