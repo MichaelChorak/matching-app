@@ -23,6 +23,25 @@
             <label for="titel">Hoe heet je gerecht?</label>
             <input type="text" name="titel" value="">
 
+            <label for="land">Waar komt het vandaan?</label>
+              <select class="" name="land" id="land">
+            <% for(var i=0; i < landen.length; i++) { %>
+
+              <option name="land" value="<%= landen[i].name %>"><%= landen[i].name %></option>
+            <% } %>
+          </select>
+            <label for="personen">Voor hoeveel personen?</label>
+              <select class="" name="personen" id="personen">
+                <option name="land" value="1">1</option>
+                <option name="land" value="2">2</option>
+                <option name="land" value="3">3</option>
+                <option name="land" value="4">4</option>
+                <option name="land" value="5">5</option>
+                <option name="land" value="6">6</option>
+              </select>
+
+
+
             <label for="ingredienten" id="label">Wat gaat er allemaal in?</label>
             <input type="text" name="ingredienten" value="" ><br>
             <input type="text" name="ingredienten" value="" /><br>

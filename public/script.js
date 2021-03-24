@@ -15,7 +15,7 @@ function showMenu(){
       menu.classList.remove('menuTerug');
   } else {
     menu.classList.add('laatMenuZien')
-  
+    menu.classList.add('menuTerug')
     }
   }
 
