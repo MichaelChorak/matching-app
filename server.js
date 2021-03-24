@@ -63,7 +63,6 @@ app.listen(port, () => console.log(
 
 // if statement soonTM to make sure it only redirects if not logged in
 app.get("/", (req, res)=>{
-    res.redirect('/login');
     console.log('homepage ping!');
 });
 
@@ -112,7 +111,7 @@ function(req, username, password, done) {
   );
 }));
 
-/*
+
 app.get('/signup', function(req, res){
   res.render('register',);
 });
@@ -120,6 +119,7 @@ app.get('/signup', function(req, res){
 app.post('/signup', passport.authenticate('signup', {
   successRedirect: '/',
   failureRedirect: '/signup',
+  failureFlash: true
 }));
 
 passport.use('signup', new LocalStrategy({
@@ -153,7 +153,6 @@ function(req, username, password, done) {
         model.save(function(err) {
           if (err){
             console.log('Error in Saving user: '+err);  
-            res.sendStatus(500);
             return;  
           }
           console.log('User Registration succesful');    
@@ -167,7 +166,7 @@ function(req, username, password, done) {
   // the method in the next tick of the event loop
   process.nextTick(findOrCreateUser);
 }));
-*/
+
 
 // if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
 app.get('/signout', function(req, res) {
