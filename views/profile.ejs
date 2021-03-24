@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- head -->
+    <%- include('layout/head'); -%>
+</head>
+
+<body>
+    <!-- navigation menu -->
+    <main class="profilePage">
+
+        <!-- SECTION ONE -->
+        <section>
+            <h2 class="hiddenElements">profile title</h2>
+            <h2>
+                <%= title %>
+            </h2>
+        </section>
+
+        <!-- SECTION TWO profile image-->
+        <section>
+            <h2 class="hiddenElements">show profile image</h2>
+            <article id="showImage" class="result">
+                <h2 class="hiddenElements">show profile image from the api</h2>
+                <p>Random Image</p>
+            </article>
+            <button id="imageBtn">Choose a random img</button>
+        </section>
+
+        <!-- SECTION THREE -->
+        <% profileData.forEach(function(profile){ %>
+        <section>
+            <h2 class="hiddenElements">information about the person</h2>
+                <article>
+                    <h3>Name: <%= profile.name %>
+                    </h3>
+                    <h3>Age: <%= profile.age %>
+                    </h3>
+                    <h3>Gender: <%= profile.gender %>
+                    </h3>
+                    <h3>Favorite dish: <%= profile.favorite %>
+                    </h3>
+                </article>
+
+                <span></span>
+
+                <article>
+                    <h2 class="hiddenElements">Change information</h2>
+                    <h3>Settings</h2>
+                    <h3>Username: <%= profile.name %>
+                    </h3>
+                    <h3>Password: </h3>
+                </article>
+            </section>
+        <% }) %>
+
+            <!-- SECTION FOUR -->
+            <section>
+                <h2 class="hiddenElements">The edit button</h2>
+                <button>Edit</button>
+            </section>
+
+    </main>
+    <!--footer-->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -4,9 +4,8 @@
   "description": "Matching app team 4",
   "main": "server.js",
   "scripts": {
-
-    "start": "nodemon index.js"
-
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,7 @@
     "ejs": "^3.1.6",
     "ejs-lint": "^1.1.0",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
     "moment": "^2.29.1",
     "mongodb": "^3.6.5",
     "socket.io": "^4.0.0"
