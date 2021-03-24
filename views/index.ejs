@@ -1,7 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../views/partials/head.ejs') %>
-<body>
-    <h1>Foodzen</h1>
-</body>
+<head>
+<link rel="stylesheet" href="css/style.css">
+<%- include('partials/head'); -%>
+</head>
+  <body>
+    <header>
+      <%- include('partials/header'); -%>
+    </header>
+    <main>
+      <section>
+        <figure>
+          <img src="images/food.jpg" alt="Foodzen logo">
+        </figure>
+        <form action="/login" method="get">
+          <button type="submit" name="button">Let's begin</button>
+        </form>
+      </section>
+    </main>
+    <%- include ('partials/footer'); -%>
+  </body>
 </html>
+
