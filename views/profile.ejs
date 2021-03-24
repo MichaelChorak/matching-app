@@ -19,15 +19,16 @@
 
         <!-- SECTION TWO profile image-->
         <section>
-            <div id="showImage" class="result">
+            <article id="showImage" class="result">
                 <p>Random Image</p>
-            </div>
+            </article>
             <button id="imageBtn">Choose a random img</button>
         </section>
 
-        <div class="container">
-            <% profileData.forEach(function(profile){ %>
-                <section>
+        <!-- SECTION THREE -->
+        <% profileData.forEach(function(profile){ %>
+        <section>
+                <article>
                     <h2>Name: <%= profile.name %>
                     </h2>
                     <h2>Age: <%= profile.age %>
@@ -36,18 +37,20 @@
                     </h2>
                     <h2>Favorite dish: <%= profile.favorite %>
                     </h2>
-                </section>
+                </article>
 
-                <section>
+                <span></span>
+
+                <article>
                     <h2>Settings</h2>
                     <h2>Username: <%= profile.name %>
                     </h2>
                     <h2>Password: </h2>
-                </section>
-        </div>
+                </article>
+            </section>
         <% }) %>
 
-            <!-- SECTION THREE -->
+            <!-- SECTION FOUR -->
             <section>
                 <button>Edit</button>
             </section>
