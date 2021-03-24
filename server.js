@@ -33,7 +33,7 @@ connectDB()
     console.log(error);
   });
 
-
+app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
 //route
@@ -60,7 +60,7 @@ app.use(function (req, res, next) {
 // start server
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
-  
+}
 // Static files
 app.use(express.static('public'));
 app.use(express.static('public/images'));
@@ -79,20 +79,20 @@ app.get('/thedishes', async (req, res) => {
     const dish = await db.collection('dish').find({}, { sort: {} }).toArray(); // data vanuit de database
     res.render('thedishes', { text: '', dish });
  });
- 
+
 
  //filteren op een bepaald gerecht
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async function(err, db) {
     let dbo = db.db('foodzen');
-   
+
     const dish = await dbo.collection('dish').find({
     dish: req.body.dishes,
     persons: Number(req.body.persons),
     }).toArray()
-   
-   
-   
+
+
+
     console.log(dish);
     console.log(req.body.dishes);
     console.log(typeof req.body.persons);
@@ -123,7 +123,7 @@ app.get('/favoritedishes', async (req, res) => {
           if (err) {
             console.log(err);
           } else {
- 
+
             res.render('favoritedishes', {
               title: 'Favorite Dishes',
               savedDishes,
@@ -161,7 +161,7 @@ app.post('/favoritedishes', async (req, res) => {
             console.log(err);
           } else {
             console.log(savedDishes);
- 
+
             res.render('favoritedishes', {
               title: 'Favorite Dishes',
               savedDishes,
@@ -172,13 +172,6 @@ app.post('/favoritedishes', async (req, res) => {
   });
 });
 
-app.set('view engine', 'ejs');
-
- // const isAuthenticated = function (req, res, next) {
-//   if (req.isAuthenticated())
-//     return next();
-//   res.redirect('/');
-// }
 
 // dynamic room route
 app.get('/chat/:id', (req, res) => {
@@ -201,10 +194,3 @@ io.on('connection', (socket) => {
       socket.broadcast.emit('typing', data)
     });
 });
-
-
-
-
-// router.get('/home', isAuthenticated, function(req, res){
-//   res.render('home', { user: req.user });
-//   });
