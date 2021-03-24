@@ -5,6 +5,19 @@ body {
   padding    : 0;
 }
 
+/* GENERAL STYLE */
+
+/* hide elements */
+.hiddenElements {
+  clip       : rect(0, 0, 0, 0);
+  clip-path  : inset(50%);
+  height     : 1px;
+  overflow   : hidden;
+  position   : absolute;
+  white-space: nowrap;
+  width      : 1px;
+}
+
 /*----------- PROFILE PAGE -----------*/
 /* title */
 main.profilePage>section:first-of-type {
@@ -20,8 +33,9 @@ main.profilePage>section:nth-of-type(2) {
 }
 
 main.profilePage>section:nth-of-type(2)>article img {
-  width        : 50%;
-  height       : 50%;
+  max-width    : 50%;
+  height       : auto;
+  padding      : 0;
   border-radius: 50%;
   margin-bottom: 2em;
   margin-top   : 2em;
@@ -37,7 +51,7 @@ main.profilePage>section:nth-of-type(2)>button {
   border-radius   : 2rem;
   font-size       : 1em;
   font-weight     : 500;
-  margin-bottom: 2em;
+  margin-bottom   : 2em;
 }
 
 /* button choose a random image on hover*/
@@ -69,7 +83,7 @@ main.profilePage>section:nth-of-type(3)>span {
 main.profilePage>section:nth-of-type(4) {
   text-align   : center;
   margin-bottom: 2em;
-  margin-top: 2em;
+  margin-top   : 2em;
 }
 
 /* edit button style */
