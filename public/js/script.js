@@ -22,6 +22,7 @@ function getRandomImage() {
 }
 
 /* settings menu microinteraction - profile page */
+/* https://stackoverflow.com/questions/64420332/javascript-how-to-create-a-dropdown-effect-without-jquery */
 var menuBtn = document.getElementById('settingBnt'); //b
 var dropdown = document.getElementsByClassName('showSettingsMenu')[0]; //ul
 menuBtn.addEventListener('click', getShowSettings);
