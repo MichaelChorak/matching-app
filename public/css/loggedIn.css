@@ -45,13 +45,13 @@ header > section {
   top: 0;
   left: 0;
   z-index: 100;
-  transform: translateY(-100vh);
+  /* transform: translateY(-100vh); */
 
 }
 
 @keyframes menuY {
-  0%{transform:translateY(-100vh);}
-  100%{transform: translateY(0vh);}
+  0%{transform:translateY(0vh);}
+  100%{transform: translateY(-100vh);}
 }
 
 /* menu items */
@@ -79,6 +79,10 @@ header > section > div:first-child {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: menuTerug;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
 }
 
 header > section > div:first-child:hover {
@@ -93,9 +97,8 @@ header > section > div:first-child:hover {
 }
 
 @keyframes menuTerug {
-  0%{transform:translateY(-0vh);}
-  100%{transform: translateY(-100vh);}
-
+  0%{transform:translateY(-100vh);}
+  100%{transform: translateY(0vh);}
 }
 
 /* Classlist Add event to show menu */

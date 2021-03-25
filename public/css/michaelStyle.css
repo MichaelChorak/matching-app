@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+:root{
+  --main-color: #F89D8A;
+  --secondary-color: #F8ECC4;
+  --main-font: 'Merriweather Sans', sans-serif;
+}
+
+@font-face {
+  font-family: delighty;
+  src:url('fonts/Delighty.ttf');
+}
+
+
+
+header > h1 {
+  margin: 0;
+  color: var(--secondary-color);
+  font-weight: 300;
+  font-size: 3em;
+}
+
+header {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  font-family: delighty;
+  font-size: 2em;
+
+}
+
+header > figure > img {
+  width: 40%;
+}
+
+header > figure {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+
+header::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25vh;
+  width: 100%;
+  background-image: url(../images/header.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(4px 8px 7px #F8ECC4);
+}
+
+
+main > section:first-of-type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main > section:first-of-type > form {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main > section:first-of-type > form > button {
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  color: #fff;
+  outline: none;
+  border: none;
+  width: 70%;
+  padding: 2%;
+  font-size: 1.4em;
+  margin-top: 5%;
+}
+main > section:first-of-type > figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > section:first-of-type > figure > img {
+  width: 90%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

@@ -20,7 +20,7 @@ function showMenu(){
   }
 
 function closeMenu(){
-  menu.classList.add('menuTerug');
+  menu.classList.remove('menuTerug');
   //
 }
 
