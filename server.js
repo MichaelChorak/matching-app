@@ -74,7 +74,7 @@ const createHash = function(password){
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()){
     return next();
-  }else{  
+  }else{
     res.redirect('/login');
   }
 }
@@ -136,14 +136,14 @@ app.get("/profiles",isAuthenticated, async (req, res) => {
 
 
 //GET index page
-app.get('/', isAuthenticated, (req, res)=> {
-  res.render('index'  { user: req.user });
+app.get('/', isAuthenticated, (req, res) => {
+  res.render('index',  { user: req.user });
 });
 
-// GET login page
-app.get('/login', function(req, res)=> {
-  res.render('login');
-});
+// // GET login page
+// app.get('/login', function(req, res) => {
+//   res.render('login');
+// });
 
 
 
@@ -156,8 +156,8 @@ app.post('/login', passport.authenticate('login', {
 passport.use('login', new LocalStrategy({
   passReqToCallback : true,
 },
-function(req, username, password, done) { 
-  User.findOne({ 'username' :  username}, 
+function(req, username, password, done) {
+  User.findOne({ 'username' :  username},
     function(err, user) {
       // In case of any error, return using the done method
       if (err)
@@ -165,16 +165,16 @@ function(req, username, password, done) {
       // Username does not exist, log error and redirect
       if (!user){
         console.log('User Not Found with username '+username);
-        return done(null, false, 
-          console.log('User Not found.'));                 
+        return done(null, false,
+          console.log('User Not found.'));
       }
-      // User exists, wrong password, log the error 
+      // User exists, wrong password, log the error
       if (!isValidPassword(user, password)){
         console.log('Invalid Password');
-        return done(null, false, 
+        return done(null, false,
           console.log('Invalid Password'));
       }
-      // User & password  match, return user 
+      // User & password  match, return user
       console.log('user exists and login is succeeded!')
       return done(null, user);
     }
@@ -207,7 +207,7 @@ function(req, username, password, done) {
       // already exists?
       if (user) {
         console.log('User already exists');
-        return done(null, false, 
+        return done(null, false,
           console.log('User Already Exists'));
       } else {
         // if there is no user with that email, create them
@@ -217,21 +217,21 @@ function(req, username, password, done) {
         newCreatedUser.password = createHash(req.body.password);
         newCreatedUser.email = req.body.email;
         newCreatedUser.name = req.body.name;
-        
+
         // save the user
         newCreatedUser.save(function(err) {
           if (err){
-            console.log('Error in Saving user: '+err);  
-            return;  
+            console.log('Error in Saving user: '+err);
+            return;
           }
-          console.log('User Registration succesful');    
+          console.log('User Registration succesful');
           return done(null, newCreatedUser);
         });
       }
     });
   };
-   
-  // Delay the execution of findOrCreateUser and execute 
+
+  // Delay the execution of findOrCreateUser and execute
   // the method in the next tick of the event loop
   process.nextTick(findOrCreateUser);
 }));

@@ -1,4 +1,5 @@
-{
+
+  {
   "name": "matching-app",
   "version": "1.0.0",
   "description": "Matching app team 4",
@@ -33,7 +34,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
     "socket.io": "^4.0.0"
