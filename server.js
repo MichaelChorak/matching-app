@@ -16,6 +16,7 @@ const port = process.env.PORT;
 app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
 app.use(flash())
 app.use(passport.initialize());
+app.use(passport.session());
 app.set('view engine', 'ejs')
 app.set('views',path.join(__dirname,'views'))
 
