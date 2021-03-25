@@ -1,9 +1,9 @@
-const   headMenu = document.querySelector('#headMenu');
-const   wholeMenu = document.querySelector('#wholeMenu');
-const   submenu1  = document.querySelector('#submenu1');
-const   menuOne   = document.querySelector('#menuOne');
-const   submenu2  = document.querySelector('#submenu2');
-const   menuSecond    = document.querySelector('#menuSecond');
+const   headMenu = document.querySelector('#headMenu'); // rondje
+const   wholeMenu = document.querySelector('#wholeMenu'); // dishes en persons
+const   submenu1  = document.querySelector('#submenu1'); //dishes menuknop / naam
+const   menuOne   = document.querySelector('#menuOne'); //dishes menu
+const   submenu2  = document.querySelector('#submenu2'); //persons menuknop / naam
+const   menuSecond    = document.querySelector('#menuSecond'); // persons menu
 
 function showWholeMenu() {
     wholeMenu.classList.toggle('showWholeMenu');
