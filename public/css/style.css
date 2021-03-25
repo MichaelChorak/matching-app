@@ -127,7 +127,7 @@ main.profilePage button>svg {
 
 /* arrow button hover */
 main.profilePage button>svg:hover {
-  fill: darkgray;
+  fill: rgb(117, 62, 62);
 }
 
 /* setting information - second ul */
