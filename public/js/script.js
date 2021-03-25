@@ -12,7 +12,7 @@ function getRandomImage() {
   fetch('https://random.dog/woof.json')
     .then(res => res.json())
     .then(data => {
-      if(data.url.includes('.mp4')) {
+      if (data.url.includes('.mp4')) {
         getRandomImage();
       }
       else {
@@ -21,10 +21,12 @@ function getRandomImage() {
     });
 }
 
+/* settings menu microinteraction - profile page */
+var menuBtn = document.getElementById('settingBnt'); //b
+var dropdown = document.getElementsByClassName('showSettingsMenu')[0]; //ul
+menuBtn.addEventListener('click', getShowSettings);
 
-
-
-
-
-
-
+function getShowSettings() {
+  this.classList.toggle("active");
+  dropdown.classList.toggle("active");
+}

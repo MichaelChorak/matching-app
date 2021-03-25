@@ -30,8 +30,8 @@
 
         <!-- SECTION THREE -->
         <% profileData.forEach(function(profile){ %>
-        <section>
-            <h2 class="hiddenElements">information about the person</h2>
+            <section>
+                <h2 class="hiddenElements">information about the person</h2>
                 <article>
                     <h3>Name: <%= profile.name %>
                     </h3>
@@ -43,23 +43,36 @@
                     </h3>
                 </article>
 
-                <span></span>
-
                 <article>
                     <h2 class="hiddenElements">Change information</h2>
-                    <h3>Settings</h2>
-                    <h3>Username: <%= profile.name %>
-                    </h3>
-                    <h3>Password: </h3>
+                    <ul>
+                        <li>
+                            <h3>Settings</h2>
+                        </li>
+                        <li><button id="settingBnt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 21l-12-18h24z" />
+                                </svg></button></li>
+                    </ul>
+
+                    <ul class="showSettingsMenu">
+                        <li>
+                            <h3>Username: <%= profile.name %>
+                            </h3>
+                        </li>
+                        <li>
+                            <h3>Password: <span>*********</span></h3>
+                        </li>
+                    </ul>
+
                 </article>
             </section>
-        <% }) %>
+            <% }) %>
 
-            <!-- SECTION FOUR -->
-            <section>
-                <h2 class="hiddenElements">The edit button</h2>
-                <button>Edit</button>
-            </section>
+                <!-- SECTION FOUR -->
+                <section>
+                    <h2 class="hiddenElements">The edit button</h2>
+                    <button>Edit</button>
+                </section>
 
     </main>
     <!--footer-->

@@ -5,7 +5,8 @@ body {
   padding    : 0;
 }
 
-/* GENERAL STYLE */
+/****************************************/
+/*----------- GENERAL STYLE ------------*/
 
 /* hide elements */
 .hiddenElements {
@@ -18,7 +19,12 @@ body {
   width      : 1px;
 }
 
-/*----------- PROFILE PAGE -----------*/
+li {
+  list-style: none;
+}
+
+/****************************************/
+/*------------ PROFILE PAGE ------------*/
 /* title */
 main.profilePage>section:first-of-type {
   text-align      : center;
@@ -62,22 +68,80 @@ main.profilePage>section:nth-of-type(2)>button:hover {
 
 /* profile information - section three */
 main.profilePage>section:nth-of-type(3) {
-  padding        : 1em;
+
   margin-left    : 10%;
   margin-right   : 10%;
   justify-content: center;
+}
+
+/* profile information - section three style */
+main.profilePage>section:nth-of-type(3)>article:first-of-type {
+  padding        : 1em;
   /* https       ://getcssscan.com/css-box-shadow-examples */
   box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-/* profile information - section three */
-main.profilePage>section:nth-of-type(3)>span {
-  display        : block;
-  width          : 100%;
-  /*or whatever width you want the effect of <hr>*/
-  border-top     : 0.1em solid #ccc;
-  justify-content: start;
+/* setting information */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2) {
+  padding        : 1em;
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+/* setting information - first ul */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type {
+  display: flex;
+  margin : 0%;
+  padding: 0%;
+}
+
+/* first ul, "setting" list position get space and everything else go to the right side */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type>li:first-of-type {
+  margin-right: auto;
+}
+
+/* arrow button style */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type button {
+  text-align: center;
+  cursor    : pointer;
+  font-size : 1.8em;
+  border    : none;
+  display   : contents;
+}
+
+button#settingBnt {
+  transition: all 1s;
+}
+
+button#settingBnt.active {
+  background-color: #1f283b;
+  color           : #FFF;
+}
+
+/* svg arrow - https://iconmonstr.com/arrow-80-svg/ */
+main.profilePage button>svg {
+  width : 1em;
+  height: 1em;
+  fill  : black;
+}
+
+/* arrow button hover */
+main.profilePage button>svg:hover {
+  fill: darkgray;
+}
+
+/* setting information - second ul */
+main.profilePage ul.showSettingsMenu {
+  transform       : scaleY(0);
+  transform-origin: top;
+  transition      : transform 0.26s ease;
+}
+
+main.profilePage ul.showSettingsMenu.active {
+  /*display: block;*/
+  transform: scaleY(1);
+}
+
 
 /* edit button position section*/
 main.profilePage>section:nth-of-type(4) {
@@ -105,3 +169,4 @@ main.profilePage>section:nth-of-type(4)>button:hover {
 }
 
 /*---------- END PROFILE PAGE ----------*/
+/****************************************/
