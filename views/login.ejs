@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <main>
-            <div class="loginPage">
-                <form method="POST" action ="/login" class="loginForm">
-                    <input type="text" name="username" placeholder="username" required/>
-                    <input type="password" name="password" placeholder="password" required/>
-                    <button>login</button>
-                    <p class="message">Not registered? <a href="signup">Create an account</a></p>
-                </form>
-                </div>
-        </main>
-    </body>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="css/styleLogin.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/header'); -%>
+    </header>
+    <main>
+      <section>
+        <form action="/login" method="POST">
+          <label for="username">Username</label>
+           <input type="text" name="username" placeholder="username" required/>
+
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="password" required/>
+          <button type="submit" name="button">Sign in</button>
+          <p class="message">Not registered? <a href="signup">Create an account</a></p>
+
+        </form>
+      </section>
+
+      <section>
+        <div class="mediaBtn"></div>
+        <div class="mediaBtn"></div>
+        <div class="mediaBtn"></div>
+      </section>
+
+      <section>
+        <a href="/register">Don't have an account?</a>
+      </section>
+    </main>
+  </body>
 </html>

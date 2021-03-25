@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../views/partials/head.ejs') %>
+
+<body>
+    <%- include('../views/partials/header.ejs') %>
+    
+<main id="dishes">
+    <section>
+        <a href="/thedishes" id="headMenu">&#129128;</a>  
+    </section>
+       
+
+    <article id="detailsarticle">
+        <img src="<%= dish.image %>">
+        <div>
+        <h2><%= dish.name %></h2>
+        <h3>👤<%= dish.persons %></h3>
+        </div>
+        <h3>@<%= dish.username %></h3>
+        <div>
+        <a href="/chat/:id"><button type="submit" name="" value="">&#10084;</button></a>
+        <form action="/favoritedishes" method="POST">
+            <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
+        </form>
+        </div>
+        <h4><%= dish.description %></h4>
+        <h3>Ingredients: </h3>
+        <ol>
+            <% dish.ingredients.forEach(function(ingredients){ %>
+            <li><%= ingredients %></li>
+
+            <% }) %>
+        </ol>
+         <h3>Steps: </h3>
+        <ol>
+            <% dish.cookingsteps.forEach(function(cookingsteps){ %>
+            <li><%= cookingsteps %></li>
+
+            <% }) %>
+        </ol>
+    </article>
+
+</main>
+</body>
+</html>
