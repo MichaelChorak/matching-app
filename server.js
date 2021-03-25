@@ -38,9 +38,11 @@ const createHash = function(password){
 }
 
 const isAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()){
     return next();
-  res.redirect('/');
+  }else{  
+    res.redirect('/login');
+  }
 }
 
 passport.serializeUser(function(user, done) {
@@ -58,9 +60,10 @@ app.listen(port, () => console.log(
 ));
 
 // if statement soonTM to make sure it only redirects if not logged in
-app.get("/", (req, res)=>{
-  res.render('home')
+app.get('/', isAuthenticated, (req, res)=>{
+  res.render('home', { user: req.user });
 });
+ 
 
 
 app.get('/login', (req, res)=>{
