@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="css/paginaRecepten.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/loggedHeader'); -%>
+    </header>
+    <main>
+      <section>
+          <h1>Bekijk alle gerechten</h1>
+        <article>
+          <% for(var i=0; i < gerechten.length; i++) { %>
+            <figure>
+              <figcaption><%= gerechten[i].titel %></figcaption>
+              <img src="../images/<%= gerechten[i].afbeelding %>" alt="">
+            </figure>
+          <% } %>
+        </article>
+      </section>
+    </main>
+        <%- include ('partials/footer'); -%>
+  </body>
+</html>
