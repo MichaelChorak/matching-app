@@ -66,3 +66,5 @@ Er wordt in dit project gebruik gemaakt van de [MIT](https://github.com/MichaelC
 * [Socket.io Documentation](https://socket.io/docs/v4)
 * [Socket.io Rooms](https://www.youtube.com/watch?v=jD7FnbI76Hg)
 * [Websockets Tutorial](https://www.youtube.com/watch?v=vQjiN8Qgs3c)
+* [PassportJS & Bcrypt hashing] (https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619)
+
