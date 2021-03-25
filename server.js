@@ -63,8 +63,6 @@ app.listen(port, () => console.log(
 app.get('/', isAuthenticated, (req, res)=>{
   res.render('home', { user: req.user });
 });
- 
-
 
 app.get('/login', (req, res)=>{
   res.render('login');
@@ -103,7 +101,6 @@ function(req, username, password, done) {
     }
   );
 }));
-
 
 app.get('/signup', function(req, res){
   res.render('register',);
@@ -159,7 +156,6 @@ function(req, username, password, done) {
   // the method in the next tick of the event loop
   process.nextTick(findOrCreateUser);
 }));
-
 
 // if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
 app.get('/signout', function(req, res) {
