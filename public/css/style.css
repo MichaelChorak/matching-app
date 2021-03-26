@@ -97,6 +97,7 @@ button.sendChat {
     text-decoration: none;
     width: 10em;
     padding: 1em;
+    text-align: center;
 }
 
 .chatA:hover {
