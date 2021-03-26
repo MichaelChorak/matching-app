@@ -528,3 +528,219 @@ button.send-chat {
     border-radius: 0 0 2px 2px;
 }
 
+ /*****************************************************/
+/*----------- GENERAL STYLE PROFILE PAGE ------------*/
+
+/* hide elements */
+.hiddenElements {
+  clip       : rect(0, 0, 0, 0);
+  clip-path  : inset(50%);
+  height     : 1px;
+  overflow   : hidden;
+  position   : absolute;
+  white-space: nowrap;
+  width      : 1px;
+}
+
+li {
+  list-style: none;
+}
+
+/* font style profile page */
+main.profilePage h2,
+h3,
+h4, section {
+  font-family: 'Merriweather', regular;
+}
+
+/****************************************/
+/*------------ PROFILE PAGE ------------*/
+/* title */
+main.profilePage>section:first-of-type {
+  text-align      : center;
+  background-color: #f9edc3;
+  top             : 0;
+  padding         : 1em;
+}
+
+/* section two, choose a random image */
+main.profilePage>section:nth-of-type(2) {
+  text-align: center;
+}
+
+/* secion two - display the img */
+main.profilePage>section:nth-of-type(2)>article img {
+  max-width    : 50%;
+  height       : auto;
+  padding      : 0;
+  border-radius: 50%;
+  margin-bottom: 2em;
+  margin-top   : 2em;
+}
+
+/* button choose a random image*/
+main.profilePage>section:nth-of-type(2)>button {
+  text-align      : center;
+  width           : 13em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 2em;
+}
+
+/* button choose a random image on hover*/
+main.profilePage>section:nth-of-type(2)>button:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* profile information - section three */
+main.profilePage>section:nth-of-type(3) {
+  margin-left    : 10%;
+  margin-right   : 10%;
+  justify-content: center;
+  margin-bottom  : 2em;
+}
+
+/* profile information - section three style */
+main.profilePage>section:nth-of-type(3)>article:first-of-type {
+  padding        : 1em;
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button style profile info */
+main.profilePage button.editBntProfile {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+}
+
+/* edit button hover profile info */
+main.profilePage button.editBntProfile:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* setting information */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2) {
+  padding: 1em;
+  margin : 0;
+}
+
+/* setting information - first ul */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type {
+  display: flex;
+  margin : 0%;
+  padding: 0%;
+}
+
+/* first ul, "setting" list position get space and everything else go to the right side */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type>li:first-of-type {
+  margin-right: auto;
+}
+
+/* arrow button style */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type button {
+  text-align: center;
+  cursor    : pointer;
+  font-size : 1.8em;
+  border    : none;
+  display   : contents;
+}
+
+/* arrow button */
+button#settingBnt {
+  transition: all 1s;
+}
+
+button#settingBnt.active {
+  background-color: #1f283b;
+  color           : #FFF;
+}
+
+/* svg arrow - https://iconmonstr.com/arrow-80-svg/ */
+main.profilePage button>svg {
+  width : 1em;
+  height: 1em;
+  fill  : black;
+}
+
+/* arrow button hover - svg */
+main.profilePage button>svg:hover {
+  fill: darkgray;
+}
+
+/* setting information - second ul - article 3 */
+main.profilePage ul.showSettingsMenu {
+  transform       : scaleY(0);
+  transform-origin: top;
+  transition      : transform 0.26s ease;
+}
+
+/* show the menu setting */
+main.profilePage ul.showSettingsMenu.active {
+  margin         : 0;
+  padding        : 1em;
+  padding-bottom : 0.5em;
+  padding-top    : 0.5em;
+  transform      : scaleY(1);
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button - password and name - second ul*/
+button.editBntTwo {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 1em;
+}
+
+button.editBntTwo:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/*---------- END PROFILE PAGE ----------*/
+/****************************************/
+
+/*---------- WEB VERSION - PROFILE PAGE ----------*/
+@media (min-width:50em) {
+
+  /* section two - display the img */
+  main.profilePage>section:nth-of-type(2)>article img {
+    max-width    : 50%;
+    height       : auto;
+    padding      : 0;
+    border-radius: 50%;
+    margin-bottom: 2em;
+    margin-top   : 2em;
+  }
+
+  main.profilePage>section:nth-of-type(2)>article {
+    margin-left : 25%;
+    margin-right: 25%;
+  }
+
+  /* profile information - section three */
+  main.profilePage>section:nth-of-type(3) {
+    margin-left    : 30%;
+    margin-right   : 30%;
+    justify-content: center;
+    margin-bottom  : 2em;
+  }
+}
