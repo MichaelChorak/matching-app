@@ -128,7 +128,7 @@ app.get("/profiles",isAuthenticated, async (req, res) => {
 });
 
 //GET index page
-app.get('/', isAuthenticated, (req, res) => {
+app.get('/', (req, res) => {
   res.render('index',  { user: req.user });
 });
 
