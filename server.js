@@ -296,7 +296,7 @@ app.post('/thedishes', async (req, res) => {
 // Detailpage of a single dish
 app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
   const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
-  res.render('dishesdetails', { title: 'Clothing Details', dish });
+  res.render('dishesdetails', { dish });
 });
 
 // getting your favorite dishes
