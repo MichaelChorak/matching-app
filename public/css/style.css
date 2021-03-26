@@ -1,8 +1,462 @@
-body {
-    font-family: sans-serif; 
+/* css code voor de chats  */
+h2.chatH2 {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* css code voor de chats  */
+:root{
+  --main-color: #F89D8A;
+  --secondary-color: #F8ECC4;
+  --main-font: 'Merriweather Sans', sans-serif;
+}
+
+
+
+
+header > h1 {
+  margin: 0;
+  color: var(--secondary-color);
+  font-weight: 300;
+  font-size: 3em;
+}
+
+header {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  font-family: delighty;
+  font-size: 2em;
+
+}
+
+header > figure > img {
+  width: 40%;
+}
+
+header > figure {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+
+header::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25vh;
+  width: 100%;
+  background-image: url(../images/header.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(4px 8px 7px #F8ECC4);
+}
+
+
+main > section:first-of-type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main > section:first-of-type > form {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main > section:first-of-type > form > button {
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  color: #fff;
+  outline: none;
+  border: none;
+  width: 70%;
+  padding: 2%;
+  font-size: 1.4em;
+  margin-top: 5%;
+}
+main > section:first-of-type > figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > section:first-of-type > figure > img {
+  width: 90%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+=======
+
+/*General*/
+@font-face  {
+    font-family: 'Delighty';
+    src: url("/fonts/Delighty.ttf");
+  }
+
+header > h1 {
+    color: #F8ECC4;
+    font-family: 'Delighty', sans-serif;
+    font-size: 5em;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0em;
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+/*dishes page*/
+
+#dishes > section > button  {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-width: 0;
+    display: inline-block;
+    box-shadow: 0px 3px 10px -1px #5B5B5B;
+    margin: 0.5em;
+    font-size: 3em;
+    text-align: center;
+}
+
+/*terugknopje op dishesdetails page*/
+#dishes > section > a {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-width: 0;
+    display: inline-block;
+    box-shadow: 0px 3px 10px -1px #5B5B5B;
+    margin: 1em;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+}
+/*---*/
+
+
+#dishes > section   {
+    background-color: #F8ECC4;
+
+}
+
+.showWholeMenu {
+    max-height: 100em;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.showSubmenu1 {
+    max-height: 100em;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.showSubmenu2 {
+    max-height: 100em;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+ul {
+    max-height: 0;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0;
+    margin-top: 0;
+    transition: all 500ms ease;
+    transform: translateX(-6vw);
+    background: #F8ECC4;
+    color: #707070;
+    line-height: 2em;
+    list-style-type: none;
+    font-family: 'Merriweather', serif;
+    display: block;
+    padding-bottom: 1em;
+}   
+
+.searchButton {
+    background-color: #F89D8A53;
+    color: white;
+    border-radius: 4em;
+    border-width: 0;
+    width: 6em;
+    height: 2em;
+    box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+    font-family: 'Merriweather', serif;
+    display: block;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+}
+
+div {
+    display: flexbox;
+    flex-wrap: wrap-reverse;
+    row-gap: 3em;
+    column-gap: 3em;
+    font-size: 0.8em;
+    margin-right: 0.5em;
+}
+
+#dishes > article > h2 {
+     font-family: 'Merriweather', serif;
+     color: #5B5B5B;
+}
+
+#dishes > article > h3:nth-of-type(1) {
+     font-size: 0.8em;
+     margin-top: 0;
+     line-height: 0.5em;
+     color: #F89D8A;
+}
+
+#dishes > article > img {
+    max-width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+#dishes > article {
+     font-family: 'Merriweather', serif;
+     margin: 1em;
+     padding: 1em;
+     display: block;
+     box-shadow: 0px 3px 10px -1px #5B5B5B;
+
+}
+
+
+#dishes > article > div {
+     display: grid;
+     grid-template-columns: 75% 50% auto;
+}
+
+#dishes > article > h4 {
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+#dishes > article > p {
+    font-size: 0.7em;
+}
+
+
+#dishes > article > a {
+    background-color: #F8ECC4;
+    box-shadow: 0px 3px 10px -1px #5B5B5B;
+    font-family: 'Merriweather', serif;
+    color: #5B5B5B;
+}
+
+#dishes > article > ul > li {
+     font-family: 'Merriweather', serif;
+     margin: 1em;
+     display: block;
+     color: black;
+}
+
+#dishes > a {
+    font-family: 'Merriweather', serif;
+    margin: 1em;
+    display: block;
+    color: black;
+}
+
+/*dishes details*/
+#detailsarticle > h4 {
+    font-size: 0.5em;
+}
+
+#detailsarticle > ol:nth-of-type(2) {
+    padding-left: 0;
+    margin: 1em;
+}
+
+#detailsarticle > ol > li {
+    padding-left: 0;
+    padding-bottom: 1em;
+}
+
+/*Heart/Match button*/
+#detailsarticle > div > a  {
+    text-decoration:none;
+}
+
+#detailsarticle > div > a > button {
+    background-color: #F89D8A;
+    color: white;
+    border-radius: 4em;
+    border-width: 0;
+    width: 6em;
+    height: 2.5em;
+    box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+    font-family: 'Merriweather', serif;
+    font-size: 1em;
+    display: block;
+    margin-left: 0 auto;
+    margin-right: 0 auto;   
+    text-decoration:none;
+}
+
+/* favorite /save button*/
+
+#detailsarticle > div > form > button {
+    background-color: #f4faa1;
+    color: #F89D8A;
+    border-radius: 4em;
+    border-width: 0;
+    width: 6em;
+    height: 2.5em;
+    box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+    font-family: 'Merriweather', serif;
+    font-size: 1em;
+    display: block;
+    margin-left: 0 auto;
+    margin-right: 0 auto;   
+}
+
+#detailsarticle > div:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 55% 45% auto;
+}
+
+
+
+
+/*favoritedishes page*/
+
+#favorite > section > a  {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-width: 0;
+    display: inline-block;
+    box-shadow: 0px 3px 10px -1px #5B5B5B;
+    margin: 1em;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+  }
+
+#favorite > section   {
+    background-color: #F8ECC4;
+    font-family: 'Merriweather', serif;
+    display: grid;
+    grid-template-columns: 25% 75% auto;
+}
+
+#favorite > section > h1  {
+    display: block;
+    font-weight: normal;
+    text-align: center;
+    margin: 1em;
+    padding-top: 0.2em;
+
+}
+
+#favorite > article > h2 {
+    font-family: 'Merriweather', serif;
+    color: #5B5B5B;
+}
+
+#favorite > article > h3:nth-of-type(1) {
+    font-size: 0.8em;
+    margin-top: 0;
+    line-height: 0.5em;
+    color: #F89D8A;
+}
+
+#favorite > article > img {
+   max-width: 100%;
+   height: auto;
+   padding: 0;
+}
+
+#favorite > article:nth-of-type(2) {
+    font-family: 'Merriweather', serif;
+    margin: 1em;
+    padding: 1em;
+    display: block;
+    box-shadow: 0px 3px 10px -1px #5B5B5B;  
+    z-index: 2;
+    position: absolute;
+    background-color: white;
+}
+
+
+#favorite > article:nth-of-type(2) > div {
+    display: grid;
+    grid-template-columns: 75% 50% auto;
+}
+
+#favorite > article:nth-of-type(2) > h4 {
+   font-size: 0.9em;
+   font-weight: normal;
+   margin-bottom: 0;
+}
+
+#favorite > article:nth-of-type(2) > p {
+   font-size: 0.7em;
+}
+
+
+#favorite > article:nth-of-type(2) > a {
+   background-color: #F8ECC4;
+   box-shadow: 0px 3px 10px -1px #5B5B5B;
+   font-family: 'Merriweather', serif;
+   color: #5B5B5B;
+}
+
+/*empty state*/
+#favorite > article:nth-of-type(1)> div {
+    display: block;
+    margin: 1em;
+    margin-top: 1.5em;
+    font-size: 5em;
+    color: rgb(255, 208, 0);
+    margin-bottom: 0;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    text-align: center; 
+}
+
+#favorite > article:nth-of-type(1) > p {
+    display: block;
+    text-align: center; 
+    font-family: 'Merriweather', serif;
+    margin-top: 0;
+}
+
+#favorite > article:nth-of-type(1) {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    margin: 2.2em;
+    margin-top: 0;
+    text-align: center; 
+
 h2.chatH2 {
     font-size: 18px;
     padding: 10px 20px;
@@ -47,6 +501,7 @@ label {
     padding: 10px 20px;
 }
 
+
 input.inputChat {
     padding: 10px 20px;
     font-family: 'Nunito';
@@ -61,8 +516,10 @@ input.inputChat {
     font-size: 16px;
 }
 
+
 button.sendChat {
     background: #F89D8A;
+    background: rgb(248, 157, 139);
     color: #fff;
     font-size: 18px;
     border: 0;
@@ -104,4 +561,221 @@ button.sendChat {
 .chatA:hover {
     color: white;
     background-color: #F89D8A;
+}
+
+ /*****************************************************/
+/*----------- GENERAL STYLE PROFILE PAGE ------------*/
+
+/* hide elements */
+.hiddenElements {
+  clip       : rect(0, 0, 0, 0);
+  clip-path  : inset(50%);
+  height     : 1px;
+  overflow   : hidden;
+  position   : absolute;
+  white-space: nowrap;
+  width      : 1px;
+}
+
+li {
+  list-style: none;
+}
+
+/* font style profile page */
+main.profilePage h2,
+h3,
+h4, section {
+  font-family: 'Merriweather', regular;
+}
+
+/****************************************/
+/*------------ PROFILE PAGE ------------*/
+/* title */
+main.profilePage>section:first-of-type {
+  text-align      : center;
+  background-color: #f9edc3;
+  top             : 0;
+  padding         : 1em;
+}
+
+/* section two, choose a random image */
+main.profilePage>section:nth-of-type(2) {
+  text-align: center;
+}
+
+/* secion two - display the img */
+main.profilePage>section:nth-of-type(2)>article img {
+  max-width    : 50%;
+  height       : auto;
+  padding      : 0;
+  border-radius: 50%;
+  margin-bottom: 2em;
+  margin-top   : 2em;
+}
+
+/* button choose a random image*/
+main.profilePage>section:nth-of-type(2)>button {
+  text-align      : center;
+  width           : 13em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 2em;
+}
+
+/* button choose a random image on hover*/
+main.profilePage>section:nth-of-type(2)>button:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* profile information - section three */
+main.profilePage>section:nth-of-type(3) {
+  margin-left    : 10%;
+  margin-right   : 10%;
+  justify-content: center;
+  margin-bottom  : 2em;
+}
+
+/* profile information - section three style */
+main.profilePage>section:nth-of-type(3)>article:first-of-type {
+  padding        : 1em;
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button style profile info */
+main.profilePage button.editBntProfile {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+}
+
+/* edit button hover profile info */
+main.profilePage button.editBntProfile:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* setting information */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2) {
+  padding: 1em;
+  margin : 0;
+}
+
+/* setting information - first ul */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type {
+  display: flex;
+  margin : 0%;
+  padding: 0%;
+}
+
+/* first ul, "setting" list position get space and everything else go to the right side */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type>li:first-of-type {
+  margin-right: auto;
+}
+
+/* arrow button style */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type button {
+  text-align: center;
+  cursor    : pointer;
+  font-size : 1.8em;
+  border    : none;
+  display   : contents;
+}
+
+/* arrow button */
+button#settingBnt {
+  transition: all 1s;
+}
+
+button#settingBnt.active {
+  background-color: #1f283b;
+  color           : #FFF;
+}
+
+/* svg arrow - https://iconmonstr.com/arrow-80-svg/ */
+main.profilePage button>svg {
+  width : 1em;
+  height: 1em;
+  fill  : black;
+}
+
+/* arrow button hover - svg */
+main.profilePage button>svg:hover {
+  fill: darkgray;
+}
+
+/* setting information - second ul - article 3 */
+main.profilePage ul.showSettingsMenu {
+  transform       : scaleY(0);
+  transform-origin: top;
+  transition      : transform 0.26s ease;
+}
+
+/* show the menu setting */
+main.profilePage ul.showSettingsMenu.active {
+  margin         : 0;
+  padding        : 1em;
+  padding-bottom : 0.5em;
+  padding-top    : 0.5em;
+  transform      : scaleY(1);
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button - password and name - second ul*/
+button.editBntTwo {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 1em;
+}
+
+button.editBntTwo:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/*---------- END PROFILE PAGE ----------*/
+/****************************************/
+
+/*---------- WEB VERSION - PROFILE PAGE ----------*/
+@media (min-width:50em) {
+
+  /* section two - display the img */
+  main.profilePage>section:nth-of-type(2)>article img {
+    max-width    : 50%;
+    height       : auto;
+    padding      : 0;
+    border-radius: 50%;
+    margin-bottom: 2em;
+    margin-top   : 2em;
+  }
+
+  main.profilePage>section:nth-of-type(2)>article {
+    margin-left : 25%;
+    margin-right: 25%;
+  }
+
+  /* profile information - section three */
+  main.profilePage>section:nth-of-type(3) {
+    margin-left    : 30%;
+    margin-right   : 30%;
+    justify-content: center;
+    margin-bottom  : 2em;
+  }
 }

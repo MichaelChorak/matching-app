@@ -1,0 +1,26 @@
+[
+{
+    "id": "A1",
+    "name": "Frans",
+    "age": 30,
+    "favorite": "Pasta",
+    "gender": "(M)"
+  },
+
+  {
+    "id": "A3",
+    "name": "Anna",
+    "age": 33,
+    "favorite": "Stampot",
+    "gender": "(V)"
+  },
+
+  {
+    "id": "A2",
+    "name": "rans",
+    "age": 20,
+    "favorite": "Pasta",
+    "gender": "(M)"
+  }
+
+]

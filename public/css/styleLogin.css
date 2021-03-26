@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+:root{
+  --main-color: #F89D8A;
+  --secondary-color: #F8ECC4;
+  --main-font: 'Merriweather Sans', sans-serif;
+}
+
+@font-face {
+  font-family: delighty;
+  src:url('fonts/Delighty.ttf');
+}
+
+header > h1 {
+  margin: 0;
+  color: var(--secondary-color);
+  font-weight: 300;
+  font-size: 3em;
+  margin-bottom: 10%;
+}
+
+header {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  font-family: delighty;
+  font-size: 2em;
+}
+
+header > figure > img {
+  width: 40%;
+}
+
+header > figure {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+header::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25vh;
+  width: 100%;
+  background-image: url(../images/header.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+/* --------------Einde header--------------- */
+
+/* ----------------Begin eerste sectie--------*/
+
+main > section {
+  height: auto;
+  width: 100%;
+}
+
+main > section > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  width: 80%;
+  margin-left: 10vw;
+  font-family: var(--main-font);
+  color: #F0F0F0;
+  text-align: center;
+}
+
+main > section > form > input {
+  border: none;
+  border-bottom: 1px solid #707070;
+  margin-bottom: 5%;
+}
+
+main > section > form > p {
+  color: #7A7976;
+
+}
+
+main > section > form > button {
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  color: #fff;
+  outline: none;
+  border: none;
+  width: 70%;
+  padding: 2%;
+  font-size: 1.4em;
+  margin-top: 10%;
+  margin-left: 10vw;
+}
+
+/* ------------ einde form section ---------------- */
+/* ----------------begin login options section------ */
+
+main > section:nth-of-type(2) {
+  display: flex;
+  justify-content: space-around;
+  height: 20vh;
+  width: 100%;
+  align-items: center;
+}
+
+.mediaBtn {
+  border-radius: 100px;
+  width: 15vw;
+  height: 15vw;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 2px 8px 5px rgb(165 165 165 / 69%);
+  box-shadow: 0px 0px 11px -2px rgb(212 209 209 / 69%);
+}
+
+.mediaBtn:hover {
+  transform: rotate(360deg);
+  transition: 1s;
+}
+
+.mediaBtn:nth-child(1) {
+  background-image: url('../images/facebook.png');
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mediaBtn:nth-child(2) {
+  background-image: url('../images/google.png');
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mediaBtn:nth-child(3) {
+  background-image: url('../images/twitter.png');
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+main > section:last-of-type {
+  display: flex;
+  justify-content: space-around;
+}
+
+main > section:last-of-type > a {
+  color: #7A7976;
+  text-decoration: none;
+}

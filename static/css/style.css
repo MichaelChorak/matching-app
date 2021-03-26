@@ -1,0 +1,107 @@
+HTML,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin     : 0;
+  padding    : 0;
+}
+
+/* GENERAL STYLE */
+
+/* hide elements */
+.hiddenElements {
+  clip       : rect(0, 0, 0, 0);
+  clip-path  : inset(50%);
+  height     : 1px;
+  overflow   : hidden;
+  position   : absolute;
+  white-space: nowrap;
+  width      : 1px;
+}
+
+/*----------- PROFILE PAGE -----------*/
+/* title */
+main.profilePage>section:first-of-type {
+  text-align      : center;
+  background-color: #f9edc3;
+  top             : 0;
+  height          : 100%;
+}
+
+/* section two, choose a random image */
+main.profilePage>section:nth-of-type(2) {
+  text-align: center;
+}
+
+main.profilePage>section:nth-of-type(2)>article img {
+  max-width    : 50%;
+  height       : auto;
+  padding      : 0;
+  border-radius: 50%;
+  margin-bottom: 2em;
+  margin-top   : 2em;
+}
+
+/* button choose a random image*/
+main.profilePage>section:nth-of-type(2)>button {
+  text-align      : center;
+  width           : 13em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 2em;
+}
+
+/* button choose a random image on hover*/
+main.profilePage>section:nth-of-type(2)>button:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* profile information - section three */
+main.profilePage>section:nth-of-type(3) {
+  padding        : 1em;
+  margin-left    : 10%;
+  margin-right   : 10%;
+  justify-content: center;
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* profile information - section three */
+main.profilePage>section:nth-of-type(3)>span {
+  display        : block;
+  width          : 100%;
+  /*or whatever width you want the effect of <hr>*/
+  border-top     : 0.1em solid #ccc;
+  justify-content: start;
+}
+
+/* edit button position section*/
+main.profilePage>section:nth-of-type(4) {
+  text-align   : center;
+  margin-bottom: 2em;
+  margin-top   : 2em;
+}
+
+/* edit button style */
+main.profilePage>section:nth-of-type(4)>button {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+}
+
+/* edit button on hover */
+main.profilePage>section:nth-of-type(4)>button:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/*---------- END PROFILE PAGE ----------*/

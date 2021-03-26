@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../views/partials/head.ejs') %>
+<body>
+    <%- include('../views/partials/header.ejs') %>
+<main id="favorite">
+    <section>
+        <a href="/thedishes" id="headMenu">&#129128;</a>     
+        <h1>Favorites</h1>
+    </section>
+
+    <article>
+    <div>&#128970;</div>
+    <p>Add your favorite dishes here!</p>
+    </article>
+
+    <%  savedDishes.forEach(function(dish){ %>
+        <article>
+            <img src="<%= dish.image %>">
+            <div>
+            <h2><%= dish.name %></h2>
+            <h3>👤<%= dish.persons %></h3>
+            </div>
+            <h3>@<%= dish.username %></h3>
+            <h4><%= dish.dish %></h4>
+            <p><%= dish.description %></p>
+            
+            <a href="/thedishes/<%= dish.id %>">Read More</a>
+        </article>
+        <% }) %>
+</main>
+<%- include('../views/partials/footer.ejs') %>
+</body>
+</html>

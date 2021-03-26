@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="css/styleLogin.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
+      <%- include('partials/header'); -%>
+    <main>
+      <p class="warning">
+        <%= message ? message : '' %>
+      </p>
+      <section>
+        <form action="/login" method="POST">
+          <label for="username">Username</label>
+           <input type="text" name="username" required/>
+
+          <label for="password">Password</label>
+          <input type="password" name="password"  required/>
+          <button type="submit" name="button">Sign in</button>
+
+        </form>
+      </section>
+
+      <section>
+        <div class="mediaBtn"></div>
+        <div class="mediaBtn"></div>
+        <div class="mediaBtn"></div>
+      </section>
+
+      <section>
+        <a href="/signup">Don't have an account?</a>
+      </section>
+    </main>
+  </body>
+</html>

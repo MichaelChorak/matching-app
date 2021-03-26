@@ -1,0 +1,329 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+:root{
+  --main-color: #F89D8A;
+  --secondary-color: #F8ECC4;
+  --main-font: 'Merriweather Sans', sans-serif;
+  --icon-size: 15px;
+}
+ @font-face {
+     font-family: "delighty";
+     src: url('../fonts/Delighty.ttf');
+ }
+
+header {
+    overflow-y: scroll;
+    width: 100%;
+}
+
+
+header > section {
+    display: grid;
+    grid-template-columns: 20% 60% auto;
+}
+
+header > ul > li {
+    text-decoration: none;
+    padding-bottom: 0em;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+header > ul > li > a {
+    text-decoration: none;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    color: #F89D8A;
+}
+
+header > section > button {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-width: 0;
+    display: inline-block;
+    margin: 1em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+header > ul {
+    max-height: 0em;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    transition: all 500ms ease;
+    transform: translateX(-6vw);
+    background: white;
+    color: #707070;
+    line-height: 2em;
+    list-style-type: none;
+    font-family: 'Merriweather', serif;
+    display: block;
+    padding-bottom: 1em;
+}
+
+
+header > section > h1 {
+    color: #F8ECC4;
+    font-family: 'Delighty', sans-serif;
+    font-size: 5em;
+    text-align: center;
+    margin: 0em;
+    margin-bottom: 0em;
+    font-weight: normal;
+}
+
+header > img {
+    height: 4em;
+    width: 4em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    transform: translate(-20%, -0%);
+}
+
+.showWholeHamburgermenu {
+    max-height: 100em;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+main > section:first-of-type {
+  height: 23vh;
+  width: 100%;
+  background-image: url('../images/foodBackground.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.8);
+  z-index: 0;
+  }
+main > section:nth-of-type(2) {
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 38%;
+  border-radius: 30px 30px 0px 0px;
+  z-index: -1;
+}
+
+main > section:nth-of-type(2) > h1 {
+  font-family: Delighty;
+  font-size: 3.8em;
+  font-weight: lighter;
+  margin: 0;
+  position: absolute;
+  top: 5%;
+}
+
+main > section:nth-of-type(2) > span {
+  position: absolute;
+  top: 17%;
+  font-family: var(--main-font);
+  font-weight: lighter;
+  color: #a79f9f;
+  font-size: 12px;
+}
+
+main > section:nth-of-type(2) > form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 17%;
+  margin: 10%;
+  padding-bottom: 20%;
+}
+
+main > section:nth-of-type(2) > form > button {
+  background-color: var(--main-color);
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  margin-top: 10%;
+  color: #ffffff;
+  width: 100%;
+  padding: 2%;
+  font-family: var(--main-font);
+  font-size: 1.2em;
+}
+
+#inputImg {
+  border: none;
+}
+
+main > section:nth-of-type(2) > form > input {
+  border: none;
+  border-bottom: 1px solid var(--main-color);
+}
+.testInput {
+  border: none;
+  border-bottom: 1px solid var(--main-color);
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+main > section:nth-of-type(2) > form > label {
+  margin-top: 5%;
+  color: #5A5A5A;
+  font-family: var(--main-font);
+  font-size: 0.8em;
+}
+
+main > section:nth-of-type(2) > form > textarea {
+  border-color: var(--main-color);
+  width: 100%;
+  margin-top: 5%;
+}
+
+#tijdsduur {
+  margin-top: 5%;
+}
+
+
+#recipeCards {
+  position: relative;
+  height: auto;
+  width: 90%;
+  background-color: #fff;
+  margin: 5%;
+  border-radius: 3px;
+  font-family: delighty;
+  font-weight: 300;
+  font-size: 2em;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 5%;
+  -webkit-box-shadow: -4px 6px 31px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -4px 6px 31px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 9px -4px rgb(0 0 0 / 75%);
+}
+
+.fa-user-alt:before {
+  font-size: var(--icon-size);
+}
+ .fa-globe-europe:before {
+   font-size: var(--icon-size);
+ }
+
+.fa-clock:before  {
+   font-size: var(--icon-size);
+ }
+
+
+#recipeCards > div > p {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+#recipeCards > div {
+  margin-left: 5%;
+}
+
+#recipeCards::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+  background-color: var(--main-color);
+}
+
+#dishes > section > button  {
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  display: inline-block;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+  margin: 0.5em;
+  font-size: 3em;
+  text-align: center;
+}
+
+#dishes > section   {
+  background-color: #F8ECC4;
+
+}
+
+.showWholeMenu {
+  max-height: 100em;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.showSubmenu1 {
+  max-height: 100em;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.showSubmenu2 {
+  max-height: 100em;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+ul {
+  max-height: 0;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 0;
+  margin-top: 0;
+  transition: all 500ms ease;
+  transform: translateX(-6vw);
+  background: #F8ECC4;
+  color: #707070;
+  line-height: 2em;
+  list-style-type: none;
+  font-family: 'Merriweather', serif;
+  display: block;
+  padding-bottom: 1em;
+}   
+
+.searchButton {
+  background-color: #F89D8A53;
+  color: white;
+  border-radius: 4em;
+  border-width: 0;
+  width: 6em;
+  height: 2em;
+  box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  display: block;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+}
+
+div {
+  display: flexbox;
+  flex-wrap: wrap-reverse;
+  row-gap: 3em;
+  column-gap: 3em;
+  font-size: 0.8em;
+  margin-right: 0.5em;
+}
+
+
