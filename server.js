@@ -7,6 +7,8 @@ const { MongoClient, ObjectID } = require('mongodb');
 const port = 3000;
 const ejs = require('ejs');
 const uri = process.env.DATABASECONNECT;
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 
 // verbinden met de mongo database
@@ -63,14 +65,14 @@ app.get('/thedishes', async (req, res) => {
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async function(err, db) {
     let dbo = db.db('foodzen');
-    
+   
     const dish = await dbo.collection('dish').find({
     dish: req.body.dishes,
     persons: Number(req.body.persons),
     }).toArray()
-    
-    
-    
+   
+   
+   
     console.log(dish);
     console.log(req.body.dishes);
     console.log(typeof req.body.persons);
@@ -79,14 +81,14 @@ app.post('/thedishes', async (req, res) => {
 });
 
 //Detailspagina per gerecht
-app.get('/thedishes/:dishesId', async (req, res) => { 
+app.get('/thedishes/:dishesId', async (req, res) => {
   const dish = await db.collection('dish').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
 //het favorieten van je favoriete gerechten
 app.get('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dish'); 
+  const dish = await db.collection('dish');
   const favoriteItems = await db.collection('favoriteItems');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
@@ -101,7 +103,7 @@ app.get('/favoritedishes', async (req, res) => {
           if (err) {
             console.log(err);
           } else {
-  
+ 
             res.render('favoritedishes', {
               title: 'Favorite Dishes',
               savedDishes,
@@ -115,8 +117,8 @@ app.get('/favoritedishes', async (req, res) => {
 
 //aangeklikte gerechten opslaan op de database om dan weer te geven op de favoriten pagina
 app.post('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dish'); 
-  const favoriteItems = await db.collection('favoriteItems'); 
+  const dish = await db.collection('dish');
+  const favoriteItems = await db.collection('favoriteItems');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
   const options = { upsert: true };
@@ -139,7 +141,7 @@ app.post('/favoritedishes', async (req, res) => {
             console.log(err);
           } else {
             console.log(savedDishes);
-  
+ 
             res.render('favoritedishes', {
               title: 'Favorite Dishes',
               savedDishes,
@@ -151,3 +153,42 @@ app.post('/favoritedishes', async (req, res) => {
 });
 
 app.set('view engine', 'ejs');
+
+ // const isAuthenticated = function (req, res, next) {
+//   if (req.isAuthenticated())
+//     return next();
+//   res.redirect('/');
+// }
+
+// dynamic room route
+app.get('/chat/:id', (req, res) => {
+  res.render(req.params.id);
+});
+
+// Socket setup & pass server
+
+// var io = socket(server);
+io.on('connection', (socket) => {
+
+    console.log('made socket connection', socket.id);
+
+    // Handle chat event
+    socket.on('chat', function(data){
+        io.sockets.emit('chat', data);
+    });
+
+    socket.on('typing', function(data){
+      socket.broadcast.emit('typing', data)
+    });
+});
+
+
+
+
+// router.get('/home', isAuthenticated, function(req, res){
+//   res.render('home', { user: req.user });
+//   });
+
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});

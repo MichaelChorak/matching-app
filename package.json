@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,11 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongodb": "^3.6.4",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.5",
+    "socket.io": "^4.0.0"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.7"
   }
 }
