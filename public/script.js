@@ -38,5 +38,5 @@ function voegRegelToe(){
 
 
 addBtn.addEventListener('click', voegRegelToe);
-menuBtn.addEventListener('click', showMenu);
-sluitenMenu.addEventListener('click', closeMenu);
+// menuBtn.addEventListener('click', showMenu);
+// sluitenMenu.addEventListener('click', closeMenu);

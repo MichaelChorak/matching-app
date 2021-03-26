@@ -133,9 +133,9 @@ app.get('/', (req, res) => {
  });
 
 app.post('/login', passport.authenticate('login', {
+  //route after succesfully log in
   successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
+  failureRedirect: '/login'
 }));
 
 passport.use('login', new LocalStrategy({
@@ -276,7 +276,7 @@ app.get('/thedishes', isAuthenticated, async (req, res) => {
    });
 });
 
- // Filtering a specific dish 
+ // Filtering a specific dish
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db('foodzen');
