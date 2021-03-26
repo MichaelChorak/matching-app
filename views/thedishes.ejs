@@ -8,20 +8,33 @@
     <section>
         <button id="headMenu">&#129171;</button>
     </section>
-    <form action='/thedishes' method="POST">
+   <form action='/thedishes' method="POST">
         <ul id="wholeMenu">
             <li id="submenu1"><a>Dishes</a></li>
             <ul id="menuOne">
             <div>
-              <label for="land">Waar komt het vandaan?</label>
-                <select class="" name="land" id="land">
-              <% for(var i=0; i < landen.length; i++) { %>
+              <input type="checkbox" name="dishes" value="Japanese" />
+              <label>Japanese</label>
 
-                <option name="land" value="<%= landen[i].name %>"><%= landen[i].name %></option>
-              <% } %>
+              <input type="checkbox" name="dishes" value="Italian" />
+              <label>Italian</label>
+            </div>
+            <div>
+              <input type="checkbox" name="dishes" value="Argentinian" />
+              <label>Argentinian</label> 
+        
+              <input type="checkbox" name="dishes" value="Moroccan" />
+              <label>Moroccan</label>
+            </div>
+            <div>
+              <input type="checkbox" name="dishes" value="Mexican" />
+              <label>Mexican</label> 
+
+              <input type="checkbox" name="dishes" value="Turkish" />
+              <label>Turkish</label>
             </div>
             </ul>
-
+            
             <li id="submenu2"><a>Persons</a></li>
             <ul id="menuSecond">
             <div>
@@ -33,17 +46,17 @@
             </div>
             <div>
               <input type="checkbox" name="persons" value="3" />
-              <label>3</label>
+              <label>3</label>  
 
               <input type="checkbox" name="persons" value="4" />
               <label>4</label>
             </div>
             <div>
               <input type="checkbox" name="persons" value="5" />
-              <label>5</label>
+              <label>5</label> 
 
               <input type="checkbox" name="persons" value="6" />
-              <label>6</label>
+              <label>6</label> 
             </div>
             </ul>
             <button type="submit" class="searchButton">Search</button>
