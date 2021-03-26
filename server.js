@@ -282,13 +282,13 @@ app.post('/thedishes', async (req, res) => {
     let dbo = db.db('foodzen');
 
     const dish = await dbo.collection('dishes').find({
-    dish: req.body.dishes,
-    persons: Number(req.body.persons),
+    countries: req.body.countries,
+    people: req.body.people
     }).toArray()
 
     console.log(dish);
-    console.log(req.body.dishes);
-    console.log(typeof req.body.persons);
+    console.log(req.body.countries);
+    console.log(req.body.people);
     res.render('thedishesresults', {dish });
   });
 });
