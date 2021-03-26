@@ -1,9 +1,9 @@
 body {
-    font-family: 'Nunito', sans-serif;
-    
+    font-family: 'Nunito', sans-serif; 
 }
 
-h2 {
+/* css code voor de chats  */
+h2.chatH2 {
     font-size: 18px;
     padding: 10px 20px;
     color: rgb(248, 157, 139);
@@ -22,10 +22,6 @@ h2 {
     overflow-y: auto;
     overflow-x: hidden;
     background: #f3f0f0;
-    /* background-image: url(https://images.unsplash.com/photo-1580835268937-a658c4a1f951?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80);
-    background-repeat: no-repeat;
-    background-size: cover; */
-
 }
 
 #output p {
@@ -51,8 +47,9 @@ label {
     padding: 10px 20px;
 }
 
-input {
+input.inputChat {
     padding: 10px 20px;
+    font-family: 'Nunito';
     box-sizing: border-box;
     background: #eee;
     border: 0;
@@ -64,7 +61,7 @@ input {
     font-size: 16px;
 }
 
-button {
+button.sendChat {
     background: rgb(248, 157, 139);
     color: #fff;
     font-size: 18px;
@@ -74,4 +71,35 @@ button {
     border-radius: 0 0 2px 2px;
     outline: 0;
     cursor: pointer;
+}
+
+/* css voor het overzicht van de chats */
+
+
+.chatOverview  h2 {
+    color: rgb(248, 157, 139);
+    margin: 2em 0 0 3em;
+}
+
+.chatUl {
+    list-style-type: none;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatA {
+    color: rgb(248, 157, 139);
+    margin: 1em;
+    font-weight: 700;
+    border: 3px solid rgb(248, 157, 139);
+    border-radius: 10px;
+    text-decoration: none;
+    width: 10em;
+    padding: 1em;
+}
+
+.chatA:hover {
+    color: white;
+    background-color: rgb(248, 157, 139);
 }

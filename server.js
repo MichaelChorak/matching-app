@@ -18,10 +18,10 @@ app.use('/js', express.static('public/js'));
 app.use(express.static('public'));
 
 
-// // basic route 
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
+// basic route 
+app.get('/chat', (req, res) => {
+  res.render('chat');
+});
 
 // dynamic room route 
 app.get('/chat/:id', (req, res) => {
@@ -30,23 +30,16 @@ app.get('/chat/:id', (req, res) => {
 
 // Socket setup & pass server
 io.on('connection', (socket) => {
-   
-    // io.to('empanadillas').emit('empanadillas', data);
+    io.to('chat').emit('chat',);
 
-    console.log('user connected: ', socket.id);
-
-    socket.on('join room', room => {
-      socket.join(room);
-    });
+    console.log('made socket connection', socket.id);
 
     // Handle chat event
-    socket.on('chat', ({room,message}) => {
-      socket.to(room).emit('message', {
-        message,
-        handle
-      })
-        // io.sockets.emit('empanadillas', data);
+    socket.on('chat', (data) => {
+        io.sockets.emit('chat', data);
     });
+
+    
 
     // function typing...
     socket.on('typing', function(data){
