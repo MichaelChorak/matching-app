@@ -16,47 +16,47 @@
       <section>
         <h1>Deel je passie</h1>
         <span>Deel je gerechten met andere Foodzen's</span>
-          <form action="gerechtToegevoegd" method="post" id="voegReceptForm">
-            <label for="afbeelding">Afbeelding</label>
-            <input type="file" name="afbeelding" value="afbeelding" id="inputImg">
+          <form action="dishAdded" method="post" id="addRecipeForm">
+            <label for="image">Afbeelding</label>
+            <input type="file" name="image" value="image" id="inputImg">
 
-            <label for="titel">Hoe heet je gerecht?</label>
-            <input type="text" name="titel" value="">
+            <label for="title">Hoe heet je gerecht?</label>
+            <input type="text" name="title" value="">
 
             <label for="land">Waar komt het vandaan?</label>
-              <select class="" name="land" id="land">
-            <% for(var i=0; i < landen.length; i++) { %>
+              <select class="" name="countries" id="country">
+            <% for(var i=0; i < countries.length; i++) { %>
 
-              <option name="land" value="<%= landen[i].name %>"><%= landen[i].name %></option>
+              <option name="country" value="<%= countries[i].name %>"><%= landen[i].name %></option>
             <% } %>
           </select>
-            <label for="personen">Voor hoeveel personen?</label>
-              <select class="" name="personen" id="personen">
-                <option name="land" value="1">1</option>
-                <option name="land" value="2">2</option>
-                <option name="land" value="3">3</option>
-                <option name="land" value="4">4</option>
-                <option name="land" value="5">5</option>
-                <option name="land" value="6">6</option>
+            <label for="people">Voor hoeveel personen?</label>
+              <select class="" name="people" id="people">
+                <option name="country" value="1">1</option>
+                <option name="country" value="2">2</option>
+                <option name="country" value="3">3</option>
+                <option name="country" value="4">4</option>
+                <option name="country" value="5">5</option>
+                <option name="country" value="6">6</option>
               </select>
 
 
 
-            <label for="ingredienten" id="label">Wat gaat er allemaal in?</label>
-            <input type="text" name="ingredienten" value="" ><br>
-            <input type="text" name="ingredienten" value="" /><br>
-            <input type="text" name="ingredienten" value="" /id="label"><br>
+            <label for="ingredients" id="label">Wat gaat er allemaal in?</label>
+            <input type="text" name="ingredients" value="" ><br>
+            <input type="text" name="ingredients" value="" /><br>
+            <input type="text" name="ingredients" value="" id="label"><br>
             <button type="button" name="button" id="addBtn">Meer ingredienten</button>
 
-            <label for="tijdsduur">Hoe lang gaat het duren?</label>
-            <input type="number" name="tijdsduur" value="" step="1">
-            <select id="tijdsduur" name="tijdsduur">
-              <option value="minuten">Minuten</option>
-              <option value="uren">Uur</option>
+            <label for="duration">Hoe lang gaat het duren?</label>
+            <input type="number" name="duration" value="" step="1">
+            <select id="duration" name="duration">
+              <option value="minutes">Minuten</option>
+              <option value="hours">Uur</option>
             </select>
 
-            <label for="instructies">Hoe wordt het gemaakt?</label>
-            <textarea rows="4" cols="75" name="instructies"></textarea>
+            <label for="instructions">Hoe wordt het gemaakt?</label>
+            <textarea rows="4" cols="75" name="instructions"></textarea>
 
             <button type="submit" name="button">Deel gerecht!</button>
 

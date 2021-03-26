@@ -91,7 +91,7 @@ async function run() {
     // Connect the client to the server
     await db.connect();
     // Establish and verify connection
-    await db.db("plaatsGerecht").command({
+    await db.db("foodzen").command({
       ping: 1
     });
 
@@ -106,17 +106,17 @@ run().catch(console.dir);
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
     MongoClient.connect(uri, async (err, db)=> {
-    let dbo = db.db('plaatsGerecht');
+    let dbo = db.db('foodzen');
   // create an empty list of profiles
   let profileData = {};
   // look for profile and show one
   profileData = await dbo
-    .collection("profiel")
+    .collection("profiles")
     .find({}, { sort: { name: 1 } })
     .limit(1)
     .toArray();
   res.render("profile.ejs", {
-    title: "Mijn profiel",
+    title: "My Profile",
     profileData,
     });
   });
@@ -229,34 +229,34 @@ app.get('/signout', (req, res)=> {
 
 
 // adding page
-app.get('/toevoegen', async (req, res, next)=> {
+app.get('/add', async (req, res, next)=> {
 
   MongoClient.connect(uri, async (err, db)=> {
-    dbo = db.db('plaatsGerecht');
-    landen = await dbo.collection('landen').find({}, {
+    dbo = db.db('foodzen');
+    countries = await dbo.collection('countries').find({}, {
       sort: {
         naam: 1
       }
     }).toArray();
     res.render('add', {
-      landen
+      countries
     });
   });
 });
 // adding filled in information
-app.post("/gerechtToegevoegd", (req, res) => {
+app.post("/dishAdded", (req, res) => {
   MongoClient.connect(uri, (err, db)=> {
     if (err) throw err;
-    let dbo = db.db("plaatsGerecht");
+    let dbo = db.db("foodzen");
 
-    dbo.collection("gerechten").insertOne({
-        afbeelding: req.body.afbeelding,
-        titel: req.body.titel,
-        ingredienten: req.body.ingredienten,
-        tijdsduur: req.body.tijdsduur,
-        instructies: req.body.instructies,
-        land: req.body.land,
-        personen: req.body.personen
+    dbo.collection("dishes").insertOne({
+        image: req.body.image,
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        duration: req.body.duration,
+        instructions: req.body.instructions,
+        country: req.body.country,
+        people: req.body.people
       },
       (err, result)=> {
         if (err) throw err;
@@ -270,8 +270,8 @@ app.post("/gerechtToegevoegd", (req, res) => {
 // Display all dishes + filtermenu
 app.get('/thedishes', async (req, res) => {
     MongoClient.connect(uri, async (err, db)=> {
-    let dbo = db.db("plaatsGerecht");
-    const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data from database
+    let dbo = db.db("foodzen");
+    const dish = await dbo.collection('dishes').find({}, { sort: {} }).toArray(); // data from database
     res.render('thedishes', { text: '', dish });
    });
 });
@@ -279,9 +279,9 @@ app.get('/thedishes', async (req, res) => {
  // Filtering a specific dish 
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
-    let dbo = db.db('plaatsGerecht');
+    let dbo = db.db('foodzen');
 
-    const dish = await dbo.collection('gerechten').find({
+    const dish = await dbo.collection('dishes').find({
     dish: req.body.dishes,
     persons: Number(req.body.persons),
     }).toArray()
@@ -295,14 +295,14 @@ app.post('/thedishes', async (req, res) => {
 
 // Detailpage of a single dish
 app.get('/thedishes/:dishesId', async (req, res) => {
-  const dish = await db.collection('gerechten').findOne({ id: req.params.dishesId });
+  const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
 // getting your favorite dishes
 app.get('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('gerechten');
-  const favoriteItems = await db.collection('favoriteGerechten');
+  const dish = await db.collection('dishes');
+  const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
@@ -330,8 +330,8 @@ app.get('/favoritedishes', async (req, res) => {
 
 // saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dish');
-  const favoriteItems = await db.collection('favorieteGerechten');
+  const dish = await db.collection('dishes');
+  const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
   const options = { upsert: true };
