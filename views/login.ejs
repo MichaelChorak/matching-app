@@ -7,6 +7,9 @@
   <body>
       <%- include('partials/header'); -%>
     <main>
+      <p class="warning">
+        <%= message ? message : '' %>
+      </p>
       <section>
         <form action="/login" method="POST">
           <label for="username">Username</label>

@@ -7,7 +7,10 @@
   <body>
       <%- include('partials/header'); -%>
     <main>
-       <section>
+        <p class="warning">
+            <%= message ? message : '' %>
+        </p>
+        <section>
             <form method="POST" action ="/signup" class="registerForm">
                 <label for="username">Username</label>
                 <input type="text" name="username"  required/>

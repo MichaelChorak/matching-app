@@ -129,13 +129,14 @@ app.get('/', (req, res) => {
 
 //GET login page
   app.get('/login', (req, res) => {
-   res.render('login');
+   res.render('login', {message: req.flash('message')});
  });
 
 app.post('/login', passport.authenticate('login', {
   //route after succesfully log in
   successRedirect: '/add',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  failureFlash: true
 }));
 
 passport.use('login', new LocalStrategy({
@@ -151,13 +152,13 @@ passport.use('login', new LocalStrategy({
       if (!user){
         console.log('User Not Found with username '+username);
         return done(null, false,
-          console.log('User Not found.'));
-      }
+          req.flash('message', 'No user found with the username' +username));
+        }
       // User exists, wrong password, log the error
       if (!isValidPassword(user, password)){
         console.log('Invalid Password');
         return done(null, false,
-          console.log('Invalid Password'));
+          req.flash('message','Invalid password!'));
       }
       // User & password  match, return user
       console.log('user exists and login is succeeded!')
@@ -167,7 +168,7 @@ passport.use('login', new LocalStrategy({
 }));
 
 app.get('/signup', (req, res)=>{
-  res.render('register',);
+  res.render('register',{message: req.flash('message')});
 });
 
 app.post('/signup', passport.authenticate('signup', {
@@ -185,14 +186,14 @@ passport.use('signup', new LocalStrategy({
     User.findOne({'username':username},(err, user)=> {
       // In case of any error return the following
       if (err){
-        console.log('Error in SignUp: '+err);
+        req.flash('message','Error in SignUp: '+err);
         return done(err);
       }
       // already exists?
       if (user) {
         console.log('User already exists');
         return done(null, false,
-          console.log('User Already Exists'));
+          req.flash('message','User already exists!'));
       } else {
         // if there is no user with that email, create them
         const newCreatedUser = new User();
@@ -205,7 +206,7 @@ passport.use('signup', new LocalStrategy({
         // save the user
         newCreatedUser.save((err)=> {
           if (err){
-            console.log('Error in Saving user: '+err);
+            req.flash('message','Error in Saving user: '+err);
             return;
           }
           console.log('User Registration succesful');
