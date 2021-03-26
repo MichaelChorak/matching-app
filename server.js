@@ -18,21 +18,16 @@ const User = require('./models/user');
 const flash = require('connect-flash');
 const { exec } = require("child_process");
 
-
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.json());
-
 
 app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
 app.use(flash())
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('views',path.join(__dirname,'views'))
-
-
 
 // Static files
 app.use(express.static('public'));
@@ -233,7 +228,7 @@ app.get('/signout', (req, res)=> {
 });
 
 
-// toevoegen pagina
+// adding page
 app.get('/toevoegen', async (req, res, next)=> {
 
   MongoClient.connect(uri, async (err, db)=> {
@@ -248,7 +243,7 @@ app.get('/toevoegen', async (req, res, next)=> {
     });
   });
 });
-// toevoegen van ingevoerde data van de toevoegpagina!
+// adding filled in information
 app.post("/gerechtToegevoegd", (req, res) => {
   MongoClient.connect(uri, (err, db)=> {
     if (err) throw err;
@@ -265,23 +260,23 @@ app.post("/gerechtToegevoegd", (req, res) => {
       },
       (err, result)=> {
         if (err) throw err;
-        res.redirect('/'); //Hier wordt je naar toe gestuurd na submit
+        res.redirect('/'); // sent here after submit
         db.close();
       })
   });
 });
 
 
-//display alle gerichten + filtermenu
+// Display all dishes + filtermenu
 app.get('/thedishes', async (req, res) => {
     MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db("plaatsGerecht");
-    const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data vanuit de database
+    const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data from database
     res.render('thedishes', { text: '', dish });
    });
 });
 
- //filteren op een bepaald gerecht
+ // Filtering a specific dish 
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db('plaatsGerecht');
@@ -291,8 +286,6 @@ app.post('/thedishes', async (req, res) => {
     persons: Number(req.body.persons),
     }).toArray()
 
-
-
     console.log(dish);
     console.log(req.body.dishes);
     console.log(typeof req.body.persons);
@@ -300,20 +293,20 @@ app.post('/thedishes', async (req, res) => {
   });
 });
 
-//Detailspagina per gerecht
+// Detailpage of a single dish
 app.get('/thedishes/:dishesId', async (req, res) => {
   const dish = await db.collection('gerechten').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
-//het favorieten van je favoriete gerechten
+// getting your favorite dishes
 app.get('/favoritedishes', async (req, res) => {
   const dish = await db.collection('gerechten');
   const favoriteItems = await db.collection('favoriteGerechten');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that will check saveditems
     if (err) {
       console.log(err);
     } else {
@@ -335,7 +328,7 @@ app.get('/favoritedishes', async (req, res) => {
 });
 
 
-//aangeklikte gerechten opslaan op de database om dan weer te geven op de favoriten pagina
+// saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {
   const dish = await db.collection('dish');
   const favoriteItems = await db.collection('favorieteGerechten');
@@ -349,8 +342,8 @@ app.post('/favoritedishes', async (req, res) => {
     { $push: { saves: savedDish } }, options
   );
 
-  //controleren
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+  //Checking
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that's in saveditems checking
     if (err) {
       console.log(err);
     } else {
