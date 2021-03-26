@@ -229,7 +229,7 @@ app.get('/signout', (req, res)=> {
 
 
 // adding page
-app.get('/add', async (req, res, next)=> {
+app.get('/add', isAuthenticated, async (req, res, next)=> {
 
   MongoClient.connect(uri, async (err, db)=> {
     dbo = db.db('foodzen');
@@ -268,7 +268,7 @@ app.post("/dishAdded", (req, res) => {
 
 
 // Display all dishes + filtermenu
-app.get('/thedishes', async (req, res) => {
+app.get('/thedishes', isAuthenticated, async (req, res) => {
     MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db("foodzen");
     const dish = await dbo.collection('dishes').find({}, { sort: {} }).toArray(); // data from database
@@ -294,13 +294,13 @@ app.post('/thedishes', async (req, res) => {
 });
 
 // Detailpage of a single dish
-app.get('/thedishes/:dishesId', async (req, res) => {
+app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
   const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
   res.render('dishesdetails', { title: 'Clothing Details', dish });
 });
 
 // getting your favorite dishes
-app.get('/favoritedishes', async (req, res) => {
+app.get('/favoritedishes', isAuthenticated, async (req, res) => {
   const dish = await db.collection('dishes');
   const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
@@ -367,7 +367,7 @@ app.post('/favoritedishes', async (req, res) => {
 
 
 // dynamic room route
-app.get('/chat/:id', (req, res) => {
+app.get('/chat/:id', isAuthenticated, (req, res) => {
   res.render(req.params.id);
 });
 
