@@ -23,6 +23,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.json());
 
+
+app.set('view engine', 'ejs');
+
+// static files
 app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
 app.use(flash())
 app.use(passport.initialize());
@@ -86,6 +90,11 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
 
+// http listen
+http.listen(port, () => {
+  console.log(`http://localhost:${port}/`);
+});
+
 async function run() {
   try {
     // Connect the client to the server
@@ -94,7 +103,6 @@ async function run() {
     await db.db("foodzen").command({
       ping: 1
     });
-
     console.log("Connected succesfully to the database.");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -102,6 +110,11 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
+// chatOverview route
+app.get('/chat', (req, res) => {
+  res.render('chat');
+});
 
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
@@ -385,21 +398,48 @@ app.get('/chat/:id', isAuthenticated, (req, res) => {
 
 // Socket setup & pass server
 
-// var io = socket(server);
 io.on('connection', (socket) => {
 
-    console.log('made socket connection', socket.id);
+let roomName = '';
 
-    // Handle chat event
-    socket.on('chat', (data)=>{
-        io.sockets.emit('chat', data);
-    });
+socket.on('join room', (data) => {
 
-    socket.on('typing', (data)=>{
-      socket.broadcast.emit('typing', data)
-    });
+socket.join(data);
+
+roomName = data;
+
 });
 
+
+
+console.log('made socket connection', socket.id);
+
+
+
+// Handle chat event
+
+socket.on('chat', (data) => {
+
+
+
+// io.sockets.emit('chat', data);
+
+socket.to(roomName).emit('chat', data);
+
+});
+
+
+
+
+// function typing...
+
+socket.on('typing', function(data){
+
+socket.broadcast.emit('typing', data)
+
+});
+
+});
 // page not found
 app.use((req, res, next)=> {
   res.status(404).send("Sorry can't find that!");

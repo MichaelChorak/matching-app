@@ -1,43 +1,43 @@
-    <section>
-        <button id="headMenu">&#129171;</button>
-    </section>
-    <form action='/thedishes' method="POST">
-        <ul id="wholeMenu">
-            <li id="submenu1"><a>Dishes</a></li>
-            <ul id="menuOne">
-            <div>
-                <select class="" name="countries" id="country">
-                    <% for(var i=0; i < countries.length; i++) { %>
-                    <option name="countries" value="<%= countries[i].name %>"><%= countries[i].name %></option>
-                    <% } %>
-                    </select>
-            </div>
-            </ul>
+<section>
+  <button id="headMenu">&#129171;</button>
+</section>
+<form action='/thedishes' method="POST">
+  <ul id="wholeMenu">
+    <li id="submenu1"><a>Dishes</a></li>
+    <ul id="menuOne">
+      <div>
+        <select class="" name="countries" id="country">
+          <% for(var i=0; i < countries.length; i++) { %>
+          <option name="countries" value="<%= countries[i].name %>"><%= countries[i].name %></option>
+          <% } %>
+        </select>
+      </div>
+    </ul>
 
-            <li id="submenu2"><a>Persons</a></li>
-            <ul id="menuSecond">
-            <div>
-              <input type="checkbox" name="people" value="1" />
-              <label>1</label>
+    <li id="submenu2"><a>Persons</a></li>
+    <ul id="menuSecond">
+      <div>
+        <input type="checkbox" name="people" value="1" />
+        <label>1</label>
 
-              <input type="checkbox" name="people" value="2" />
-              <label>2</label>
-            </div>
-            <div>
-              <input type="checkbox" name="people" value="3" />
-              <label>3</label>
+        <input type="checkbox" name="people" value="2" />
+        <label>2</label>
+      </div>
+      <div>
+        <input type="checkbox" name="people" value="3" />
+        <label>3</label>
 
-              <input type="checkbox" name="people" value="4" />
-              <label>4</label>
-            </div>
-            <div>
-              <input type="checkbox" name="people" value="5" />
-              <label>5</label>
+        <input type="checkbox" name="people" value="4" />
+        <label>4</label>
+      </div>
+      <div>
+        <input type="checkbox" name="people" value="5" />
+        <label>5</label>
 
-              <input type="checkbox" name="people" value="6" />
-              <label>6</label>
-            </div>
-            </ul>
-            <button type="submit" class="searchButton">Search</button>
-          </ul>
-        </form>
+        <input type="checkbox" name="people" value="6" />
+        <label>6</label>
+      </div>
+    </ul>
+    <button type="submit" class="searchButton">Search</button>
+  </ul>
+</form>
