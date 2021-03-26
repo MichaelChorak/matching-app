@@ -49,29 +49,26 @@ app.use(express.json());
 
 //database uri
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-// const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
 const db = new MongoClient(uri, {
   useUnifiedTopology: true
 });
 db.connect();
 
-
-const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o0u7k.mongodb.net/Cluster0?retryWrites=true&w=majority`
-mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true, dbName:process.env.DB_NAME});
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, dbName:process.env.DB_NAME});
 const dbMongoose = mongoose.connection;
 dbMongoose.on('error', console.error.bind(console, 'connection error:'));
 
 // Hashing and authentication code
 // Generates hash using bCrypt
-const createHash = function(password){
+const createHash = (password)=>{
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
  }
 
- const isValidPassword = function(user, password){
+ const isValidPassword = (user, password)=>{
   return bCrypt.compareSync(password, user.password);
 }
 
-const isAuthenticated = function (req, res, next) {
+const isAuthenticated =  (req, res, next)=> {
   if (req.isAuthenticated()){
     return next();
   }else{
@@ -79,12 +76,12 @@ const isAuthenticated = function (req, res, next) {
   }
 }
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done)=> {
   done(null, user._id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser((id, done)=> {
+  User.findById(id, (err, user)=> {
     done(err, user);
   });
 });
@@ -113,7 +110,7 @@ run().catch(console.dir);
 
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
-    MongoClient.connect(uri, async function(err, db) {
+    MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db('plaatsGerecht');
   // create an empty list of profiles
   let profileData = {};
@@ -130,22 +127,15 @@ app.get("/profiles",isAuthenticated, async (req, res) => {
   });
 });
 
-
-
-
-
-
 //GET index page
 app.get('/', isAuthenticated, (req, res) => {
   res.render('index',  { user: req.user });
 });
 
-// // GET login page
-// app.get('/login', function(req, res) => {
-//   res.render('login');
-// });
-
-
+//GET login page
+  app.get('/login', (req, res) => {
+   res.render('login');
+ });
 
 app.post('/login', passport.authenticate('login', {
   successRedirect: '/',
@@ -156,9 +146,9 @@ app.post('/login', passport.authenticate('login', {
 passport.use('login', new LocalStrategy({
   passReqToCallback : true,
 },
-function(req, username, password, done) {
+(req, username, password, done)=> {
   User.findOne({ 'username' :  username},
-    function(err, user) {
+    (err, user)=> {
       // In case of any error, return using the done method
       if (err)
         return done(err);
@@ -181,7 +171,7 @@ function(req, username, password, done) {
   );
 }));
 
-app.get('/signup', function(req, res){
+app.get('/signup', (req, res)=>{
   res.render('register',);
 });
 
@@ -194,11 +184,11 @@ app.post('/signup', passport.authenticate('signup', {
 passport.use('signup', new LocalStrategy({
   passReqToCallback : true
 },
-function(req, username, password, done) {
-  findOrCreateUser = function(){
+(req, username, password, done)=> {
+  findOrCreateUser = ()=>{
     console.log('reached findorcreate!');
     // find a user in the db with the provided username
-    User.findOne({'username':username},function(err, user) {
+    User.findOne({'username':username},(err, user)=> {
       // In case of any error return the following
       if (err){
         console.log('Error in SignUp: '+err);
@@ -219,7 +209,7 @@ function(req, username, password, done) {
         newCreatedUser.name = req.body.name;
 
         // save the user
-        newCreatedUser.save(function(err) {
+        newCreatedUser.save((err)=> {
           if (err){
             console.log('Error in Saving user: '+err);
             return;
@@ -237,16 +227,16 @@ function(req, username, password, done) {
 }));
 
 // if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
-app.get('/signout', function(req, res) {
+app.get('/signout', (req, res)=> {
   req.logout();
   res.redirect('/');
 });
 
 
 // toevoegen pagina
-app.get('/toevoegen', async function(req, res, next) {
+app.get('/toevoegen', async (req, res, next)=> {
 
-  MongoClient.connect(uri, async function(err, db) {
+  MongoClient.connect(uri, async (err, db)=> {
     dbo = db.db('plaatsGerecht');
     landen = await dbo.collection('landen').find({}, {
       sort: {
@@ -260,7 +250,7 @@ app.get('/toevoegen', async function(req, res, next) {
 });
 // toevoegen van ingevoerde data van de toevoegpagina!
 app.post("/gerechtToegevoegd", (req, res) => {
-  MongoClient.connect(uri, function(err, db) {
+  MongoClient.connect(uri, (err, db)=> {
     if (err) throw err;
     let dbo = db.db("plaatsGerecht");
 
@@ -273,8 +263,7 @@ app.post("/gerechtToegevoegd", (req, res) => {
         land: req.body.land,
         personen: req.body.personen
       },
-
-      function(err, result) {
+      (err, result)=> {
         if (err) throw err;
         res.redirect('/'); //Hier wordt je naar toe gestuurd na submit
         db.close();
@@ -285,7 +274,7 @@ app.post("/gerechtToegevoegd", (req, res) => {
 
 //display alle gerichten + filtermenu
 app.get('/thedishes', async (req, res) => {
-    MongoClient.connect(uri, async function(err, db) {
+    MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db("plaatsGerecht");
     const landen = await  dbo.collection('landen').find({}, { sort: {} }).toArray();
     const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data vanuit de database
@@ -295,7 +284,7 @@ app.get('/thedishes', async (req, res) => {
 
  //filteren op een bepaald gerecht
 app.post('/thedishes', async (req, res) => {
-  MongoClient.connect(uri, async function(err, db) {
+  MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db('plaatsGerecht');
 
     const dish = await dbo.collection('gerechten').find({
@@ -398,16 +387,16 @@ io.on('connection', (socket) => {
     console.log('made socket connection', socket.id);
 
     // Handle chat event
-    socket.on('chat', function(data){
+    socket.on('chat', (data)=>{
         io.sockets.emit('chat', data);
     });
 
-    socket.on('typing', function(data){
+    socket.on('typing', (data)=>{
       socket.broadcast.emit('typing', data)
     });
 });
 
 // page not found
-app.use(function (req, res, next) {
+app.use((req, res, next)=> {
   res.status(404).send("Sorry can't find that!");
 });
