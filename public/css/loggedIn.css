@@ -197,6 +197,7 @@ main > section:nth-of-type(2) > form > textarea {
 
 
 #recipeCards {
+  position: relative;
   height: auto;
   width: 90%;
   background-color: #fff;
@@ -226,13 +227,24 @@ main > section:nth-of-type(2) > form > textarea {
 .fa-clock:before  {
    font-size: var(--icon-size);
  }
+
+
 #recipeCards > div > p {
   margin: 0;
   padding: 0;
   font-weight: 300;
   font-size: 1.4em;
 }
-
 #recipeCards > div {
   margin-left: 5%;
+}
+
+#recipeCards::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+  background-color: var(--main-color);
 }

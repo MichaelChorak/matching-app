@@ -5,74 +5,21 @@
 <body>
     <%- include('../views/partials/loggedHeader.ejs') %>
   <main id="dishes">
-   <!-- <form action='/thedishes' method="POST">
-        <ul id="wholeMenu">
-            <li id="submenu1"><a>Dishes</a></li>
-            <ul id="menuOne">
-            <div>
-              <input type="checkbox" name="dishes" value="Japanese" />
-              <label>Japanese</label>
 
-              <input type="checkbox" name="dishes" value="Italian" />
-              <label>Italian</label>
-            </div>
-            <div>
-              <input type="checkbox" name="dishes" value="Argentinian" />
-              <label>Argentinian</label>
-
-              <input type="checkbox" name="dishes" value="Moroccan" />
-              <label>Moroccan</label>
-            </div>
-            <div>
-              <input type="checkbox" name="dishes" value="Mexican" />
-              <label>Mexican</label>
-
-              <input type="checkbox" name="dishes" value="Turkish" />
-              <label>Turkish</label>
-            </div>
-            </ul>
-
-            <li id="submenu2"><a>Persons</a></li>
-            <ul id="menuSecond">
-            <div>
-              <input type="checkbox" name="persons" value="1" />
-              <label>1</label>
-
-              <input type="checkbox" name="persons" value="2" />
-              <label>2</label>
-            </div>
-            <div>
-              <input type="checkbox" name="persons" value="3" />
-              <label>3</label>
-
-              <input type="checkbox" name="persons" value="4" />
-              <label>4</label>
-            </div>
-            <div>
-              <input type="checkbox" name="persons" value="5" />
-              <label>5</label>
-
-              <input type="checkbox" name="persons" value="6" />
-              <label>6</label>
-            </div>
-            </ul>
-            <button type="submit" class="searchButton">Search</button>
-          </ul>
-        </form> -->
 
 
        <% dish.forEach(function(dish){ %>
-    <article id="recipeCards">
-        <img src="<%= dish.image %>">
-          <div>
-            <p><%= dish.title %></p>
-            <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
-            <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
-            <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p> 
-          </div>
-
-    </article>
-    <% }) %>
+          <article id="recipeCards">
+            <img src="<%= dish.image %>">
+              <div>
+                <p><%= dish.title %></p>
+                <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
+                <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
+                <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p>
+                <a href="/thedishes/<%= dish.id %>">Read More</a>
+              </div>
+          </article>
+      <% }) %>
 
 </main>
 <%- include('../views/partials/footer.ejs') %>
