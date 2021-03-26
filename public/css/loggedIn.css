@@ -16,127 +16,85 @@ body {
  }
 
 header {
-  height: 10vh;
-  background-color: var(--secondary-color);
-  position: relative;
-  display: flex;
-  align-items: center;
+    overflow-y: scroll;
+    width: 100%;
 }
 
-.fa-bars:before {
-    content: "\f0c9";
-    color: white;
-    font-size: 2em;
-}
-/* divje voor de show button */
-header > div {
-  height: 5vh;
-  width: 5vh;
-  margin-left: 5%;
-}
 
-/* logged in menu */
 header > section {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--main-color);
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  /* transform: translateY(-100vh); */
+    display: grid;
+    grid-template-columns: 20% 60% auto;
+} 
 
+header > ul > li {
+    text-decoration: none;
+    padding-bottom: 0em;
+    padding: 0.5em;
+    margin-top: 0.5em;
+} 
+
+header > ul > li > a {
+    text-decoration: none;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    color: #F89D8A;
+} 
+
+header > section > button {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-width: 0;
+    display: inline-block;
+    margin: 1em;
+    font-size: 1.5em;
+    text-align: center;
 }
 
-@keyframes menuY {
-  0%{transform:translateY(0vh);}
-  100%{transform: translateY(-100vh);}
+header > ul {
+    max-height: 0em;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    transition: all 500ms ease;
+    transform: translateX(-6vw);
+    background: white;
+    color: #707070;
+    line-height: 2em;
+    list-style-type: none;
+    font-family: 'Merriweather', serif;
+    display: block;
+    padding-bottom: 1em;
 }
 
-/* menu items */
-header > section > ul {
-  margin-top: 45%;
-  height: 55%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+header > section > h1 {
+    color: #F8ECC4;
+    font-family: 'Delighty', sans-serif;
+    font-size: 5em;
+    text-align: center;
+    margin: 0em;
+    margin-bottom: 0em;
+    font-weight: normal;
 }
 
-header > section > ul > li {
-  font-family: var(--main-font);
-  list-style-type: none;
-  color: #fff;
-  font-size: 1em;
+header > img {
+    height: 4em;
+    width: 4em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    transform: translate(-20%, -0%);
 }
 
-
-header > section > div:first-child {
-  height: auto;
-  width: 5vh;
-  float: right;
-  margin: 5% 5% 0% 0%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: menuTerug;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
+.showWholeHamburgermenu {
+    max-height: 100em;
+    opacity: 1;
+    transform: translateX(0);
 }
-
-header > section > div:first-child:hover {
-  animation: hoverSluiten;
-  animation-duration: 0.3s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes hoverSluiten {
-0% {transform: scale(1.2) }
-100% {transform: scale(0.4)}
-}
-
-@keyframes menuTerug {
-  0%{transform:translateY(-100vh);}
-  100%{transform: translateY(0vh);}
-}
-
-/* Classlist Add event to show menu */
-.laatMenuZien {
-  opacity: 1;
-  visibility: visible;
-  animation: menuY;
-  transition: 0.7s;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-
-.menuTerug {
-animation: menuTerug;
-animation-duration: 1s;
-transition: 0.7s;
-animation-duration: 0.7s;
-animation-fill-mode: forwards;
-animation-timing-function: ease-in-out
-}
-
-/* kruisje sluiten animatie en styling */
-header > section > div:first-of-type > div:first-child {
-  width: 0.7vh;
-  height: 5vh;
-  background-color: #fff;
-  transform: rotate(45deg);
-}
-
-header > section > div:first-of-type > div:last-child {
-  width: 0.7vh;
-  height: 5vh;
-  background-color: #fff;
-  transform: rotate(-45deg);
-}
-
-/* styling toevoegen pagina - (V0.5) */
 
 main > section:first-of-type {
   height: 23vh;
