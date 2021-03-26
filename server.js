@@ -7,8 +7,7 @@ const { MongoClient, ObjectID } = require('mongodb');
 const port = 3000;
 const ejs = require('ejs');
 const uri = process.env.DATABASECONNECT;
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+
 
 
 // verbinden met de mongo database
@@ -160,27 +159,7 @@ app.set('view engine', 'ejs');
 //   res.redirect('/');
 // }
 
-// dynamic room route
-app.get('/chat/:id', (req, res) => {
-  res.render(req.params.id);
-});
 
-// Socket setup & pass server
-
-// var io = socket(server);
-io.on('connection', (socket) => {
-
-    console.log('made socket connection', socket.id);
-
-    // Handle chat event
-    socket.on('chat', function(data){
-        io.sockets.emit('chat', data);
-    });
-
-    socket.on('typing', function(data){
-      socket.broadcast.emit('typing', data)
-    });
-});
 
 
 
@@ -189,6 +168,3 @@ io.on('connection', (socket) => {
 //   res.render('home', { user: req.user });
 //   });
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
-});
