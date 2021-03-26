@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 
-// static files 
+// static files
 app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
 app.use(flash())
 app.use(passport.initialize());
@@ -90,10 +90,10 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
 
-// http listen 
+// http listen
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
-
+});
 
 async function run() {
   try {
@@ -397,36 +397,49 @@ app.get('/chat/:id', isAuthenticated, (req, res) => {
 });
 
 // Socket setup & pass server
+
 io.on('connection', (socket) => {
-  let roomName = '';
-    
-    socket.on('join room', (data) => {
-      socket.join(data);
-      roomName = data;
+
+let roomName = '';
+
+socket.on('join room', (data) => {
+
+socket.join(data);
+
+roomName = data;
+
 });
 
-    console.log('made socket connection', socket.id);
 
-    // Handle chat event
-    socket.on('chat', (data) => {
 
-        // io.sockets.emit('chat', data);
-        socket.to(roomName).emit('chat', data);
+console.log('made socket connection', socket.id);
+
+
+
+// Handle chat event
+
+socket.on('chat', (data) => {
+
+
+
+// io.sockets.emit('chat', data);
+
+socket.to(roomName).emit('chat', data);
+
 });
 
-    
 
-    // function typing...
-    socket.on('typing', function(data){  
-    socket.on('chat', (data)=> {
-        io.sockets.emit('chat', data);
-    });
 
-    socket.on('typing', (data)=> {
-      socket.broadcast.emit('typing', data)
-    });
+
+// function typing...
+
+socket.on('typing', function(data){
+
+socket.broadcast.emit('typing', data)
+
 });
 
+});
 // page not found
 app.use((req, res, next)=> {
   res.status(404).send("Sorry can't find that!");
