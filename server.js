@@ -18,7 +18,7 @@ app.use('/js', express.static('public/js'));
 app.use(express.static('public'));
 
 
-// basic route 
+// chatOverview route
 app.get('/chat', (req, res) => {
   res.render('chat');
 });
@@ -30,14 +30,21 @@ app.get('/chat/:id', (req, res) => {
 
 // Socket setup & pass server
 io.on('connection', (socket) => {
-    io.to('chat').emit('chat',);
+  let roomName = '';
+    
+    socket.on('join room', (data) => {
+      socket.join(data);
+      roomName = data;
+});
 
     console.log('made socket connection', socket.id);
 
     // Handle chat event
     socket.on('chat', (data) => {
-        io.sockets.emit('chat', data);
-    });
+
+        // io.sockets.emit('chat', data);
+        socket.to(roomName).emit('chat', data);
+});
 
     
 
@@ -49,7 +56,7 @@ io.on('connection', (socket) => {
 
 
 // http listen 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
+http.listen(port, () => {
+  console.log(`http://localhost:${port}/`);
 });
 

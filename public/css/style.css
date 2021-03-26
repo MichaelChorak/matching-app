@@ -1,12 +1,12 @@
 body {
-    font-family: 'Nunito', sans-serif; 
+    font-family: sans-serif; 
 }
 
 /* css code voor de chats  */
 h2.chatH2 {
     font-size: 18px;
     padding: 10px 20px;
-    color: rgb(248, 157, 139);
+    color: #F89D8A;
 }
 
 #chat {
@@ -38,7 +38,7 @@ h2.chatH2 {
 }
 
 #output strong {
-    color: rgb(248, 157, 139);
+    color: #F89D8A;
 }
 
 label {
@@ -57,12 +57,12 @@ input.inputChat {
     width: 100%;
     background: #fff;
     border-bottom: 1px solid #eee;
-    font-family: Nunito;
+    font-family: 'Nunito';
     font-size: 16px;
 }
 
 button.sendChat {
-    background: rgb(248, 157, 139);
+    background: #F89D8A;
     color: #fff;
     font-size: 18px;
     border: 0;
@@ -77,7 +77,7 @@ button.sendChat {
 
 
 .chatOverview  h2 {
-    color: rgb(248, 157, 139);
+    color: #F89D8A;
     margin: 2em 0 0 3em;
 }
 
@@ -92,15 +92,16 @@ button.sendChat {
     color: rgb(248, 157, 139);
     margin: 1em;
     font-weight: 700;
-    border: 3px solid rgb(248, 157, 139);
+    border: 3px solid #F89D8A;
     border-radius: 10px;
     text-decoration: none;
     width: 10em;
     padding: 1em;
     text-align: center;
+    box-shadow: 5px 5px 8px 5px rgba(0,0,0,0.05);
 }
 
 .chatA:hover {
     color: white;
-    background-color: rgb(248, 157, 139);
+    background-color: #F89D8A;
 }

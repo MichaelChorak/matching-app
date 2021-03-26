@@ -1,5 +1,5 @@
 // Make connection
- socket = io.connect('http://localhost:3000');
+ socket = io.connect(window.location.host);
 
 // Query DOM
 const message = document.getElementById('message'),
@@ -8,14 +8,17 @@ const message = document.getElementById('message'),
       output = document.getElementById('output'),
       feedback = document.getElementById('feedback');
 
+
+      document.addEventListener('DOMContentLoaded', () => {
+        socket.emit('join room', window.location.pathname);
+      });  
+
 // Emit events
 btn.addEventListener('click', () => {
-  socket.emit('chat',  {
-      message: message.value,
-      handle: handle.value
-  });
-  message.value = "";
+    sendMessage();
 });
+
+
 
 // typing... event
 message.addEventListener('keypress', () => {
@@ -25,11 +28,7 @@ message.addEventListener('keypress', () => {
 // message to enter event
 message.addEventListener('keyup', (e) => {
   if(e.keyCode === 13) {
-    socket.emit('chat', {
-      message: message.value,
-      handle: handle.value
-    });
-    message.value = "";
+    sendMessage();
   }
 })
 
@@ -42,3 +41,21 @@ socket.on('chat', (data) => {
 socket.on('typing', (data) => {
   feedback.innerHTML = '<p><em>' +data + ' is typing a message... </em></p>';
 })
+
+function sendMessage() {
+  if (message.value.trim() == '' || handle.value.trim() == '')  {
+    return;
+  }
+  const handleFormat = handle.value.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const messageFormat = message.value.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  
+
+
+  socket.emit('chat',  {
+      message: messageFormat,
+      handle: handleFormat
+  });
+  output.innerHTML += '<p><strong>' + handleFormat + ': </strong>' + messageFormat + '</p>';
+  message.value = "";
+}
+
