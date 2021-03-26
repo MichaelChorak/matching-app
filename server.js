@@ -181,7 +181,6 @@ passport.use('signup', new LocalStrategy({
 },
 (req, username, password, done)=> {
   findOrCreateUser = ()=>{
-    console.log('reached findorcreate!');
     // find a user in the db with the provided username
     User.findOne({'username':username},(err, user)=> {
       // In case of any error return the following
