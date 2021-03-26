@@ -1,8 +1,8 @@
 // Make connection
-var socket = io.connect('http://localhost:3000');
+ socket = io.connect('http://localhost:3000');
 
 // Query DOM
-var message = document.getElementById('message'),
+const message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
       output = document.getElementById('output'),
@@ -12,7 +12,7 @@ var message = document.getElementById('message'),
 
 // Emit events
 btn.addEventListener('click', function(){
-  socket.emit('chat', {
+  socket.emit('chat',  {
       message: message.value,
       handle: handle.value
   });
@@ -23,6 +23,7 @@ message.addEventListener('keypress', function(){
   socket.emit('typing', handle.value);
 })
 
+// message to enter event
 message.addEventListener('keyup', (e) => {
   if(e.keyCode === 13) {
     socket.emit('chat', {

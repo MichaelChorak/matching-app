@@ -7,12 +7,6 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 
-// const isAuthenticated = function (req, res, next) {
-//   if (req.isAuthenticated())
-//     return next();
-//   res.redirect('/');
-// }
-
 app.set('view engine', 'ejs');
 
 // static files 
@@ -24,10 +18,10 @@ app.use('/js', express.static('public/js'));
 app.use(express.static('public'));
 
 
-// basic route 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+// // basic route 
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
 
 // dynamic room route 
 app.get('/chat/:id', (req, res) => {
@@ -35,29 +29,33 @@ app.get('/chat/:id', (req, res) => {
 });
 
 // Socket setup & pass server
-
-// var io = socket(server);
 io.on('connection', (socket) => {
+   
+    // io.to('empanadillas').emit('empanadillas', data);
 
-    console.log('made socket connection', socket.id);
+    console.log('user connected: ', socket.id);
 
-    // Handle chat event
-    socket.on('chat', function(data){
-        io.sockets.emit('chat', data);
+    socket.on('join room', room => {
+      socket.join(room);
     });
 
+    // Handle chat event
+    socket.on('chat', ({room,message}) => {
+      socket.to(room).emit('message', {
+        message,
+        handle
+      })
+        // io.sockets.emit('empanadillas', data);
+    });
+
+    // function typing...
     socket.on('typing', function(data){
       socket.broadcast.emit('typing', data)
     });
 });
 
 
-
-
-// router.get('/home', isAuthenticated, function(req, res){
-//   res.render('home', { user: req.user });
-//   });
-
+// http listen 
 http.listen(3000, () => {
   console.log('listening on *:3000');
 });
