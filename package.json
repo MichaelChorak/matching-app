@@ -24,7 +24,8 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongodb": "^3.6.5",
-    "socket.io": "^4.0.0"
+    "socket.io": "^4.0.0",
+    "uglify-js": "^3.13.2"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
