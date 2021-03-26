@@ -134,7 +134,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', passport.authenticate('login', {
   //route after succesfully log in
-  successRedirect: '/',
+  successRedirect: '/add',
   failureRedirect: '/login'
 }));
 
