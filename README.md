@@ -52,7 +52,10 @@ npm start
 ## Features
 
 - Gebruikers kunnen hun profiel instellen naar gewenst. 
-- 
+- Gebruikers kunnen filteren op land en gerecht.
+- Gebruikers kunnen zowel inloggen als een account aanmaken.
+- Gebruikers kunnen gerechten liken om te chatten met andere gebruikers die dat gerecht interessant vinden.
+- Gebruikers kunnen gerechten een ster geven om het in favorieten te plaatsen.
 
 ## License
 
