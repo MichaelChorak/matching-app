@@ -8,7 +8,12 @@ body {
 /* fonts */
 @font-face {
   font-family: 'Delighty';
-  src        : url("/fonts/Delighty.ttf");
+  src        : url("../fonts/Delighty.ttf");
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src        : url("../fonts/Merriweather-Regular.ttf");
 }
 
 /* main title */
@@ -39,6 +44,10 @@ header>h1 {
 
 li {
   list-style: none;
+}
+
+main.profilePage h2, h3, h4{
+  font-family  : 'Merriweather', regular;
 }
 
 /****************************************/
@@ -209,7 +218,7 @@ button.editBntTwo:hover {
 /*---------- WEB VERSION - PROFILE PAGE ----------*/
 @media (min-width:50em) {
 
-  /* secion two - display the img */
+  /* section two - display the img */
   main.profilePage>section:nth-of-type(2)>article img {
     max-width    : 50%;
     height       : auto;
