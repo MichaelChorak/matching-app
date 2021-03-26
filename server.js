@@ -288,7 +288,7 @@ app.get('/thedishes', async (req, res) => {
     MongoClient.connect(uri, async function(err, db) {
     let dbo = db.db("plaatsGerecht");
     const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data vanuit de database
-    res.render('thedishes', { text: '', dish, landen });
+    res.render('thedishes', { text: '', dish });
    });
 });
 
