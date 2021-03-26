@@ -46,8 +46,11 @@ li {
   list-style: none;
 }
 
-main.profilePage h2, h3, h4{
-  font-family  : 'Merriweather', regular;
+/* font style profile page */
+main.profilePage h2,
+h3,
+h4, section {
+  font-family: 'Merriweather', regular;
 }
 
 /****************************************/
