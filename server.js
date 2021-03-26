@@ -280,16 +280,27 @@ app.get('/thedishes', isAuthenticated, async (req, res) => {
 app.post('/thedishes', async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
     let dbo = db.db('foodzen');
+    countries = await dbo.collection('countries').find({}, {
+      sort: {
+        naam: 1
+      }
+    }).toArray();
 
-    const dish = await dbo.collection('dishes').find({
-    countries: req.body.countries,
-    people: req.body.people
-    }).toArray()
+    allDishes = await dbo.collection('dishes').find({
+      country: req.body.countries,
+      people: req.body.people
+    }, {
+      sort: {
+        naam: 1
+      }
+    }).toArray();
 
-    console.log(dish);
-    console.log(req.body.countries);
-    console.log(req.body.people);
-    res.render('thedishesresults', {dish });
+
+
+    console.log(allDishes);
+    res.render('thedishesresults', {
+      allDishes
+    });
   });
 });
 
