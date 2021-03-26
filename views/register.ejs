@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <main>
-            <div class="signupPage">
-                <form method="POST" action ="/signup" class="registerForm">
-                    <input type="text" name="username" placeholder="username" required/>
-                    <input type="password" name="password" placeholder="password"required/>
-                    <input type="text" name ="name" placeholder="first name"required/>
-                    <input type="email" name="email" placeholder="email address"required/>
-                    <button>create</button>
-                    <p class="message">Already registered? <a href="login">Sign In</a></p>
-                </form>
-            </div>
-        </main>
-    </body>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="css/styleLogin.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/header'); -%>
+    </header>
+    <main>
+       <section>
+            <form method="POST" action ="/signup" class="registerForm">
+                <label for="username">Username</label>
+                <input type="text" name="username"  required/>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" required/>
+
+                <label for="name">First name</label>
+                <input type="text" name ="name" required/>
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" required/>
+                <button>Create</button>
+            </form>
+        </section>
+        <section>
+            <a href="/login">Do have an account?</a>
+        </section>
+    </main>
+  </body>
 </html>

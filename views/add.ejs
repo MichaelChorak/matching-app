@@ -23,11 +23,11 @@
             <label for="title">Hoe heet je gerecht?</label>
             <input type="text" name="title" value="">
 
-            <label for="land">Waar komt het vandaan?</label>
+            <label for="countries">Waar komt het vandaan?</label>
               <select class="" name="countries" id="country">
             <% for(var i=0; i < countries.length; i++) { %>
 
-              <option name="country" value="<%= countries[i].name %>"><%= landen[i].name %></option>
+              <option name="country" value="<%= countries[i].name %>"><%= countries[i].name %></option>
             <% } %>
           </select>
             <label for="people">Voor hoeveel personen?</label>
