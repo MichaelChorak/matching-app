@@ -254,7 +254,7 @@ app.post("/dishAdded", (req, res) => {
         ingredients: req.body.ingredients,
         duration: req.body.duration,
         instructions: req.body.instructions,
-        country: req.body.country,
+        country: req.body.countries,
         people: req.body.people
       },
       (err, result)=> {
@@ -300,6 +300,7 @@ app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
 
 // getting your favorite dishes
 app.get('/favoritedishes', isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db)=> {
   const dish = await db.collection('dishes');
   const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
@@ -323,9 +324,9 @@ app.get('/favoritedishes', isAuthenticated, async (req, res) => {
           }
         });
     }
+    });
   });
 });
-
 
 // saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {

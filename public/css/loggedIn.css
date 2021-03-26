@@ -24,21 +24,21 @@ header {
 header > section {
     display: grid;
     grid-template-columns: 20% 60% auto;
-} 
+}
 
 header > ul > li {
     text-decoration: none;
     padding-bottom: 0em;
     padding: 0.5em;
     margin-top: 0.5em;
-} 
+}
 
 header > ul > li > a {
     text-decoration: none;
     font-family: 'Merriweather', serif;
     font-weight: bold;
     color: #F89D8A;
-} 
+}
 
 header > section > button {
     height: 40px;
@@ -57,6 +57,7 @@ header > ul {
     flex-direction: row;
     justify-content: center;
     opacity: 0;
+    visibility: hidden;
     margin-top: 0em;
     margin-bottom: 0em;
     transition: all 500ms ease;
@@ -69,6 +70,7 @@ header > ul {
     display: block;
     padding-bottom: 1em;
 }
+
 
 header > section > h1 {
     color: #F8ECC4;
@@ -93,6 +95,7 @@ header > img {
 .showWholeHamburgermenu {
     max-height: 100em;
     opacity: 1;
+    visibility: visible;
     transform: translateX(0);
 }
 
@@ -114,9 +117,9 @@ main > section:nth-of-type(2) {
   align-items: center;
   flex-direction: column;
   position: absolute;
-  top: 29%;
+  top: 38%;
   border-radius: 30px 30px 0px 0px;
-  z-index: 1;
+  z-index: -1;
 }
 
 main > section:nth-of-type(2) > h1 {
@@ -189,4 +192,40 @@ main > section:nth-of-type(2) > form > textarea {
 
 #tijdsduur {
   margin-top: 5%;
+}
+
+
+#recipeCards {
+  height: auto;
+  width: 90%;
+  background-color: #fff;
+  margin: 5%;
+  border-radius: 3px;
+  font-family: delighty;
+  font-weight: 300;
+  font-size: 2em;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 5%;
+  -webkit-box-shadow: -4px 6px 31px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -4px 6px 31px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 9px -4px rgb(0 0 0 / 75%);
+}
+
+.fa-user-alt:before {
+  font-size: 15px;
+}
+
+#recipeCards > div > h2, h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  /* margin-left: 5%; */
+}
+
+#recipeCards > div {
+  margin-left: 5%;
 }

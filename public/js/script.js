@@ -1,4 +1,4 @@
-const   headMenu = document.querySelector('#headMenu');
+// const   headMenu = document.querySelector('#headMenu');
 const   wholeMenu = document.querySelector('#wholeMenu');
 const   submenu1  = document.querySelector('#submenu1');
 const   menuOne   = document.querySelector('#menuOne');
@@ -8,7 +8,7 @@ const   menuSecond    = document.querySelector('#menuSecond');
 /* profile */
 const buttonRandomImage = document.getElementById('imageBtn');
 const displayImage = document.getElementById('showImage');
-const menuBtn = document.getElementById('settingBnt'); 
+const menuBtn = document.getElementById('settingBnt');
 const dropdown = document.getElementsByClassName('showSettingsMenu')[0];
 
 function showWholeMenu() {
@@ -16,7 +16,7 @@ function showWholeMenu() {
     console.log('showWholeMenu');
   }
 
-  
+
 function showSubmenu1() {
     menuOne.classList.toggle('showSubmenu1');
   }
@@ -53,7 +53,5 @@ headMenu.addEventListener('click', showWholeMenu);
 submenu1.addEventListener('click', showSubmenu1);
 submenu2.addEventListener('click', showSubmenu2);
 
-buttonRandomImage.addEventListener('click', getRandomImage);
+// buttonRandomImage.addEventListener('click', getRandomImage);
 menuBtn.addEventListener('click', getShowSettings);
-
-
