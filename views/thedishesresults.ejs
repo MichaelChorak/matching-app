@@ -7,19 +7,18 @@
   <main id="dishes">
     <%- include('../views/partials/filterMenu.ejs') %>
 
-       <% dish.forEach(function(dish){ %>
+       <% allDishes.forEach(function(dish){ %>
     <article>
-        <img src="<%= dish.image %>">
           <div>
-            <h2><%= dish.title %></h2>
-            <h3>👤<%= dish.people %></h3>
+            <h2><%= allDishes.title %></h2>
+            <h3>👤<%= allDishes.people %></h3>
           </div>
-        <p><%=  dish.instructions %></p>
+        <p><%=  allDishes.instructions %></p>
 
         <a href="/thedishes/<%= dish.id %>">Read More</a>
     </article>
     <% }) %>
-
+  <h1>yo</h1>
 
 </main>
 <%- include('../views/partials/footer.ejs') %>

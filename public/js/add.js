@@ -40,4 +40,3 @@ function voegRegelToe(){
 addBtn.addEventListener('click', voegRegelToe);
 menuBtn.addEventListener('click', showMenu);
 sluitenMenu.addEventListener('click', closeMenu);
-© 2021 GitHub, Inc.
