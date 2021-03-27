@@ -10,12 +10,12 @@
        <% allDishes.forEach(function(dish){ %>
     <article>
           <div>
-            <h2><%= allDishes.title %></h2>
-            <h3>👤<%= allDishes.people %></h3>
+            <h2><%= dish.title %></h2>
+            <h3>👤<%= dish.people %></h3>
           </div>
-        <p><%=  allDishes.instructions %></p>
+        <p><%=  dish.instructions %></p>
 
-        <a href="/thedishes/<%= allDishes.title %>">Read More</a>
+        <a href="/thedishes/<%= dish.title %>">Read More</a>
     </article>
     <% }) %>
 
