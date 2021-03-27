@@ -18,20 +18,20 @@
         <span>Share your recipes with other Foodzen</span>
           <form action="dishAdded" method="post" id="addRecipeForm">
             <label for="image">Image</label>
-            <input type="file" name="image" value="image" id="inputImg">
+            <input type="file" name="image" value="image" id="inputImg" required>
 
             <label for="title">What is your dish called?</label>
-            <input type="text" name="title" value="">
+            <input type="text" name="title" value="" required>
 
             <label for="countries">What is the origin?</label>
-              <select class="" name="countries" id="country">
+              <select class="" name="countries" id="country" required>
                 <% for(var i=0; i < countries.length; i++) { %>
                   <option name="countries" value="<%= countries[i].name %>"><%= countries[i].name %></option>
                 <% } %>
               </select>
 
             <label for="people">For how many people?</label>
-              <select class="" name="people" id="people">
+              <select class="" name="people" id="people" required>
                 <option name="people" value="1">1</option>
                 <option name="people" value="2">2</option>
                 <option name="people" value="3">3</option>
@@ -43,20 +43,20 @@
 
 
             <label for="ingredients" id="label">What are the ingredients?</label>
-            <input type="text" name="ingredients" value="" ><br>
-            <input type="text" name="ingredients" value="" /><br>
+            <input type="text" name="ingredients" value="" required><br>
+            <input type="text" name="ingredients" value="" required><br>
             <input type="text" name="ingredients" value="" id="label"><br>
             <button type="button" name="button" id="addBtn">More ingredients</button>
 
             <label for="duration">How long will it take?</label>
-            <input type="number" name="duration" value="" step="1">
-            <select id="duration" name="duration">
+            <input type="number" name="duration" value="" step="1" required>
+            <select id="duration" name="duration" required>
               <option value="minutes">Minutes</option>
               <option value="hours">Hours</option>
             </select>
 
             <label for="instructions">How it's made?</label>
-            <textarea rows="4" cols="75" name="instructions"></textarea>
+            <textarea rows="4" cols="75" name="instructions" required></textarea>
 
             <button type="submit" name="button">Share recipe!</button>
 
