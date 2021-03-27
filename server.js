@@ -86,10 +86,11 @@ passport.deserializeUser((id, done)=> {
 });
 
 // start server
+/*
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
-
+*/
 // http listen
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
@@ -112,7 +113,7 @@ async function run() {
 run().catch(console.dir);
 
 // chatOverview route
-app.get('/chat', (req, res) => {
+app.get('/chat', isAuthenticated, (req, res) => {
   res.render('chat');
 });
 
@@ -419,8 +420,6 @@ console.log('made socket connection', socket.id);
 // Handle chat event
 
 socket.on('chat', (data) => {
-
-
 
 // io.sockets.emit('chat', data);
 
