@@ -1,8 +1,15 @@
-<%- include('layout/head'); -%>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <link rel="stylesheet" href="../css/style.css">
+  <%- include('partials/head'); -%>
+  </head>
+  <body>
 
 <body>
+  <%- include('partials/loggedHeader'); -%>
+  
 <main>
-
   <div id="chat">
     <h2 class="chatH2">Empanadillas</h2>
     <div id="chat-window">
@@ -14,9 +21,10 @@
     <button id="send" class="sendChat">Send</button>
 </div>
   </main>
-   
 
-    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
     <%- include('../views/partials/footer.ejs') %>
 </body>
 </html>

@@ -11,7 +11,7 @@ const message = document.getElementById('message'),
 
       document.addEventListener('DOMContentLoaded', () => {
         socket.emit('join room', window.location.pathname);
-      });  
+      });
 
 // Emit events
 btn.addEventListener('click', () => {
@@ -48,7 +48,7 @@ function sendMessage() {
   }
   const handleFormat = handle.value.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const messageFormat = message.value.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  
+
 
 
   socket.emit('chat',  {
@@ -58,4 +58,3 @@ function sendMessage() {
   output.innerHTML += '<p><strong>' + handleFormat + ': </strong>' + messageFormat + '</p>';
   message.value = "";
 }
-

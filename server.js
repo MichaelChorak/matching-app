@@ -111,10 +111,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-// chatOverview route
-app.get('/chat', (req, res) => {
-  res.render('chat');
-});
 
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
@@ -388,6 +384,11 @@ app.post('/favoritedishes', async (req, res) => {
         });
     }
   });
+});
+
+// chatOverview route
+app.get('/chat', (req, res) => {
+  res.render('chat');
 });
 
 
