@@ -125,12 +125,12 @@ app.get("/profiles",isAuthenticated, async (req, res) => {
   let profileData = {};
   // look for profile and show one
   profileData = await dbo
-    .collection("profiles")
-    .find({}, { sort: { name: 1 } })
+    .collection('profiles')
+    .find({}, { sort: { name: 1,id: 1 } })
     .limit(1)
     .toArray();
-  res.render("profile.ejs", {
-    title: "My Profile",
+  res.render('profile.ejs', {
+    title: 'My Profile',
     profileData,
     });
   });
