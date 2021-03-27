@@ -1,11 +1,11 @@
 /* javascript: profile page, get a random image from an extern api */
 // https://codepen.io/FlorinPop17/details/vYYaLwR
 //https://www.youtube.com/watch?v=7f2HNadULOs
-
+/* https://stackoverflow.com/questions/64420332/javascript-how-to-create-a-dropdown-effect-without-jquery */
 const buttonRandomImage = document.getElementById('imageBtn');
 const displayImage = document.getElementById('showImage');
-
-buttonRandomImage.addEventListener('click', getRandomImage);
+const menuBtn = document.getElementById('settingBnt'); //b
+const dropdown = document.getElementsByClassName('showSettingsMenu'); //ul
 
 /* funtion with the method fetch(), to get an random image*/
 function getRandomImage() {
@@ -22,12 +22,10 @@ function getRandomImage() {
 }
 
 /* settings menu microinteraction - profile page */
-/* https://stackoverflow.com/questions/64420332/javascript-how-to-create-a-dropdown-effect-without-jquery */
-const menuBtn = document.getElementById('settingBnt'); //b
-const dropdown = document.getElementsByClassName('showSettingsMenu')[0]; //ul
-menuBtn.addEventListener('click', getShowSettings);
-
 function getShowSettings() {
   this.classList.toggle("active");
   dropdown.classList.toggle("active");
 }
+
+buttonRandomImage.addEventListener('click', getRandomImage);
+menuBtn.addEventListener('click', getShowSettings);
