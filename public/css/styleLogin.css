@@ -87,6 +87,7 @@ main > section:first-of-type > form:first-of-type{
   font-family: var(--main-font);
   color: #F0F0F0;
   text-align: center;
+  margin: 2em;
 }
 
 main > section > form > input {
