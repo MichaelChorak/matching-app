@@ -13,11 +13,13 @@
           <article id="recipeCards">
             <img src="<%= dish.image %>">
               <div>
-                <p><%= dish.title %></p>
+                <h3><%= dish.title %></h3>
+                <div>
                 <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
                 <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
                 <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p>
-                <a href="/thedishes/<%= dish.id %>">Read More</a>
+                </div>
+                <a href="/thedishes/<%= dish.title %>">Read More</a>
               </div>
           </article>
       <% }) %>

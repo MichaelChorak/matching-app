@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="css/loggedIn.css">
     <%- include('../views/partials/head.ejs') %>
 <body>
     <%- include('../views/partials/header.ejs') %>
+    
 <main id="favorite">
     <section>
         <a href="/thedishes" id="headMenu">&#129128;</a>     
@@ -24,7 +26,7 @@
             <h4><%= dish.country</h4>
             <p><%= dish.instructions %></p>
             
-            <a href="/thedishes/<%= dish.id %>">Read More</a>
+            <a href="/thedishes/<%= dish.title %>">Read More</a>
         </article>
         <% }) %>
 </main>

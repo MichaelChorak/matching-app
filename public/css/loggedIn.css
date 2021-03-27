@@ -100,7 +100,7 @@ header > img {
     transform: translateX(0);
 }
 
-main > section:first-of-type {
+#add > section:first-of-type {
   height: 23vh;
   width: 100%;
   background-image: url('../images/foodBackground.jpg');
@@ -109,7 +109,8 @@ main > section:first-of-type {
   filter: brightness(0.8);
   z-index: 0;
   }
-main > section:nth-of-type(2) {
+
+#add > section:nth-of-type(2) {
   height: 100vh;
   width: 100%;
   background-color: #fff;
@@ -123,16 +124,18 @@ main > section:nth-of-type(2) {
   z-index: -1;
 }
 
-main > section:nth-of-type(2) > h1 {
+#add > section:nth-of-type(2) > h1 {
   font-family: Delighty;
   font-size: 3.8em;
   font-weight: lighter;
   margin: 0;
   position: absolute;
   top: 5%;
+  display: block;
+  color: black;
 }
 
-main > section:nth-of-type(2) > span {
+#add > section:nth-of-type(2) > span {
   position: absolute;
   top: 17%;
   font-family: var(--main-font);
@@ -141,7 +144,7 @@ main > section:nth-of-type(2) > span {
   font-size: 12px;
 }
 
-main > section:nth-of-type(2) > form {
+#add > section:nth-of-type(2) > form {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -150,7 +153,7 @@ main > section:nth-of-type(2) > form {
   padding-bottom: 20%;
 }
 
-main > section:nth-of-type(2) > form > button {
+#add > section:nth-of-type(2) > form > button {
   background-color: var(--main-color);
   border: none;
   outline: none;
@@ -167,7 +170,7 @@ main > section:nth-of-type(2) > form > button {
   border: none;
 }
 
-main > section:nth-of-type(2) > form > input {
+#add > section:nth-of-type(2) > form > input {
   border: none;
   border-bottom: 1px solid var(--main-color);
 }
@@ -178,14 +181,13 @@ main > section:nth-of-type(2) > form > input {
   margin-bottom: 5%;
 }
 
-main > section:nth-of-type(2) > form > label {
+#add > section:nth-of-type(2) > form > label {
   margin-top: 5%;
   color: #5A5A5A;
   font-family: var(--main-font);
   font-size: 0.8em;
 }
-
-main > section:nth-of-type(2) > form > textarea {
+#add > section:nth-of-type(2) > form > textarea {
   border-color: var(--main-color);
   width: 100%;
   margin-top: 5%;
@@ -248,6 +250,9 @@ main > section:nth-of-type(2) > form > textarea {
   height: 100%;
   background-color: var(--main-color);
 }
+
+
+
 
 #dishes > section > button  {
   height: 40px;
@@ -323,12 +328,13 @@ div {
   row-gap: 3em;
   column-gap: 3em;
   font-size: 0.8em;
-  margin-right: 0.5em;
+  margin-right: 5em;
 }
 
 /*dishes details*/
-#detailsarticle > h4 {
+#detailsarticle > div > h2 {
   font-size: 0.5em;
+  background-color: blue;
 }
 
 #detailsarticle > ol:nth-of-type(2) {
@@ -361,6 +367,30 @@ div {
   margin-right: 0 auto;   
   text-decoration:none;
 }
+
+/* favorite /save button*/
+
+#detailsarticle > div > form > button {
+  background-color: #f4faa1;
+  color: #F89D8A;
+  border-radius: 4em;
+  border-width: 0;
+  width: 6em;
+  height: 2.5em;
+  box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  font-size: 1em;
+  display: block;
+  margin-left: 0 auto;
+  margin-right: 0 auto;   
+}
+
+#detailsarticle > div:nth-of-type(2) {
+  display: grid;
+  grid-template-columns: 55% 45% auto;
+}
+
+
 
 /* favorite /save button*/
 

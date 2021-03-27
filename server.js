@@ -292,26 +292,20 @@ app.get('/thedishes', isAuthenticated, async (req, res) => {
 
  // Filtering a specific dish
 app.post('/thedishes', async (req, res) => {
-  MongoClient.connect(uri, async (err, db)=> {
-    let dbo = db.db('foodzen');
-    countries = await dbo.collection('countries').find({}, {
-      sort: {
-        naam: 1
-      }
-    }).toArray();
-
-    allDishes = await dbo.collection('dishes').find({
+  MongoClient.connect(uri, async function(err, db) {
+      let dbo = db.db('foodzen');
+     
+      const allDishes = await dbo.collection('dishes').find({
       country: req.body.countries,
-      people: req.body.people
-    }, {
-      sort: {
-        naam: 1
-      }
-    }).toArray();
-
-
-
-    console.log(allDishes);
+      people: req.body.people,
+      }).toArray()
+     
+     
+     
+      console.log(allDishes);
+      console.log(req.body.countries);
+      console.log(req.body.people);
+    
     res.render('thedishesresults', {
       allDishes
     });
@@ -319,16 +313,21 @@ app.post('/thedishes', async (req, res) => {
 });
 
 // Detailpage of a single dish
-app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
-  const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
+app.get('/thedishes/:dishesTitle', isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db)=> {
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes').findOne({ title: req.params.dishesTitle });
   res.render('dishesdetails', { dish });
 });
+});
+
 
 // getting your favorite dishes
 app.get('/favoritedishes', isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
-  const dish = await db.collection('dishes');
-  const favoriteItems = await db.collection('favoriteDishes');
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes');
+  const favoriteItems = await dbo.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
@@ -356,8 +355,10 @@ app.get('/favoritedishes', isAuthenticated, async (req, res) => {
 
 // saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dishes');
-  const favoriteItems = await db.collection('favoriteDishes');
+  MongoClient.connect(uri, async (err, db)=> {
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes');
+  const favoriteItems = await dbo.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
   const options = { upsert: true };
@@ -389,6 +390,7 @@ app.post('/favoritedishes', async (req, res) => {
         });
     }
   });
+});
 });
 
 

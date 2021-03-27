@@ -105,15 +105,6 @@ main > section:first-of-type > figure > img {
     src: url("/fonts/Delighty.ttf");
   }
 
-header > h1 {
-    color: #F8ECC4;
-    font-family: 'Delighty', sans-serif;
-    font-size: 5em;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0em;
-    font-weight: normal;
-}
 
 body {
     margin: 0;
