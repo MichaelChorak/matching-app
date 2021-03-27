@@ -478,6 +478,7 @@ h2.chatH2 {
 }
 
 #output p {
+    font-size: 2em;
     padding: .1em 0;
     margin: .5em 1em;
     border-bottom: 1px solid #e9e9e9;

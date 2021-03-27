@@ -1,18 +1,19 @@
 <%- include('layout/head'); -%>
 
 <body>
-<main>
+  <%- include('partials/header'); -%>
 
-  <div id="chat">
-    <h2 class="chatH2">Sushi rolls with crab and cucumber</h2>
-    <div id="chat-window">
-        <div id="output"></div>
-        <div id="feedback"></div>
+  <main>
+    <div id="chat">
+      <h2 class="chatH2">Sushi rolls with crab and cucumber</h2>
+      <div id="chat-window">
+          <div id="output"></div>
+          <div id="feedback"></div>
+      </div>
+      <input id="handle" type="text" class="inputChat" placeholder="Name" />
+      <input id="message" type="text" class="inputChat" placeholder="Message" />
+      <button id="send" class="sendChat" >Send</button>
     </div>
-    <input id="handle" type="text" class="inputChat" placeholder="Name" />
-    <input id="message" type="text" class="inputChat" placeholder="Message" />
-    <button id="send" class="sendChat" >Send</button>
-</div>
   </main>
    
 
