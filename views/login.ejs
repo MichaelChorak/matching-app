@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,19 +5,19 @@
   <%- include('partials/head'); -%>
   </head>
   <body>
-    <header>
       <%- include('partials/header'); -%>
-    </header>
     <main>
+      <p class="warning">
+        <%= message ? message : '' %>
+      </p>
       <section>
-        <form action="/toevoegen" method="get">
+        <form action="/login" method="POST" class='loginForm'>
           <label for="username">Username</label>
-          <input type="text" name="username">
+           <input type="text" name="username" required/>
 
           <label for="password">Password</label>
-          <input type="password" name="password">
+          <input type="password" name="password"  required/>
           <button type="submit" name="button">Sign in</button>
-          <p>Or sign in with:</p>
 
         </form>
       </section>
@@ -31,8 +29,7 @@
       </section>
 
       <section>
-        <a href="#">Don't have an account?</a>
-        <a href="#">Forgot password</a>
+        <a href="/signup">Don't have an account?</a>
       </section>
     </main>
   </body>

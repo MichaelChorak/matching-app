@@ -1,86 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../views/partials/head.ejs') %>
-
+    <link rel="stylesheet" href="css/loggedIn.css">
 <body>
-    <%- include('../views/partials/header.ejs') %>
-<main id="dishes">
+    <%- include('../views/partials/loggedHeader.ejs') %>
+  <main id="dishes">
+    <%- include('../views/partials/filterMenu.ejs') %>
 
-    <section>
-        <button id="headMenu">&#129171;</button>
-    </section>
-    <form action='/thedishes' method="POST">
-        <ul id="wholeMenu">
-            <li id="submenu1"><a>Dishes</a></li>
-            <ul id="menuOne">
-            <div>
-              <input type="checkbox" name="dishes" value="Japanese" />
-              <label>Japanese</label>
-
-              <input type="checkbox" name="dishes" value="Italian" />
-              <label>Italian</label>
-            </div>
-            <div>
-              <input type="checkbox" name="dishes" value="Argentinian" />
-              <label>Argentinian</label> 
-        
-              <input type="checkbox" name="dishes" value="Moroccan" />
-              <label>Moroccan</label>
-            </div>
-            <div>
-              <input type="checkbox" name="dishes" value="Mexican" />
-              <label>Mexican</label> 
-
-              <input type="checkbox" name="dishes" value="Turkish" />
-              <label>Turkish</label>
-            </div>
-            </ul>
-            
-            <li id="submenu2"><a>Persons</a></li>
-            <ul id="menuSecond">
-            <div>
-              <input type="checkbox" name="persons" value="1" />
-              <label>1</label>
-
-              <input type="checkbox" name="persons" value="2" />
-              <label>2</label>
-            </div>
-            <div>
-              <input type="checkbox" name="persons" value="3" />
-              <label>3</label>  
-
-              <input type="checkbox" name="persons" value="4" />
-              <label>4</label>
-            </div>
-            <div>
-              <input type="checkbox" name="persons" value="5" />
-              <label>5</label> 
-
-              <input type="checkbox" name="persons" value="6" />
-              <label>6</label> 
-            </div>
-            </ul>
-            <button type="submit" class="searchButton">Search</button>
-          </ul>
-        </form>
-
-       <% dish.forEach(function(dish){ %>
+       <% allDishes.forEach(function(dish){ %>
     <article>
-        <img src="<%= dish.image %>">
-        <div>
-        <h2><%= dish.name %></h2>
-        <h3>👤<%= dish.persons %></h3>
-        </div>
-        <h3>@<%= dish.username %></h3>
-        <h4><%= dish.dish %></h4>
-        <p><%=  dish.description %></p>
-        
+          <div>
+            <h2><%= allDishes.title %></h2>
+            <h3>👤<%= allDishes.people %></h3>
+          </div>
+        <p><%=  allDishes.instructions %></p>
+
         <a href="/thedishes/<%= dish.id %>">Read More</a>
     </article>
     <% }) %>
-          
+  <h1>yo</h1>
 
 </main>
-<script src="/js/script.js"></script>
+<%- include('../views/partials/footer.ejs') %>
 </body>
 </html>

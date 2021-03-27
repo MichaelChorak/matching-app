@@ -1,5 +1,6 @@
+/* css code voor de chats  */
+h2.chatH2 {
 
-body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -97,7 +98,6 @@ main > section:first-of-type > figure > img {
   background-size: contain;
   background-repeat: no-repeat;
 }
-=======
 
 /*General*/
 @font-face  {
@@ -177,7 +177,7 @@ body {
 }
 
 
-ul {
+ul#wholeHamburgermenu {
     max-height: 0;
     flex-direction: row;
     justify-content: center;
@@ -446,7 +446,6 @@ div {
     text-align: center; 
     font-family: 'Merriweather', serif;
     margin-top: 0;
-     
 }
 
 #favorite > article:nth-of-type(1) {
@@ -456,11 +455,11 @@ div {
     margin: 2.2em;
     margin-top: 0;
     text-align: center; 
-
-h2.h2-chat {
+}
+h2.chatH2 {
     font-size: 18px;
     padding: 10px 20px;
-    color: rgb(248, 157, 139);
+    color: #F89D8A;
 }
 
 #chat {
@@ -476,13 +475,10 @@ h2.h2-chat {
     overflow-y: auto;
     overflow-x: hidden;
     background: #f3f0f0;
-    /* background-image: url(https://images.unsplash.com/photo-1580835268937-a658c4a1f951?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80);
-    background-repeat: no-repeat;
-    background-size: cover; */
-
 }
 
 #output p {
+    font-size: 2em;
     padding: .1em 0;
     margin: .5em 1em;
     border-bottom: 1px solid #e9e9e9;
@@ -496,7 +492,7 @@ h2.h2-chat {
 }
 
 #output strong {
-    color: rgb(248, 157, 139);
+    color: #F89D8A;
 }
 
 label {
@@ -505,8 +501,10 @@ label {
     padding: 10px 20px;
 }
 
-input.input-chat {
+
+input.inputChat {
     padding: 10px 20px;
+    font-family: 'Nunito';
     box-sizing: border-box;
     background: #eee;
     border: 0;
@@ -514,11 +512,13 @@ input.input-chat {
     width: 100%;
     background: #fff;
     border-bottom: 1px solid #eee;
-    font-family: Nunito;
+    font-family: 'Nunito';
     font-size: 16px;
 }
 
-button.send-chat {
+
+button.sendChat {
+    background: #F89D8A;
     background: rgb(248, 157, 139);
     color: #fff;
     font-size: 18px;
@@ -526,5 +526,257 @@ button.send-chat {
     padding: 12px 0;
     width: 100%;
     border-radius: 0 0 2px 2px;
+    outline: 0;
+    cursor: pointer;
 }
 
+/* css voor het overzicht van de chats */
+
+
+h2.chatH2 {
+  font-size: 18px;
+  padding: 10px 20px;
+  color: #F89D8A;
+  }
+
+ul.chatUl {
+    list-style-type: none;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatA {
+    color: rgb(248, 157, 139);
+    margin: 1em;
+    font-weight: 700;
+    border: 3px solid #F89D8A;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 10em;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 5px 5px 8px 5px rgba(0,0,0,0.05);
+}
+
+.chatA:hover {
+    color: white;
+    background-color: #F89D8A;
+}
+
+ /*****************************************************/
+/*----------- GENERAL STYLE PROFILE PAGE ------------*/
+
+/* hide elements */
+.hiddenElements {
+  clip       : rect(0, 0, 0, 0);
+  clip-path  : inset(50%);
+  height     : 1px;
+  overflow   : hidden;
+  position   : absolute;
+  white-space: nowrap;
+  width      : 1px;
+}
+
+li {
+  list-style: none;
+}
+
+/* font style profile page */
+main.profilePage h2,
+h3,
+h4, section {
+  font-family: 'Merriweather', regular;
+}
+
+/****************************************/
+/*------------ PROFILE PAGE ------------*/
+/* title */
+main.profilePage>section:first-of-type {
+  text-align      : center;
+  background-color: #f9edc3;
+  top             : 0;
+  padding         : 1em;
+}
+
+/* section two, choose a random image */
+main.profilePage>section:nth-of-type(2) {
+  text-align: center;
+}
+
+/* secion two - display the img */
+main.profilePage>section:nth-of-type(2)>article img {
+  max-width    : 50%;
+  height       : auto;
+  padding      : 0;
+  border-radius: 50%;
+  margin-bottom: 2em;
+  margin-top   : 2em;
+}
+
+/* button choose a random image*/
+main.profilePage>section:nth-of-type(2)>button {
+  text-align      : center;
+  width           : 13em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 2em;
+}
+
+/* button choose a random image on hover*/
+main.profilePage>section:nth-of-type(2)>button:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* profile information - section three */
+main.profilePage>section:nth-of-type(3) {
+  margin-left    : 10%;
+  margin-right   : 10%;
+  justify-content: center;
+  margin-bottom  : 2em;
+}
+
+/* profile information - section three style */
+main.profilePage>section:nth-of-type(3)>article:first-of-type {
+  padding        : 1em;
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button style profile info */
+main.profilePage button.editBntProfile {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+}
+
+/* edit button hover profile info */
+main.profilePage button.editBntProfile:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/* setting information */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2) {
+  padding: 1em;
+  margin : 0;
+}
+
+/* setting information - first ul */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type {
+  display: flex;
+  margin : 0%;
+  padding: 0%;
+}
+
+/* first ul, "setting" list position get space and everything else go to the right side */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type>li:first-of-type {
+  margin-right: auto;
+}
+
+/* arrow button style */
+main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type button {
+  text-align: center;
+  cursor    : pointer;
+  font-size : 1.8em;
+  border    : none;
+  display   : contents;
+}
+
+/* arrow button */
+button#settingBnt {
+  transition: all 1s;
+}
+
+button#settingBnt.active {
+  background-color: #1f283b;
+  color           : #FFF;
+}
+
+/* svg arrow - https://iconmonstr.com/arrow-80-svg/ */
+main.profilePage button>svg {
+  width : 1em;
+  height: 1em;
+  fill  : black;
+}
+
+/* arrow button hover - svg */
+main.profilePage button>svg:hover {
+  fill: darkgray;
+}
+
+/* setting information - second ul - article 3 */
+main.profilePage ul.showSettingsMenu {
+  transform       : scaleY(0);
+  transform-origin: top;
+  transition      : transform 0.26s ease;
+}
+
+/* show the menu setting */
+main.profilePage ul.showSettingsMenu.active {
+  margin         : 0;
+  padding        : 1em;
+  padding-bottom : 0.5em;
+  padding-top    : 0.5em;
+  transform      : scaleY(1);
+  /* https       ://getcssscan.com/css-box-shadow-examples */
+  box-shadow     : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* edit button - password and name - second ul*/
+button.editBntTwo {
+  text-align      : center;
+  width           : 5em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #f2c1b7;
+  border-radius   : 2rem;
+  font-size       : 1em;
+  font-weight     : 500;
+  margin-bottom   : 1em;
+}
+
+button.editBntTwo:hover {
+  background-color: black;
+  color           : #f2c1b7;
+}
+
+/*---------- END PROFILE PAGE ----------*/
+/****************************************/
+
+/*---------- WEB VERSION - PROFILE PAGE ----------*/
+@media (min-width:50em) {
+
+  /* section two - display the img */
+  main.profilePage>section:nth-of-type(2)>article img {
+    max-width    : 50%;
+    height       : auto;
+    padding      : 0;
+    border-radius: 50%;
+    margin-bottom: 2em;
+    margin-top   : 2em;
+  }
+
+  main.profilePage>section:nth-of-type(2)>article {
+    margin-left : 25%;
+    margin-right: 25%;
+  }
+
+  /* profile information - section three */
+  main.profilePage>section:nth-of-type(3) {
+    margin-left    : 30%;
+    margin-right   : 30%;
+    justify-content: center;
+    margin-bottom  : 2em;
+  }
+}

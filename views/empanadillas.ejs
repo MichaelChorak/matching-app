@@ -1,22 +1,23 @@
 <%- include('layout/head'); -%>
 
 <body>
-<main>
+  <%- include('partials/header'); -%>
+  <main>
 
-  <div id="chat">
-    <h2>Empanadillas</h2>
-    <div id="chat-window">
-        <div id="output"></div>
-        <div id="feedback"></div>
+    <div id="chat">
+      <h2 class="chatH2">Empanadillas</h2>
+      <div id="chat-window">
+          <div id="output"></div>
+          <div id="feedback"></div>
+      </div>
+      <input id="handle" type="text" class="inputChat" placeholder="Name" />
+      <input id="message" type="text" class="inputChat" placeholder="Message" />
+      <button id="send" class="sendChat">Send</button>
     </div>
-    <input id="handle" type="text" placeholder="Name" />
-    <input id="message" type="text" placeholder="Message" />
-    <button id="send">Send</button>
-</div>
   </main>
    
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/chat.js"></script>
+    <%- include('../views/partials/footer.ejs') %>
 </body>
 </html>

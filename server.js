@@ -4,68 +4,34 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv').config();
 const { MongoClient, ObjectID } = require('mongodb');
-const port = 3000;
+const port = process.env.PORT;
 const ejs = require('ejs');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-//database uri
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-// const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-const db = new MongoClient(uri, {
-  useUnifiedTopology: true
-});
+const path = require('path');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy
+const mongoose = require('mongoose');
+const bCrypt = require('bcryptjs');
+const expressSession = require('express-session');
+const User = require('./models/user');
+const flash = require('connect-flash');
+const { exec } = require("child_process");
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.json());
-db.connect();
 
-async function run() {
-  try {
-    // Connect the client to the server
-    await db.connect();
-    // Establish and verify connection
-    await db.db("plaatsGerecht").command({
-      ping: 1
-    });
-
-    console.log("Connected succesfully to the database.");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await db.close();
-  }
-}
-run().catch(console.dir);
-
-// start server
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
-});
 
 app.set('view engine', 'ejs');
-app.use(express.static('static'));
-app.use(express.static('public'));
 
-//route
-app.get("/profiles", async (req, res) => {
-    MongoClient.connect(uri, async function(err, db) {
-    let dbo = db.db('plaatsGerecht');
-  // create an empty list of profiles
-  let profileData = {};
-  // look for profile and show one
-  profileData = await dbo
-    .collection("profiel")
-    .find({}, { sort: { name: 1 } })
-    .limit(1)
-    .toArray();
-  res.render("profile.ejs", {
-    title: "Mijn profiel",
-    profileData,
-    });
-  });
-});
-
-
+// static files
+app.use(expressSession({secret: process.env.secretKey, maxAge:3600000 }));
+app.use(flash())
+app.use(passport.initialize());
+app.use(passport.session());
+app.set('views',path.join(__dirname,'views'))
 
 // Static files
 app.use(express.static('public'));
@@ -75,101 +41,298 @@ app.use('/css', express.static('/public/css')); // link naar je css folder
 app.use('/js', express.static('/public/js')); // link naar je js folder
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.use(express.static('static'));
+app.use(express.static('public'));
+app.use(express.json());
 
+//database uri
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
+const db = new MongoClient(uri, {
+  useUnifiedTopology: true
+});
+db.connect();
+
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, dbName:process.env.DB_NAME});
+const dbMongoose = mongoose.connection;
+dbMongoose.on('error', console.error.bind(console, 'connection error:'));
+
+// Hashing and authentication code
+// Generates hash using bCrypt
+const createHash = (password)=>{
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+ }
+
+ const isValidPassword = (user, password)=>{
+  return bCrypt.compareSync(password, user.password);
+}
+
+const isAuthenticated =  (req, res, next)=> {
+  if (req.isAuthenticated()){
+    return next();
+  }else{
+    res.redirect('/login');
+  }
+}
+
+passport.serializeUser((user, done)=> {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done)=> {
+  User.findById(id, (err, user)=> {
+    done(err, user);
+  });
+});
+
+// start server
+/*
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+*/
+// http listen
+http.listen(port, () => {
+  console.log(`http://localhost:${port}/`);
+});
+
+async function run() {
+  try {
+    // Connect the client to the server
+    await db.connect();
+    // Establish and verify connection
+    await db.db("foodzen").command({
+      ping: 1
+    });
+    console.log("Connected succesfully to the database.");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await db.close();
+  }
+}
+run().catch(console.dir);
+
+// chatOverview route
+app.get('/chat', isAuthenticated, (req, res) => {
+  res.render('chat');
+});
+
+//route
+app.get("/profiles",isAuthenticated, async (req, res) => {
+    MongoClient.connect(uri, async (err, db)=> {
+    let dbo = db.db('foodzen');
+  // create an empty list of profiles
+  let profileData = {};
+  // look for profile and show one
+  profileData = await dbo
+    .collection("profiles")
+    .find({}, { sort: { name: 1 } })
+    .limit(1)
+    .toArray();
+  res.render("profile.ejs", {
+    title: "My Profile",
+    profileData,
+    });
+  });
+});
 
 //GET index page
-app.get('/', function(req, res, next) {
-  res.render('index');
+app.get('/', (req, res) => {
+  res.render('index',  { user: req.user });
 });
 
-// GET login page
-app.get('/login', function(req, res, next) {
-  res.render('login');
+//GET login page
+  app.get('/login', (req, res) => {
+   res.render('login', {message: req.flash('message')});
+ });
+
+app.post('/login', passport.authenticate('login', {
+  //route after succesfully log in
+  successRedirect: '/add',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+passport.use('login', new LocalStrategy({
+  passReqToCallback : true,
+},
+(req, username, password, done)=> {
+  User.findOne({ 'username' :  username},
+    (err, user)=> {
+      // In case of any error, return using the done method
+      if (err)
+        return done(err);
+      // Username does not exist, log error and redirect
+      if (!user){
+        console.log('User Not Found with username '+username);
+        return done(null, false,
+          req.flash('message', 'No user found with the username' +username));
+        }
+      // User exists, wrong password, log the error
+      if (!isValidPassword(user, password)){
+        console.log('Invalid Password');
+        return done(null, false,
+          req.flash('message','Invalid password!'));
+      }
+      // User & password  match, return user
+      console.log('user exists and login is succeeded!')
+      return done(null, user);
+    }
+  );
+}));
+
+app.get('/signup', (req, res)=>{
+  res.render('register',{message: req.flash('message')});
 });
 
-// toevoegen pagina
-app.get('/toevoegen', async function(req, res, next) {
+app.post('/signup', passport.authenticate('signup', {
+  successRedirect: '/login',
+  failureRedirect: '/signup',
+  failureFlash: true
+}));
 
-  MongoClient.connect(uri, async function(err, db) {
-    dbo = db.db('plaatsGerecht');
-    landen = await dbo.collection('landen').find({}, {
+passport.use('signup', new LocalStrategy({
+  passReqToCallback : true
+},
+(req, username, password, done)=> {
+  findOrCreateUser = ()=>{
+    // find a user in the db with the provided username
+    User.findOne({'username':username},(err, user)=> {
+      // In case of any error return the following
+      if (err){
+        req.flash('message','Error in SignUp: '+err);
+        return done(err);
+      }
+      // already exists?
+      if (user) {
+        console.log('User already exists');
+        return done(null, false,
+          req.flash('message','User already exists!'));
+      } else {
+        // if there is no user with that email, create them
+        const newCreatedUser = new User();
+        // set the user's local credentials
+        newCreatedUser.username = req.body.username;
+        newCreatedUser.password = createHash(req.body.password);
+        newCreatedUser.email = req.body.email;
+        newCreatedUser.name = req.body.name;
+
+        // save the user
+        newCreatedUser.save((err)=> {
+          if (err){
+            req.flash('message','Error in Saving user: '+err);
+            return;
+          }
+          console.log('User Registration succesful');
+          return done(null, newCreatedUser);
+        });
+      }
+    });
+  };
+
+  // Delay the execution of findOrCreateUser and execute
+  // the method in the next tick of the event loop
+  process.nextTick(findOrCreateUser);
+}));
+
+// if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
+app.get('/signout', (req, res)=> {
+  req.logout();
+  res.redirect('/');
+});
+
+
+// adding page
+app.get('/add', isAuthenticated, async (req, res, next)=> {
+
+  MongoClient.connect(uri, async (err, db)=> {
+    dbo = db.db('foodzen');
+    countries = await dbo.collection('countries').find({}, {
       sort: {
         naam: 1
       }
     }).toArray();
     res.render('add', {
-      landen
+      countries
     });
   });
 });
-// toevoegen van ingevoerde data van de toevoegpagina!
-app.post("/gerechtToegevoegd", (req, res) => {
-  MongoClient.connect(uri, function(err, db) {
+// adding filled in information
+app.post("/dishAdded", (req, res) => {
+  MongoClient.connect(uri, (err, db)=> {
     if (err) throw err;
-    let dbo = db.db("plaatsGerecht");
+    let dbo = db.db("foodzen");
 
-    dbo.collection("gerechten").insertOne({
-        afbeelding: req.body.afbeelding,
-        titel: req.body.titel,
-        ingredienten: req.body.ingredienten,
-        tijdsduur: req.body.tijdsduur,
-        instructies: req.body.instructies,
-        land: req.body.land,
-        personen: req.body.personen
+    dbo.collection("dishes").insertOne({
+        image: req.body.image,
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        duration: req.body.duration,
+        instructions: req.body.instructions,
+        country: req.body.countries,
+        people: req.body.people
       },
-
-      function(err, result) {
+      (err, result)=> {
         if (err) throw err;
-        res.redirect('/'); //Hier wordt je naar toe gestuurd na submit
+        res.redirect('/'); // sent here after submit
         db.close();
       })
   });
 });
 
 
-//display alle gerichten + filtermenu
-app.get('/thedishes', async (req, res) => {
-    MongoClient.connect(uri, async function(err, db) {
-    let dbo = db.db("plaatsGerecht");
-    const landen = await  dbo.collection('landen').find({}, { sort: {} }).toArray();
-    const dish = await dbo.collection('gerechten').find({}, { sort: {} }).toArray(); // data vanuit de database
-    res.render('thedishes', { text: '', dish, landen });
+// Display all dishes + filtermenu
+app.get('/thedishes', isAuthenticated, async (req, res) => {
+    MongoClient.connect(uri, async (err, db)=> {
+    let dbo = db.db("foodzen");
+    const dish = await dbo.collection('dishes').find({}, { sort: {} }).toArray(); // data from database
+    res.render('thedishes', { text: '', dish });
    });
 });
 
- //filteren op een bepaald gerecht
+ // Filtering a specific dish
 app.post('/thedishes', async (req, res) => {
-  MongoClient.connect(uri, async function(err, db) {
-    let dbo = db.db('plaatsGerecht');
+  MongoClient.connect(uri, async (err, db)=> {
+    let dbo = db.db('foodzen');
+    countries = await dbo.collection('countries').find({}, {
+      sort: {
+        naam: 1
+      }
+    }).toArray();
 
-    const dish = await dbo.collection('gerechten').find({
-    dish: req.body.dishes,
-    persons: Number(req.body.persons),
-    }).toArray()
+    allDishes = await dbo.collection('dishes').find({
+      country: req.body.countries,
+      people: req.body.people
+    }, {
+      sort: {
+        naam: 1
+      }
+    }).toArray();
 
 
 
-    console.log(dish);
-    console.log(req.body.dishes);
-    console.log(typeof req.body.persons);
-    res.render('thedishesresults', {dish });
+    console.log(allDishes);
+    res.render('thedishesresults', {
+      allDishes
+    });
   });
 });
 
-//Detailspagina per gerecht
-app.get('/thedishes/:dishesId', async (req, res) => {
-  const dish = await db.collection('gerechten').findOne({ id: req.params.dishesId });
-  res.render('dishesdetails', { title: 'Clothing Details', dish });
+// Detailpage of a single dish
+app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
+  const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
+  res.render('dishesdetails', { dish });
 });
 
-//het favorieten van je favoriete gerechten
-app.get('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('gerechten');
-  const favoriteItems = await db.collection('favoriteGerechten');
+// getting your favorite dishes
+app.get('/favoritedishes', isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db)=> {
+  const dish = await db.collection('dishes');
+  const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that will check saveditems
     if (err) {
       console.log(err);
     } else {
@@ -187,14 +350,14 @@ app.get('/favoritedishes', async (req, res) => {
           }
         });
     }
+    });
   });
 });
 
-
-//aangeklikte gerechten opslaan op de database om dan weer te geven op de favoriten pagina
+// saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dish');
-  const favoriteItems = await db.collection('favorieteGerechten');
+  const dish = await db.collection('dishes');
+  const favoriteItems = await db.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
   const options = { upsert: true };
@@ -205,8 +368,8 @@ app.post('/favoritedishes', async (req, res) => {
     { $push: { saves: savedDish } }, options
   );
 
-  //controleren
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id die nu in saveditems staat controleren
+  //Checking
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that's in saveditems checking
     if (err) {
       console.log(err);
     } else {
@@ -230,28 +393,53 @@ app.post('/favoritedishes', async (req, res) => {
 
 
 // dynamic room route
-app.get('/chat/:id', (req, res) => {
+app.get('/chat/:id', isAuthenticated, (req, res) => {
   res.render(req.params.id);
 });
 
 // Socket setup & pass server
 
-// var io = socket(server);
 io.on('connection', (socket) => {
 
-    console.log('made socket connection', socket.id);
+let roomName = '';
 
-    // Handle chat event
-    socket.on('chat', function(data){
-        io.sockets.emit('chat', data);
-    });
+socket.on('join room', (data) => {
 
-    socket.on('typing', function(data){
-      socket.broadcast.emit('typing', data)
-    });
+socket.join(data);
+
+roomName = data;
+
 });
 
+
+
+console.log('made socket connection', socket.id);
+
+
+
+// Handle chat event
+
+socket.on('chat', (data) => {
+
+// io.sockets.emit('chat', data);
+
+socket.to(roomName).emit('chat', data);
+
+});
+
+
+
+
+// function typing...
+
+socket.on('typing', function(data){
+
+socket.broadcast.emit('typing', data)
+
+});
+
+});
 // page not found
-app.use(function (req, res, next) {
+app.use((req, res, next)=> {
   res.status(404).send("Sorry can't find that!");
 });

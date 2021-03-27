@@ -52,13 +52,22 @@ npm start
 ## Features
 
 - Gebruikers kunnen hun profiel instellen naar gewenst. 
-- 
+- Gebruikers kunnen filteren op land en gerecht.
+- Gebruikers kunnen zowel inloggen als een account aanmaken.
+- Gebruikers kunnen gerechten liken om te chatten met andere gebruikers die dat gerecht interessant vinden.
+- Gebruikers kunnen gerechten een ster geven om het in favorieten te plaatsen.
 
 ## License
 
 Er wordt in dit project gebruik gemaakt van de [MIT](https://github.com/MichaelChorak/matching-app/blob/main/LICENSE) license.
 
-## Bronnen
+## Sources
 
 * [Wes Bos](https://www.youtube.com/watch?v=Je5w18nn-e8&list=PLu8EoSxDXHP7v7K5nZSMo9XWidbJ_Bns3)
 * [Markdown cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Socket.io Getting started](https://socket.io/get-started/)
+* [Socket.io Documentation](https://socket.io/docs/v4)
+* [Socket.io Rooms](https://www.youtube.com/watch?v=jD7FnbI76Hg)
+* [Websockets Tutorial](https://www.youtube.com/watch?v=vQjiN8Qgs3c)
+* [PassportJS & bcrypt hashing](https://code.tyutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619)
+
