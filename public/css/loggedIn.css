@@ -292,6 +292,7 @@ header > img {
   text-align: center;
 }
 
+
 #dishes > section   {
   background-color: #F8ECC4;
 
@@ -306,13 +307,11 @@ header > img {
 .showSubmenu1 {
   max-height: 100em;
   opacity: 1;
-  transform: translateX(0);
 }
 
 .showSubmenu2 {
   max-height: 100em;
   opacity: 1;
-  transform: translateX(0);
 }
 
 
