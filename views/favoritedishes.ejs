@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="css/loggedIn.css">
     <%- include('../views/partials/head.ejs') %>
 <body>
-    <%- include('../views/partials/header.ejs') %>
+    <%- include('../views/partials/loggedHeader.ejs') %>
+
 <main id="favorite">
     <section>
         <a href="/thedishes" id="headMenu">&#129128;</a>     
@@ -13,21 +15,19 @@
     <div>&#128970;</div>
     <p>Add your favorite dishes here!</p>
     </article>
-
     <%  savedDishes.forEach(function(dish){ %>
-        <article>
-            <img src="<%= dish.image %>">
-            <div>
-            <h2><%= dish.name %></h2>
-            <h3>👤<%= dish.persons %></h3>
-            </div>
-            <h3>@<%= dish.username %></h3>
-            <h4><%= dish.dish %></h4>
-            <p><%= dish.description %></p>
-            
-            <a href="/thedishes/<%= dish.id %>">Read More</a>
-        </article>
-        <% }) %>
+            <article id="recipeCards">
+                  <div>
+                  <h3><%= dish.title %></h3>
+                  </div>
+                  <div>
+                  <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
+                  <p><i class="fas fa-globe-europe"> </i><%= dish.country %></p>
+                  <p><i class="far fa-clock"></i> <%= dish.duration[0] + dish.duration[1] %> </p>
+                  <a href="/thedishes/<%= dish.title %>">Read More</a>
+                  </div>
+            </article>
+            <% }) %>
 </main>
 <%- include('../views/partials/footer.ejs') %>
 </body>
