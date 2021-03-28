@@ -272,6 +272,9 @@ app.post('/sendmail', (req, res) => {
       console.log('email sent!');
     }
   });
+  res.render('contact', {
+    title: 'Email succesfully send'
+  });
 });
 
 

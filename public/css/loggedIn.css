@@ -438,8 +438,10 @@ div {
   display: flex;
   flex-direction: column;
   width: 75%;
+  justify-content: space-between;
   padding: 5%;
-  background-color: aliceblue;
+  background-color: #f8f8f89c;
+  height: 55vh;
 }
 
 #contactContainer > form > button  {
@@ -447,7 +449,7 @@ div {
   height: 2em;
   margin-top: 10%;
   border: none;
-  background-color: #0000ffa3;
+  background-color: #f89f9d;
   color: #fff;
   border-radius: 3px;
 }
