@@ -15,15 +15,16 @@ menuBtn.addEventListener('click', getShowSettings);
 /* funtion with the method fetch(), to get an random image*/
 function getRandomImage() {
   fetch('https://random.dog/woof.json')
-    .then(res => res.json())
-    .then(data => {
-      if (data.url.includes('.mp4')) {
-        getRandomImage();
-      }
-      else {
-        displayImage.innerHTML = `<img src=${data.url} alt="randomImage" />`;
-      }
-    });
+  .then(res => res.json())
+  .then(data => {
+    if (data.url.includes('.mp4')) {
+      getRandomImage();
+    }
+    else {
+      displayImage.innerHTML = `<img src=${data.url} alt="randomImage" />`;
+    }
+  })
+  .catch(error => console.log('error is', error));
 }
 
 /* settings menu microinteraction - profile page */
