@@ -177,6 +177,14 @@ header > img {
   font-size: 0.5em;
 }
 
+#detailsarticle {
+  font-family: 'Merriweather', serif;
+}
+
+#detailsarticle > div > h2 {
+  font-family: 'Delighty', serif;
+}
+
 #detailsarticle > ol:nth-of-type(2) {
   padding-left: 0;
   margin: 1em;
