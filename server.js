@@ -439,7 +439,7 @@ app.get('/chat', (req, res) => {
 
 
 // dynamic room route
-app.get('/chat/id', isAuthenticated, (req, res) => {
+app.get('/chat/:id', isAuthenticated, (req, res) => {
   res.render(req.params.id);
 });
 
