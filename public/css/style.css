@@ -532,7 +532,7 @@ h2.chatH2 {
 
 ul.chatUl {
     list-style-type: none;
-    margin: 1em;
+    margin: 1em 2em;
     display: flex;
     flex-direction: column;
 }
