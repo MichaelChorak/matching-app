@@ -86,12 +86,7 @@ passport.deserializeUser((id, done)=> {
   });
 });
 
-// start server
-/*
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
-});
-*/
+
 // http listen
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
@@ -260,7 +255,8 @@ app.post('/sendmail', (req, res) => {
 
   //step 2
   let mailOptions = {
-    from: 'foodzen.info@gmail.com',
+    name: req.body.name,
+    from: process.env.EMAIL,
     to: req.body.email,
     subject: req.body.subject,
     text: req.body.message
@@ -274,11 +270,18 @@ app.post('/sendmail', (req, res) => {
       console.log('email sent!');
     }
   });
-  res.render('contact', {
-    title: 'Email succesfully send'
+
+  res.render('contactConfirm', {
+    title: 'Email succesfully send',
+    mailOptions
   });
+  console.log(mailOptions);
 });
 
+
+app.get('/contactConfirm', (req, res) => {
+  res.render('contactConfirm');
+})
 
 
 // adding page

@@ -475,3 +475,42 @@ div {
 .formStyling > textarea{
   border: 1px solid var(--main-color);
 }
+
+
+/* Styling van bevestiging contact bericht verstuurd */
+#contactConfirmContainer {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#contactConfirmContainer > article {
+  margin-left: 15%;
+}
+
+#contactConfirmContainer > article > p:first-of-type {
+    font-style: italic;
+}
+
+#contactConfirmContainer > article > p:nth-child(2) {
+  width: 68%;
+}
+
+#contactConfirmContainer > article > button:first-of-type {
+  border: none;
+  background-color: var(--main-color);
+  padding: 5%;
+  width: 80%;
+  border-radius: 5px;
+
+}
+
+#contactConfirmContainer > article > button:first-of-type > a {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
