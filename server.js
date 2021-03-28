@@ -354,7 +354,7 @@ app.post('/thedishes', async (req, res) => {
   });
 });
 
-// Detailpage of a single dish
+// Detailpage of one single dish
 app.get('/thedishes/:dishesTitle', isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
   let dbo = db.db('foodzen');
@@ -373,7 +373,7 @@ app.get('/favoritedishes', isAuthenticated, async (req, res) => {
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that will check saveditems
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that will check savedDishes
     if (err) {
       console.log(err);
     } else {
@@ -403,16 +403,15 @@ app.post('/favoritedishes', async (req, res) => {
   const favoriteItems = await dbo.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
-  const options = { upsert: true };
   const savedDish = new ObjectID(req.body.saveit);
 
   await favoriteItems.updateOne(
     { _id: objectID },
-    { $push: { saves: savedDish } }, options
+    { $push: { saves: savedDish } }
   );
 
   //Checking
-  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that's in saveditems checking
+  favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that's in savedDishes checking
     if (err) {
       console.log(err);
     } else {
