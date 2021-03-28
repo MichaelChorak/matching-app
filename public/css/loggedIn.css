@@ -100,7 +100,7 @@ header > img {
     transform: translateX(0);
 }
 
-main > section:first-of-type {
+#add > section:first-of-type {
   height: 23vh;
   width: 100%;
   background-image: url('../images/foodBackground.jpg');
@@ -109,7 +109,8 @@ main > section:first-of-type {
   filter: brightness(0.8);
   z-index: 0;
   }
-main > section:nth-of-type(2) {
+
+#add > section:nth-of-type(2) {
   height: 100vh;
   width: 100%;
   background-color: #fff;
@@ -123,16 +124,18 @@ main > section:nth-of-type(2) {
   z-index: -1;
 }
 
-main > section:nth-of-type(2) > h1 {
+#add > section:nth-of-type(2) > h1 {
   font-family: Delighty;
   font-size: 3.8em;
   font-weight: lighter;
   margin: 0;
   position: absolute;
   top: 5%;
+  display: block;
+  color: black;
 }
 
-main > section:nth-of-type(2) > span {
+#add > section:nth-of-type(2) > span {
   position: absolute;
   top: 17%;
   font-family: var(--main-font);
@@ -141,7 +144,7 @@ main > section:nth-of-type(2) > span {
   font-size: 12px;
 }
 
-main > section:nth-of-type(2) > form {
+#add > section:nth-of-type(2) > form {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -150,7 +153,7 @@ main > section:nth-of-type(2) > form {
   padding-bottom: 20%;
 }
 
-main > section:nth-of-type(2) > form > button {
+#add > section:nth-of-type(2) > form > button {
   background-color: var(--main-color);
   border: none;
   outline: none;
@@ -167,10 +170,15 @@ main > section:nth-of-type(2) > form > button {
   border: none;
 }
 
-main > section:nth-of-type(2) > form > input {
+#add > section:nth-of-type(2) > form > input {
   border: none;
   border-bottom: 1px solid var(--main-color);
 }
+
+#duration {
+  margin-top: 2px;
+}
+
 .testInput {
   border: none;
   border-bottom: 1px solid var(--main-color);
@@ -178,14 +186,13 @@ main > section:nth-of-type(2) > form > input {
   margin-bottom: 5%;
 }
 
-main > section:nth-of-type(2) > form > label {
+#add > section:nth-of-type(2) > form > label {
   margin-top: 5%;
   color: #5A5A5A;
   font-family: var(--main-font);
   font-size: 0.8em;
 }
-
-main > section:nth-of-type(2) > form > textarea {
+#add > section:nth-of-type(2) > form > textarea {
   border-color: var(--main-color);
   width: 100%;
   margin-top: 5%;
@@ -196,6 +203,8 @@ main > section:nth-of-type(2) > form > textarea {
 }
 
 
+/*all dishes pages*/
+
 #recipeCards {
   position: relative;
   height: auto;
@@ -203,7 +212,6 @@ main > section:nth-of-type(2) > form > textarea {
   background-color: #fff;
   margin: 5%;
   border-radius: 3px;
-  font-family: delighty;
   font-weight: 300;
   font-size: 2em;
   color: var(--main-color);
@@ -231,10 +239,20 @@ main > section:nth-of-type(2) > form > textarea {
 
 #recipeCards > div > p {
   margin: 0;
-  padding: 0;
+  padding: 0.5em;
+  font-family: 'Merriweather', serif;
   font-weight: 300;
-  font-size: 1.4em;
+  font-size: 0.5em;
+  color: black;
 }
+
+#recipeCards > div > h3 {
+  font-family: 'Delighty', serif;
+  font-weight: 300;
+  font-size: 1.9em;
+  color: #f89d8a;
+}
+
 #recipeCards > div {
   margin-left: 5%;
 }
@@ -249,6 +267,18 @@ main > section:nth-of-type(2) > form > textarea {
   background-color: var(--main-color);
 }
 
+#recipeCards > div:nth-of-type(2) > a {
+  background-color: #F8ECC4;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  color: #5B5B5B;
+  padding: 0.5em;
+  font-size: 0.5em;
+}
+
+
+
+
 #dishes > section > button  {
   height: 40px;
   width: 40px;
@@ -261,6 +291,7 @@ main > section:nth-of-type(2) > form > textarea {
   font-size: 3em;
   text-align: center;
 }
+
 
 #dishes > section   {
   background-color: #F8ECC4;
@@ -276,13 +307,11 @@ main > section:nth-of-type(2) > form > textarea {
 .showSubmenu1 {
   max-height: 100em;
   opacity: 1;
-  transform: translateX(0);
 }
 
 .showSubmenu2 {
   max-height: 100em;
   opacity: 1;
-  transform: translateX(0);
 }
 
 
@@ -301,7 +330,7 @@ ul {
   font-family: 'Merriweather', serif;
   display: block;
   padding-bottom: 1em;
-}   
+}
 
 .searchButton {
   background-color: #F89D8A53;
@@ -323,7 +352,103 @@ div {
   row-gap: 3em;
   column-gap: 3em;
   font-size: 0.8em;
-  margin-right: 0.5em;
+  margin-right: 5em;
 }
 
 
+
+#favorite > section > a  {
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  display: inline-block;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+  margin: 1em;
+  font-size: 1.5em;
+  text-align: center;
+  text-decoration: none;
+}
+
+#favorite > section   {
+  background-color: #F8ECC4;
+  font-family: 'Merriweather', serif;
+  display: grid;
+  grid-template-columns: 25% 75% auto;
+}
+
+#favorite > section > h1  {
+  display: block;
+  font-weight: normal;
+  text-align: center;
+  margin: 1em;
+  padding-top: 0.2em;
+
+}
+
+/*empty state*/
+#favorite > article:nth-of-type(1)> div {
+  display: block;
+  margin: 1em;
+  margin-top: 1.5em;
+  font-size: 5em;
+  color: rgb(255, 208, 0);
+  margin-bottom: 0;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  text-align: center;
+}
+
+#favorite > article:nth-of-type(1) > p {
+  display: block;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  margin-top: 0;
+
+}
+
+#favorite > article:nth-of-type(1) {
+  z-index: -10;
+  position: absolute;
+  display: block;
+  margin: 2.2em;
+  margin-top: 0;
+  text-align: center;
+}
+
+#contactContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#contactContainer > h1 {
+  font-size: 2.5em;
+  font-family: delighty;
+  font-weight: 300;
+  color: var(--main-color);
+  margin: 0;
+  padding: 0;
+}
+
+#contactContainer > form {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  justify-content: space-between;
+  padding: 5%;
+  background-color: #f8f8f89c;
+  height: 55vh;
+}
+
+#contactContainer > form > button  {
+  width: 25%;
+  height: 2em;
+  margin-top: 10%;
+  border: none;
+  background-color: #f89f9d;
+  color: #fff;
+  border-radius: 3px;
+}

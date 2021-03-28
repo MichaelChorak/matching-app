@@ -8,17 +8,18 @@
     <%- include('../views/partials/filterMenu.ejs') %>
 
        <% allDishes.forEach(function(dish){ %>
-    <article>
+    <article id="recipeCards">
           <div>
-            <h2><%= allDishes.title %></h2>
-            <h3>👤<%= allDishes.people %></h3>
+          <h3><%= dish.title %></h3>
           </div>
-        <p><%=  allDishes.instructions %></p>
-
-        <a href="/thedishes/<%= dish.id %>">Read More</a>
+          <div>
+          <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
+          <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
+          <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p>
+          <a href="/thedishes/<%= dish.title %>">Read More</a>
+          </div>
     </article>
     <% }) %>
-  <h1>yo</h1>
 
 </main>
 <%- include('../views/partials/footer.ejs') %>

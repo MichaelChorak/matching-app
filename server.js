@@ -17,6 +17,7 @@ const expressSession = require('express-session');
 const User = require('./models/user');
 const flash = require('connect-flash');
 const { exec } = require("child_process");
+const nodemailer = require('nodemailer');
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -86,10 +87,11 @@ passport.deserializeUser((id, done)=> {
 });
 
 // start server
+/*
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
-
+*/
 // http listen
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
@@ -111,6 +113,13 @@ async function run() {
 }
 run().catch(console.dir);
 
+<<<<<<< HEAD
+=======
+// chatOverview route
+app.get('/chat', isAuthenticated, (req, res) => {
+  res.render('chat');
+});
+>>>>>>> 921a0e03e3d9b5edafda3137885e45617559468a
 
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
@@ -120,12 +129,12 @@ app.get("/profiles",isAuthenticated, async (req, res) => {
   let profileData = {};
   // look for profile and show one
   profileData = await dbo
-    .collection("profiles")
-    .find({}, { sort: { name: 1 } })
+    .collection('profiles')
+    .find({}, { sort: { name: 1,id: 1 } })
     .limit(1)
     .toArray();
-  res.render("profile.ejs", {
-    title: "My Profile",
+  res.render('profile.ejs', {
+    title: 'My Profile',
     profileData,
     });
   });
@@ -236,6 +245,42 @@ app.get('/signout', (req, res)=> {
   res.redirect('/');
 });
 
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+app.post('/sendmail', (req, res) => {
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'foodzen.info@gmail.com',
+      pass: 'foodzen123'
+    }
+  });
+
+  //step 2
+  let mailOptions = {
+    from: 'foodzen.info@gmail.com',
+    to: req.body.email,
+    subject: req.body.subject,
+    text: req.body.message
+  }
+
+  //step 3
+  transporter.sendMail(mailOptions, (err, data) => {
+    if(err) {
+      console.log('Error occured');
+    } else {
+      console.log('email sent!');
+    }
+  });
+  res.render('contact', {
+    title: 'Email succesfully send'
+  });
+});
+
+
 
 // adding page
 app.get('/add', isAuthenticated, async (req, res, next)=> {
@@ -287,26 +332,20 @@ app.get('/thedishes', isAuthenticated, async (req, res) => {
 
  // Filtering a specific dish
 app.post('/thedishes', async (req, res) => {
-  MongoClient.connect(uri, async (err, db)=> {
-    let dbo = db.db('foodzen');
-    countries = await dbo.collection('countries').find({}, {
-      sort: {
-        naam: 1
-      }
-    }).toArray();
+  MongoClient.connect(uri, async function(err, db) {
+      let dbo = db.db('foodzen');
 
-    allDishes = await dbo.collection('dishes').find({
+      const allDishes = await dbo.collection('dishes').find({
       country: req.body.countries,
-      people: req.body.people
-    }, {
-      sort: {
-        naam: 1
-      }
-    }).toArray();
+      people: req.body.people,
+      }).toArray()
 
 
 
-    console.log(allDishes);
+      console.log(allDishes);
+      console.log(req.body.countries);
+      console.log(req.body.people);
+
     res.render('thedishesresults', {
       allDishes
     });
@@ -314,16 +353,21 @@ app.post('/thedishes', async (req, res) => {
 });
 
 // Detailpage of a single dish
-app.get('/thedishes/:dishesId', isAuthenticated, async (req, res) => {
-  const dish = await db.collection('dishes').findOne({ id: req.params.dishesId });
+app.get('/thedishes/:dishesTitle', isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db)=> {
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes').findOne({ title: req.params.dishesTitle });
   res.render('dishesdetails', { dish });
 });
+});
+
 
 // getting your favorite dishes
 app.get('/favoritedishes', isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db)=> {
-  const dish = await db.collection('dishes');
-  const favoriteItems = await db.collection('favoriteDishes');
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes');
+  const favoriteItems = await dbo.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
 
 
@@ -351,8 +395,10 @@ app.get('/favoritedishes', isAuthenticated, async (req, res) => {
 
 // saving favorite dishes to show on the favorite page
 app.post('/favoritedishes', async (req, res) => {
-  const dish = await db.collection('dishes');
-  const favoriteItems = await db.collection('favoriteDishes');
+  MongoClient.connect(uri, async (err, db)=> {
+  let dbo = db.db('foodzen');
+  const dish = await dbo.collection('dishes');
+  const favoriteItems = await dbo.collection('favoriteDishes');
   const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
   console.log(objectID);
   const options = { upsert: true };
@@ -385,6 +431,7 @@ app.post('/favoritedishes', async (req, res) => {
     }
   });
 });
+});
 
 // chatOverview route
 app.get('/chat', (req, res) => {
@@ -393,7 +440,7 @@ app.get('/chat', (req, res) => {
 
 
 // dynamic room route
-app.get('/chat/:id', isAuthenticated, (req, res) => {
+app.get('/chat/id', isAuthenticated, (req, res) => {
   res.render(req.params.id);
 });
 
@@ -420,8 +467,6 @@ console.log('made socket connection', socket.id);
 // Handle chat event
 
 socket.on('chat', (data) => {
-
-
 
 // io.sockets.emit('chat', data);
 

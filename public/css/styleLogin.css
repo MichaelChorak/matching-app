@@ -59,25 +59,35 @@ header::after{
   background-repeat: no-repeat;
 }
 
-/* --------------Einde header--------------- */
+/* --------------End header--------------- */
+/* --------------Start warning--------------- */
 
-/* ----------------Begin eerste sectie--------*/
+.warning{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #7A7976;
+}
+/* ----------------End warning--------*/
+
+
+/* ----------------Start first section--------*/
 
 main > section {
   height: auto;
   width: 100%;
 }
 
-main > section > form {
+main > section:first-of-type > form:first-of-type{
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: auto;
   width: 80%;
-  margin-left: 10vw;
   font-family: var(--main-font);
   color: #F0F0F0;
   text-align: center;
+  margin: 2em;
 }
 
 main > section > form > input {
@@ -105,8 +115,8 @@ main > section > form > button {
   margin-left: 10vw;
 }
 
-/* ------------ einde form section ---------------- */
-/* ----------------begin login options section------ */
+/* ------------ End form section ---------------- */
+/* ----------------Start login options section------ */
 
 main > section:nth-of-type(2) {
   display: flex;
