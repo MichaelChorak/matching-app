@@ -113,13 +113,12 @@ async function run() {
 }
 run().catch(console.dir);
 
-<<<<<<< HEAD
-=======
+
 // chatOverview route
 app.get('/chat', isAuthenticated, (req, res) => {
   res.render('chat');
 });
->>>>>>> 921a0e03e3d9b5edafda3137885e45617559468a
+
 
 //route
 app.get("/profiles",isAuthenticated, async (req, res) => {
@@ -254,8 +253,8 @@ app.post('/sendmail', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'foodzen.info@gmail.com',
-      pass: 'foodzen123'
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS
     }
   });
 

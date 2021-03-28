@@ -439,7 +439,6 @@ div {
   width: 75%;
   justify-content: space-between;
   padding: 5%;
-  background-color: #f8f8f89c;
   height: 55vh;
 }
 
@@ -451,4 +450,28 @@ div {
   background-color: #f89f9d;
   color: #fff;
   border-radius: 3px;
+}
+
+
+#addBtn {
+  background-color: var(--secondary-color) !important;
+  font-size: 12px !important;
+  width: 40% !important;
+}
+
+/* contactformulier styling */
+.formStyling > input {
+  border: none;
+  border-bottom: 1px solid var(--main-color);
+}
+
+.formStyling >  label {
+  margin-top: 5%;
+  color: #5A5A5A;
+  font-family: var(--main-font);
+  font-size: 0.8em;
+}
+
+.formStyling > textarea{
+  border: 1px solid var(--main-color);
 }

@@ -13,16 +13,16 @@
 
   <main>
     <section id="contactContainer">
-      <h1>Got any questions? Please fill out the form</h1>
-      <form action="/sendmail" method="post">
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" value="">
+      <h1>Any questions?</h1>
+      <form action="/sendmail" method="post" class="formStyling">
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" value="" required>
 
         <label for="email">Your email:</label>
-        <input type="email" name="email" value="">
+        <input type="email" name="email" value="" required>
 
         <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" cols="50">
+        <textarea id="message" name="message" rows="4" cols="50" required>
 
         </textarea>
 
