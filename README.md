@@ -8,8 +8,8 @@ Matching application team 4
 
 ## Table of Contents
 
-* Introduction](https://github.com/MichaelChorak/matching-app#foodzen)
-* Installation](https://github.com/MichaelChorak/matching-app)
+* [Introduction](https://github.com/MichaelChorak/matching-app#foodzen)
+* [Installation](https://github.com/MichaelChorak/matching-app)
 * [Features](https://github.com/MichaelChorak/matching-app)
 * [License](https://github.com/MichaelChorak/matching-app)
 * [Resources](https://github.com/MichaelChorak/matching-app)
@@ -18,7 +18,7 @@ Matching application team 4
 
 ### Installation
 
-Step 1. Clone this reposotiry
+Step 1. Clone this repository
 ```js
 git clone https://github.com/MichaelChorak/matching-app.git
 ```
