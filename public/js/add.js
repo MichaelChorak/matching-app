@@ -8,23 +8,23 @@ label = document.querySelector('#label');
 
 
 
-function showMenu(){
+function showMenu() {
   // menu.classList.add('laatMenuZien');
   if (menu.classList.contains('laatMenuZien')) {
     menu.classList.remove('laatMenuZien');
-      menu.classList.remove('menuTerug');
+    menu.classList.remove('menuTerug');
   } else {
     menu.classList.add('laatMenuZien')
     menu.classList.add('menuTerug')
-    }
   }
+}
 
-function closeMenu(){
+function closeMenu() {
   menu.classList.remove('menuTerug');
   //
 }
 
-function voegRegelToe(){
+function voegRegelToe() {
   //creeer een input element on click
   let inputIngredient = document.createElement('input');
   //voeg attributen toe zodat ze overeen komen met de overige input attributen

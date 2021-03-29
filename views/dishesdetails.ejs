@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="/css/dishesdetails.css">
-    <%- include('../views/partials/head.ejs') %>
+<link rel="stylesheet" href="/css/dishesdetails.css">
+<%- include('../views/partials/head.ejs') %>
 
 <body>
-    <%- include('../views/partials/loggedHeader.ejs') %>
+  <%- include('../views/partials/loggedHeader.ejs') %>
 
-<main id="dishes">
+  <main id="dishes">
 
     <article id="detailsarticle">
-        <img src="<%= dish.image %>">
-        <div>
+      <img src="<%= dish.image %>">
+      <div>
         <h2><%= dish.title %></h2>
         <h3><i class="fas fa-user-alt"> </i><%= dish.people %></h3>
-        </div>
-        <h3><i class="fas fa-globe-europe"></i><%= dish.country %></h3>
-        <div>
-        <a href="/chat/:id" ><button type="submit" name="" value="">&#10084;</button></a>
+      </div>
+      <h3><i class="fas fa-globe-europe"></i><%= dish.country %></h3>
+      <div>
+        <a href="/chat/:id"><button type="submit" name="" value="">&#10084;</button></a>
         <form action="/favoritedishes" method="POST">
-            <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
+          <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
         </form>
-        </div>
-        <h3><%= dish.description %></h3>
-        <h3>Ingredients: </h3>
-        <ol>
-            <% dish.ingredients.forEach(function(ingredients){ %>
-            <li><%= ingredients %></li>
-            <% }) %>
-        </ol>
-         <h4><%= dish.instructions %></h4>
+      </div>
+      <h3><%= dish.description %></h3>
+      <h3>Ingredients: </h3>
+      <ol>
+        <% dish.ingredients.forEach(function(ingredients){ %>
+        <li><%= ingredients %></li>
+        <% }) %>
+      </ol>
+      <h4><%= dish.instructions %></h4>
     </article>
 
-</main>
-<%- include('../views/partials/footer.ejs') %>
+  </main>
+  <%- include('../views/partials/footer.ejs') %>
 </body>
+
 </html>

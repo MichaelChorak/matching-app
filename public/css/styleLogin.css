@@ -5,7 +5,7 @@ body {
   width: 100%;
 }
 
-:root{
+:root {
   --main-color: #F89D8A;
   --secondary-color: #F8ECC4;
   --main-font: 'Merriweather Sans', sans-serif;
@@ -13,10 +13,10 @@ body {
 
 @font-face {
   font-family: delighty;
-  src:url('fonts/Delighty.ttf');
+  src: url('fonts/Delighty.ttf');
 }
 
-header > h1 {
+header>h1 {
   margin: 0;
   color: var(--secondary-color);
   font-weight: 300;
@@ -37,17 +37,17 @@ header {
   font-size: 2em;
 }
 
-header > figure > img {
+header>figure>img {
   width: 40%;
 }
 
-header > figure {
+header>figure {
   display: flex;
   justify-content: center;
   margin: 0;
 }
 
-header::after{
+header::after {
   content: "";
   position: absolute;
   top: 0;
@@ -61,24 +61,21 @@ header::after{
 
 /* --------------End header--------------- */
 /* --------------Start warning--------------- */
-
-.warning{
+.warning {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #7A7976;
 }
+
 /* ----------------End warning--------*/
-
-
 /* ----------------Start first section--------*/
-
-main > section {
+main>section {
   height: auto;
   width: 100%;
 }
 
-main > section:first-of-type > form:first-of-type{
+main>section:first-of-type>form:first-of-type {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,18 +87,17 @@ main > section:first-of-type > form:first-of-type{
   margin: 2em;
 }
 
-main > section > form > input {
+main>section>form>input {
   border: none;
   border-bottom: 1px solid #707070;
   margin-bottom: 5%;
 }
 
-main > section > form > p {
+main>section>form>p {
   color: #7A7976;
-
 }
 
-main > section > form > button {
+main>section>form>button {
   border-radius: 20px;
   background-color: var(--secondary-color);
   font-family: var(--main-font);
@@ -117,8 +113,7 @@ main > section > form > button {
 
 /* ------------ End form section ---------------- */
 /* ----------------Start login options section------ */
-
-main > section:nth-of-type(2) {
+main>section:nth-of-type(2) {
   display: flex;
   justify-content: space-around;
   height: 20vh;
@@ -161,12 +156,12 @@ main > section:nth-of-type(2) {
   background-position: center;
 }
 
-main > section:last-of-type {
+main>section:last-of-type {
   display: flex;
   justify-content: space-around;
 }
 
-main > section:last-of-type > a {
+main>section:last-of-type>a {
   color: #7A7976;
   text-decoration: none;
 }

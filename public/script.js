@@ -6,7 +6,7 @@ receptForm = document.querySelector('#voegReceptForm');
 label = document.querySelector('#label');
 
 
-function voegRegelToe(){
+function voegRegelToe() {
   //creeer een input element on click
   let inputIngredient = document.createElement('input');
   //voeg attributen toe zodat ze overeen komen met de overige input attributen

@@ -12,19 +12,10 @@ function getRandomImage() {
   fetch('https://random.dog/woof.json')
     .then(res => res.json())
     .then(data => {
-      if(data.url.includes('.mp4')) {
+      if (data.url.includes('.mp4')) {
         getRandomImage();
-      }
-      else {
+      } else {
         displayImage.innerHTML = `<img src=${data.url} alt="randomImage" />`;
       }
     });
-}
-
-
-
-
-
-
-
-
+  }

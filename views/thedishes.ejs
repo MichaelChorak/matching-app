@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../views/partials/head.ejs') %>
-    <link rel="stylesheet" href="css/loggedIn.css">
+<%- include('../views/partials/head.ejs') %>
+<link rel="stylesheet" href="css/loggedIn.css">
+
 <body>
-    <%- include('../views/partials/loggedHeader.ejs') %>
+  <%- include('../views/partials/loggedHeader.ejs') %>
   <main id="dishes">
-    
+
     <%- include('../views/partials/filterMenu.ejs') %>
 
 
-       <% dish.forEach(function(dish){ %>
-          <article id="recipeCards">
-            <img src="<%= dish.image %>">
-              <div>
-                <h3><%= dish.title %></h3>
-                </div>
-                <div>
-                <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
-                <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
-                <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p>
-                <a href="/thedishes/<%= dish.title %>">Read More</a>
-              </div>
-          </article>
-      <% }) %>
+    <% dish.forEach(function(dish){ %>
+    <article id="recipeCards">
+      <img src="<%= dish.image %>">
+      <div>
+        <h3><%= dish.title %></h3>
+      </div>
+      <div>
+        <p><i class="fas fa-user-alt"> </i><%= dish.people %></p>
+        <p><i class="fas fa-globe-europe"> </i><%=dish.country %></p>
+        <p><i class="far fa-clock"></i> <%=dish.duration[0] + dish.duration[1] %> </p>
+        <a href="/thedishes/<%= dish.title %>">Read More</a>
+      </div>
+    </article>
+    <% }) %>
 
-      
 
-</main>
-<%- include('../views/partials/footer.ejs') %>
+
+  </main>
+  <%- include('../views/partials/footer.ejs') %>
 </body>
+
 </html>

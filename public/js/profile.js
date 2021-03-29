@@ -5,7 +5,7 @@
 
 const buttonRandomImage = document.getElementById('imageBtn');
 const displayImage = document.getElementById('showImage');
-const menuBtn = document.getElementById('settingBnt'); 
+const menuBtn = document.getElementById('settingBnt');
 const dropdown = document.getElementsByClassName('showSettingsMenu')[0];
 
 /* eventlistener */
@@ -15,16 +15,15 @@ menuBtn.addEventListener('click', getShowSettings);
 /* funtion with the method fetch(), to get an random image*/
 function getRandomImage() {
   fetch('https://random.dog/woof.json')
-  .then(res => res.json())
-  .then(data => {
-    if (data.url.includes('.mp4')) {
-      getRandomImage();
-    }
-    else {
-      displayImage.innerHTML = `<img src=${data.url} alt="randomImage" />`;
-    }
-  })
-  .catch(error => console.log('error is', error));
+    .then(res => res.json())
+    .then(data => {
+      if (data.url.includes('.mp4')) {
+        getRandomImage();
+      } else {
+        displayImage.innerHTML = `<img src=${data.url} alt="randomImage" />`;
+      }
+    })
+    .catch(error => console.log('error is', error));
 }
 
 /* settings menu microinteraction - profile page */

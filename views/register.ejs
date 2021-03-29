@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
   <link rel="stylesheet" href="css/styleLogin.css">
   <%- include('partials/head'); -%>
-  </head>
-  <body>
-      <%- include('partials/header'); -%>
-    <main>
-        <p class="warning">
-            <%= message ? message : '' %>
-        </p>
-        <section>
-            <form method="POST" action ="/signup" class="registerForm">
-                <label for="username">Username</label>
-                <input type="text" name="username"  required/>
+</head>
 
-                <label for="password">Password</label>
-                <input type="password" name="password" required/>
+<body>
+  <%- include('partials/header'); -%>
+  <main>
+    <p class="warning">
+      <%= message ? message : '' %>
+    </p>
+    <section>
+      <form method="POST" action="/signup" class="registerForm">
+        <label for="username">Username</label>
+        <input type="text" name="username" required />
 
-                <label for="name">First name</label>
-                <input type="text" name ="name" required/>
+        <label for="password">Password</label>
+        <input type="password" name="password" required />
 
-                <label for="email">E-mail</label>
-                <input type="email" name="email" required/>
-                <button>Create</button>
-            </form>
-        </section>
-        <section>
-            <a href="/login">Already have an account?</a>
-        </section>
-    </main>
-  </body>
+        <label for="name">First name</label>
+        <input type="text" name="name" required />
+
+        <label for="email">E-mail</label>
+        <input type="email" name="email" required />
+        <button>Create</button>
+      </form>
+    </section>
+    <section>
+      <a href="/login">Already have an account?</a>
+    </section>
+  </main>
+</body>
+
 </html>
