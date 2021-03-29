@@ -1,65 +1,66 @@
 # FoodZen
 Matching application team 4
 
-> *FoodZen* is een app waarbij mensen met dezelfde interesse in een bepaald gerecht, elkaar kunnen vinden om hun creaties & recepten te delen. 
-> Gebruikers kunnen met elkaar matchen op basis van hun interesse in een gerecht. Zodra ze
-> een match zijn kunnen ze met elkaar chatten en hier hun recepten delen met elkaar. Het is mogelijk voor de gebruiker om een profiel in te stellen.
-> Liken wordt gedaan door op het hartje te drukken, vervolgens worden ze re-direct naar de desbetreffende room waar gechat kan worden.
+> *FoodZen* is an app where people with the same interest in a particular dish, can find each other to share their creations & recipes. 
+> Users can match with each other based on their interest in a dish. Once they
+> are a match they can chat with each other and share their recipes with each other here. It is possible for the user to set up a profile.
+> Liking is done by clicking on the heart, then they are redirected to the appropriate room where they can chat.
 
 ## Table of Contents
 
-* [Introductie](https://github.com/MichaelChorak/matching-app#foodzen)
-* [Installatie](https://github.com/MichaelChorak/matching-app)
+* Introduction](https://github.com/MichaelChorak/matching-app#foodzen)
+* Installation](https://github.com/MichaelChorak/matching-app)
 * [Features](https://github.com/MichaelChorak/matching-app)
 * [License](https://github.com/MichaelChorak/matching-app)
-* [Bronnen](https://github.com/MichaelChorak/matching-app)
+* [Resources](https://github.com/MichaelChorak/matching-app)
 
-## Hoe te installeren
+## How to install
 
-### Installatie
+### Installation
 
-Stap 1. Clone deze reposotiry
+Step 1. Clone this reposotiry
 ```js
 git clone https://github.com/MichaelChorak/matching-app.git
 ```
-Stap 2. Navigeer naar de zojuist geclonde reposotiry *Let op hoofdlettergevoelig*
+Step 2. Navigate to the reposotiry you just cloned *Please note case sensitive*
 ```js
 cd matching-app/
 ```
-Stap 3. Installeer de npm (Node package manager)
+Step 3. Install the npm (Node package manager)
 ```js
 npm install
 ```
 
-### Database connectie
-Stap 1. Installeer MongoDB en MongoDBcompass en zet een database op, [stappenplan](https://docs.atlas.mongodb.com/getting-started/) (*Als je dit al hebt kan je deze stap overslaan*)
+### Database connection
+Step 1. Install MongoDB and MongoDBcompass and set up a database, [step by step](https://docs.atlas.mongodb.com/getting-started/) (*If you already have this you can skip this step*)
 
-Stap 2.
-Wijzig het wachtwoord en gebruiksnaam naar jouw gegevens
+Step 2.
+Change the password and username to your details
 **code**
   
-Stap 3.
-verander de .env_example file naar .env
+Step 3.
+Change the .env_example file to .env
 **code**
 
-### Starten
+### Start
 
-Start nu npm (Node package manager)
+Now start npm (Node package manager).
 ```js
 npm start
 ```
 
 ## Features
 
-- Gebruikers kunnen hun profiel instellen naar gewenst. 
-- Gebruikers kunnen filteren op land en gerecht.
-- Gebruikers kunnen zowel inloggen als een account aanmaken.
-- Gebruikers kunnen gerechten liken om te chatten met andere gebruikers die dat gerecht interessant vinden.
-- Gebruikers kunnen gerechten een ster geven om het in favorieten te plaatsen.
+- Users can set their profile as desired. 
+- Users can filter by country and dish.
+- Users can both log in and create an account.
+- Users can like dishes to chat with other users who find that dish interesting.
+- Users can give dishes a star to place it in favorites.
+- 
 
 ## License
 
-Er wordt in dit project gebruik gemaakt van de [MIT](https://github.com/MichaelChorak/matching-app/blob/main/LICENSE) license.
+The project uses the [MIT](https://github.com/MichaelChorak/matching-app/blob/main/LICENSE) license.
 
 ## Sources
 
