@@ -46,6 +46,7 @@ header>ul {
   background-color: white;
   max-height: 0em;
   opacity: 0;
+  line-height: 3em;
   visibility: hidden;
   transition: all 500ms ease;
   transform: translateX(-6vw);

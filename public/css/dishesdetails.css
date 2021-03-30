@@ -34,7 +34,7 @@ header>ul {
   max-height: 0em;
   opacity: 0;
   visibility: hidden;
-  line-height: 2em;
+  line-height: 3em;
   transition: all 500ms ease;
   transform: translateX(-6vw);
 }
