@@ -1,18 +1,18 @@
 header {
-  overflow-y: scroll;
+  overflow-y: hidden;
   width: 100%;
+  background-color: white;
 }
 
-header>section {
-  display: grid;
-  grid-template-columns: 20% 60% auto;
-}
-
-header>ul>li {
-  text-decoration: none;
-  padding-bottom: 0em;
-  padding: 0.5em;
-  margin-top: 0.5em;
+header>h1 {
+  color: #F8ECC4;
+  font-family: 'Delighty', sans-serif;
+  font-size: 5em;
+  margin: 0em;
+  margin-right: 1em;
+  margin-bottom: 0em;
+  font-weight: normal;
+  text-align: center;
 }
 
 header>ul>li>a {
@@ -22,9 +22,28 @@ header>ul>li>a {
   color: #F89D8A;
 }
 
-header>section>button {
+header>ul>li {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  color: #F89D8A;
+  list-style-type: none;
+}
+
+header>ul {
+  background-color: white;
+  max-height: 0em;
+  opacity: 0;
+  visibility: hidden;
+  line-height: 2em;
+  transition: all 500ms ease;
+  transform: translateX(-6vw);
+}
+
+
+header>label {
   height: 40px;
   width: 40px;
+  float: left;    
   background-color: #fff;
   border-radius: 50%;
   border-width: 0;
@@ -32,48 +51,26 @@ header>section>button {
   margin: 1em;
   font-size: 1.5em;
   text-align: center;
-}
-
-header>ul {
-  max-height: 0em;
-  flex-direction: row;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  margin-top: 0em;
-  margin-bottom: 0em;
-  transition: all 500ms ease;
-  transform: translateX(-6vw);
-  background: white;
-  color: #707070;
-  line-height: 2em;
-  list-style-type: none;
-  font-family: 'Merriweather', serif;
-  display: block;
-  padding-bottom: 1em;
-}
-
-header>section>h1 {
-  color: #F8ECC4;
-  font-family: 'Delighty', sans-serif;
-  font-size: 5em;
-  text-align: center;
-  margin: 0em;
-  margin-bottom: 0em;
-  font-weight: normal;
-}
-
-header>img {
-  height: 4em;
-  width: 4em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-  transform: translate(-20%, -0%);
-}
+  box-sizing: border-box;
+  cursor: pointer;
+} 
 
 .showWholeHamburgermenu {
+  max-height: 100em;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+input[type=checkbox]{
+  display: none;
+}
+
+input[type=checkbox]:checked ~ label {
+  background-color: white;
+}
+
+input[type=checkbox]:checked ~ ul {
   max-height: 100em;
   opacity: 1;
   visibility: visible;
