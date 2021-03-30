@@ -27,11 +27,11 @@ header>h1 {
   color: #F8ECC4;
   font-family: 'Delighty', sans-serif;
   font-size: 5em;
-  text-align: center;
   margin: 0em;
-  padding: 0em;
+  margin-right: 1em;
   margin-bottom: 0em;
   font-weight: normal;
+  text-align: center;
 }
 
 header>ul>li>a {
@@ -39,6 +39,7 @@ header>ul>li>a {
   font-family: 'Merriweather', serif;
   font-weight: bold;
   color: #F89D8A;
+  line-height: 1em;
 }
 
 header>ul {
@@ -54,6 +55,7 @@ header>ul {
 header>label {
   height: 40px;
   width: 40px;
+  float: left;    
   background-color: #fff;
   border-radius: 50%;
   border-width: 0;
@@ -63,7 +65,6 @@ header>label {
   text-align: center;
   box-sizing: border-box;
   cursor: pointer;
-  display: grid;
 } 
 
 .showWholeHamburgermenu {
