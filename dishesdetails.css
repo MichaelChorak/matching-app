@@ -1,0 +1,233 @@
+header {
+  overflow-y: scroll;
+  width: 100%;
+}
+
+header>section {
+  display: grid;
+  grid-template-columns: 20% 60% auto;
+}
+
+header>ul>li {
+  text-decoration: none;
+  padding-bottom: 0em;
+  padding: 0.5em;
+  margin-top: 0.5em;
+}
+
+header>ul>li>a {
+  text-decoration: none;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  color: #F89D8A;
+}
+
+header>section>button {
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  display: inline-block;
+  margin: 1em;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+header>ul {
+  max-height: 0em;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  transition: all 500ms ease;
+  transform: translateX(-6vw);
+  background: white;
+  color: #707070;
+  line-height: 2em;
+  list-style-type: none;
+  font-family: 'Merriweather', serif;
+  display: block;
+  padding-bottom: 1em;
+}
+
+header>section>h1 {
+  color: #F8ECC4;
+  font-family: 'Delighty', sans-serif;
+  font-size: 5em;
+  text-align: center;
+  margin: 0em;
+  margin-bottom: 0em;
+  font-weight: normal;
+}
+
+header>img {
+  height: 4em;
+  width: 4em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  transform: translate(-20%, -0%);
+}
+
+.showWholeHamburgermenu {
+  max-height: 100em;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+#dishes>section>a {
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  display: inline-block;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+  margin: 1em;
+  font-size: 1.5em;
+  text-align: center;
+  text-decoration: none;
+}
+
+/*---*/
+#dishes>section {
+  background-color: #F8ECC4;
+}
+
+#dishes>article>h2 {
+  font-family: 'Merriweather', serif;
+  color: #5B5B5B;
+}
+
+#dishes>article>h3:nth-of-type(1) {
+  font-size: 0.8em;
+  margin-top: 0;
+  line-height: 0.5em;
+  color: #F89D8A;
+}
+
+#dishes>article>img {
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+}
+
+#dishes>article {
+  font-family: 'Merriweather', serif;
+  margin: 1em;
+  padding: 1em;
+  display: block;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+}
+
+#dishes>article>div {
+  display: grid;
+  grid-template-columns: 75% 50% auto;
+}
+
+#dishes>article>h4 {
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+#dishes>article>p {
+  font-size: 0.7em;
+}
+
+#dishes>article>a {
+  background-color: #F8ECC4;
+  box-shadow: 0px 3px 10px -1px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  color: #5B5B5B;
+}
+
+#dishes>article>ul>li {
+  font-family: 'Merriweather', serif;
+  margin: 1em;
+  display: block;
+  color: black;
+}
+
+#dishes>a {
+  font-family: 'Merriweather', serif;
+  margin: 1em;
+  display: block;
+  color: black;
+}
+
+/*dishes details*/
+#detailsarticle>h4 {
+  font-size: 0.5em;
+}
+
+#detailsarticle {
+  font-family: 'Merriweather', serif;
+}
+
+#detailsarticle>div>h2 {
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+#detailsarticle>div>h3 {
+  font-weight: normal;
+  margin-left: 1em;
+}
+
+#detailsarticle>ol:nth-of-type(2) {
+  padding-left: 0;
+  margin: 1em;
+}
+
+#detailsarticle>ol>li {
+  padding-left: 0;
+  padding-bottom: 1em;
+}
+
+/*Heart/Match button*/
+#detailsarticle>div>a {
+  text-decoration: none;
+}
+
+#detailsarticle>div>a>button {
+  background-color: #F89D8A;
+  color: white;
+  border-radius: 4em;
+  border-width: 0;
+  width: 6em;
+  height: 2.5em;
+  box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  font-size: 1em;
+  display: block;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  text-decoration: none;
+}
+
+/* favorite /save button*/
+#detailsarticle>div>form>button {
+  background-color: #f4faa1;
+  color: #F89D8A;
+  border-radius: 4em;
+  border-width: 0;
+  width: 6em;
+  height: 2.5em;
+  box-shadow: 0px 3px 3px -0.5px #5B5B5B;
+  font-family: 'Merriweather', serif;
+  font-size: 1em;
+  display: block;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+}
+
+#detailsarticle>div:nth-of-type(2) {
+  display: grid;
+  grid-template-columns: 55% 45% auto;
+}
