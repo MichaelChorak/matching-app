@@ -74,15 +74,15 @@ header>label {
   transform: translateX(0);
 }
 
-input[type=checkbox]{
+header>input[type=checkbox]{
   display: none;
 }
 
-input[type=checkbox]:checked ~ label {
+header>input[type=checkbox]:checked ~ label {
   background-color: white;
 }
 
-input[type=checkbox]:checked ~ ul {
+header>input[type=checkbox]:checked ~ ul {
   max-height: 100em;
   opacity: 1;
   visibility: visible;
