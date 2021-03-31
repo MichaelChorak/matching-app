@@ -2,26 +2,14 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/chat.css">
+  <link rel="stylesheet" href="../css/loggedIn.css">
   <%- include('partials/head'); -%>
 </head>
 
-<body>
-
   <body>
-
     <%- include('partials/loggedHeader'); -%>
-
     <main>
-      <div id="chat">
-        <h2 class="chatH2">Empanadillas</h2>
-        <div id="chat-window">
-          <div id="output"></div>
-          <div id="feedback"></div>
-
-          <%- include('partials/header'); -%>
-          <main>
-
             <div id="chat">
               <h2 class="chatH2">Empanadillas</h2>
               <div id="chat-window">
@@ -36,8 +24,7 @@
           </main>
 
 
-          <script src="socket.io/socket.io.js"></script>
-          <script src="/js/chat.js"></script>
+          <script src="/socket.io/socket.io.js"></script>
           <%- include('../views/partials/footer.ejs') %>
   </body>
 

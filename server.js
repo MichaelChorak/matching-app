@@ -125,10 +125,7 @@ async function run() {
 run().catch(console.dir);
 
 
-// chatOverview route
-app.get("/chat", isAuthenticated, (req, res) => {
-  res.render("chat");
-});
+
 
 
 //route
@@ -494,7 +491,7 @@ app.post("/favoritedishes", async (req, res) => {
 });
 
 // chatOverview route
-app.get("/chat", (req, res) => {
+app.get("/chat", isAuthenticated, (req, res) => {
   res.render("chat");
 });
 
