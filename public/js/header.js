@@ -3,6 +3,8 @@ const wholeHamburgermenu = document.querySelector("#wholeHamburgermenu"); // per
 
 function showWholeHamburgermenu() {
   wholeHamburgermenu.classList.toggle("showWholeHamburgermenu");
+  console.log(showWholeHamburgermenu);
 }
+
 
 hamburgermenu.addEventListener("click", showWholeHamburgermenu);
