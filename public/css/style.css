@@ -555,20 +555,3 @@ ul.chatUl {
     background-color: #F89D8A;
 }
 
- /*****************************************************/
-/*----------- GENERAL STYLE PROFILE PAGE ------------*/
-
-/* hide elements */
-.hiddenElements {
-  clip       : rect(0, 0, 0, 0);
-  clip-path  : inset(50%);
-  height     : 1px;
-  overflow   : hidden;
-  position   : absolute;
-  white-space: nowrap;
-  width      : 1px;
-}
-
-li {
-  list-style: none;
-}
