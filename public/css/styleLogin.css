@@ -9,11 +9,12 @@ body {
   --main-color: #F89D8A;
   --secondary-color: #F8ECC4;
   --main-font: 'Merriweather Sans', sans-serif;
+  --label-color: rgba(0, 0, 0, 0.493);
 }
 
 @font-face {
   font-family: delighty;
-  src: url('fonts/Delighty.ttf');
+  src: url('../fonts/Delighty.ttf');
 }
 
 header>h1 {
@@ -82,9 +83,9 @@ main>section:first-of-type>form:first-of-type {
   height: auto;
   width: 80%;
   font-family: var(--main-font);
-  color: #F0F0F0;
+  color: var(--label-color);
   text-align: center;
-  margin: 2em;
+  margin: 1em 2em;
 }
 
 main>section>form>input {
@@ -164,4 +165,19 @@ main>section:last-of-type {
 main>section:last-of-type>a {
   color: #7A7976;
   text-decoration: none;
+}
+
+/* Padding meegeven aan register link  */
+.signupSession {
+  margin-bottom: 1em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signupSession>a {
+  text-decoration: none;
+  color: #000;
 }

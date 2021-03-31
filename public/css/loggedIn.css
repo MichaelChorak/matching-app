@@ -6,8 +6,8 @@ body {
 }
 
 :root {
-  --main-color: #F89D8A;
-  --secondary-color: #F8ECC4;
+  --main-color: #883120;
+  --secondary-color: #18cf83;
   --main-font: 'Merriweather Sans', sans-serif;
   --icon-size: 15px;
 }
@@ -170,7 +170,7 @@ header>input[type=checkbox]:checked ~ ul {
 }
 
 #duration {
-  margin-top: 2px;
+  margin-top: 10px;
 }
 
 .testInput {
