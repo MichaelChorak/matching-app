@@ -6,7 +6,7 @@ body {
 }
 
 :root {
-  --main-color: #883120;
+  --main-color: #F89D8A;
   --secondary-color: #18cf83;
   --main-font: 'Merriweather Sans', sans-serif;
   --icon-size: 15px;
@@ -261,12 +261,13 @@ header>input[type=checkbox]:checked ~ ul {
 }
 
 #recipeCards>div:nth-of-type(2)>a {
-  background-color: #F8ECC4;
+  background-color: #ce796b;
   box-shadow: 0px 3px 10px -1px #5B5B5B;
   font-family: 'Merriweather', serif;
-  color: #5B5B5B;
+  color: white;
   padding: 0.5em;
   font-size: 0.5em;
+  border-radius: 10px;
 }
 
 /*Progressive Enhanced filtermenu*/
