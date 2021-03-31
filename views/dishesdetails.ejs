@@ -16,7 +16,6 @@
       </div>
       <h3><i class="fas fa-globe-europe"></i><%= dish.country %></h3>
       <div>
-        <a href="/chat/:id"><button type="submit" name="" value="">&#10084;</button></a>
         <form action="/favoritedishes" method="POST">
           <button type="submit" name="saveit" value="<%= dish._id %>">&#128970;</button>
         </form>
