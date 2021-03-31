@@ -1,20 +1,19 @@
-<section>
-  <button id="headMenu">&#129171;</button>
-</section>
+<input type="checkbox" id="checkbox-toggle2">
+<label id="headMenu" for="checkbox-toggle2">&#129171;</label>
+<ul id="wholeMenu">
 <form action='/thedishes' method="POST">
-  <ul id="wholeMenu">
-    <li id="submenu1"><a>Dishes</a></li>
+    <input type="checkbox" id="checkbox-toggle3">
+    <label id="submenu1" for="checkbox-toggle3">Dishes</label>
     <ul id="menuOne">
-      <div>
         <select class="" name="countries" id="country">
           <% for(var i=0; i < countries.length; i++) { %>
           <option name="countries" value="<%= countries[i].name %>"><%= countries[i].name %></option>
           <% } %>
         </select>
-      </div>
     </ul>
 
-    <li id="submenu2"><a>Persons</a></li>
+    <input type="checkbox" id="checkbox-toggle4">
+    <label id="submenu2" for="checkbox-toggle4">Persons</label>
     <ul id="menuSecond">
       <div>
         <input type="checkbox" name="people" value="1" />
