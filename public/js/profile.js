@@ -3,14 +3,14 @@
 //https://www.youtube.com/watch?v=7f2HNadULOs
 /* https://stackoverflow.com/questions/64420332/javascript-how-to-create-a-dropdown-effect-without-jquery */
 
-const buttonRandomImage = document.getElementById('imageBtn');
-const displayImage = document.getElementById('showImage');
-const menuBtn = document.getElementById('settingBnt'); 
-const dropdown = document.getElementsByClassName('showSettingsMenu')[0];
+const buttonRandomImage = document.getElementById("imageBtn");
+const displayImage = document.getElementById("showImage");
+const menuBtn = document.getElementById("settingBnt");
+const dropdown = document.getElementsByClassName("showSettingsMenu")[0];
 
 /* eventlistener */
-buttonRandomImage.addEventListener('click', getRandomImage);
-menuBtn.addEventListener('click', getShowSettings);
+buttonRandomImage.addEventListener("click", getRandomImage);
+menuBtn.addEventListener("click", getShowSettings);
 
 /* funtion with the method fetch(), to get an random image*/
 function getRandomImage() {

@@ -5,23 +5,24 @@ body {
   width: 100%;
 }
 
-:root{
+:root {
   --main-color: #F89D8A;
   --secondary-color: #F8ECC4;
   --main-font: 'Merriweather Sans', sans-serif;
 }
- @font-face {
-     font-family: "delighty";
-     src: url('../fonts/Delighty.ttf');
- }
 
- h1 {
-   font-family: delighty;
-   margin: 5% 0% 5%;
-   font-size: 3em;
-   font-weight: lighter;
-   color: var(--main-color);
- }
+@font-face {
+  font-family: "delighty";
+  src: url('../fonts/Delighty.ttf');
+}
+
+h1 {
+  font-family: delighty;
+  margin: 5% 0% 5%;
+  font-size: 3em;
+  font-weight: lighter;
+  color: var(--main-color);
+}
 
 header {
   height: 10vh;
@@ -32,19 +33,20 @@ header {
 }
 
 .fa-bars:before {
-    content: "\f0c9";
-    color: white;
-    font-size: 2em;
+  content: "\f0c9";
+  color: white;
+  font-size: 2em;
 }
+
 /* divje voor de show button */
-header > div {
+header>div {
   height: 5vh;
   width: 5vh;
   margin-left: 5%;
 }
 
 /* logged in menu */
-header > section {
+header>section {
   height: 70vh;
   width: 60vw;
   background-color: var(--main-color);
@@ -58,7 +60,7 @@ header > section {
 }
 
 /* menu items */
-header > section > ul {
+header>section>ul {
   margin-top: 45%;
   height: 55%;
   display: flex;
@@ -66,15 +68,14 @@ header > section > ul {
   justify-content: flex-start;
 }
 
-header > section > ul > li {
+header>section>ul>li {
   font-family: var(--main-font);
   list-style-type: none;
   color: #fff;
   font-size: 1em;
 }
 
-
-header > section > div:first-child {
+header>section>div:first-child {
   height: auto;
   width: 5vh;
   float: right;
@@ -84,15 +85,20 @@ header > section > div:first-child {
   justify-content: center;
 }
 
-header > section > div:first-child:hover {
+header>section>div:first-child:hover {
   animation: hoverSluiten;
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
 @keyframes hoverSluiten {
-0% {transform: scale(1.2) }
-100% {transform: scale(0.4)}
+  0% {
+    transform: scale(1.2)
+  }
+
+  100% {
+    transform: scale(0.4)
+  }
 }
 
 /* Classlist Add event to show menu */
@@ -103,14 +109,14 @@ header > section > div:first-child:hover {
 }
 
 /* kruisje sluiten animatie en styling */
-header > section > div:first-of-type > div:first-child {
+header>section>div:first-of-type>div:first-child {
   width: 0.7vh;
   height: 5vh;
   background-color: #fff;
   transform: rotate(45deg);
 }
 
-header > section > div:first-of-type > div:last-child {
+header>section>div:first-of-type>div:last-child {
   width: 0.7vh;
   height: 5vh;
   background-color: #fff;
@@ -118,21 +124,22 @@ header > section > div:first-of-type > div:last-child {
 }
 
 /* //einde header */
-
-main > section {
+main>section {
   height: auto;
   width: 100%;
 }
 
-main > section {
+main>section {
   text-align: center;
 }
-main > section > article {
+
+main>section>article {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
+
 figure {
   height: auto;
   width: 85vw;
@@ -171,7 +178,7 @@ figcaption {
       0 -0.01em black; */
 }
 
-figure > img {
+figure>img {
   background-size: contain;
   width: 100%;
   border-radius: 20px;

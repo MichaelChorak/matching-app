@@ -1,22 +1,28 @@
 // imports
-const bodyParser = require('body-parser');
-const express = require('express');
+const bodyParser = require("body-parser");
+const express = require("express");
 const app = express();
-const dotenv = require('dotenv').config();
-const { MongoClient, ObjectID } = require('mongodb');
+const dotenv = require("dotenv").config();
+const {
+  MongoClient,
+  ObjectID
+} = require("mongodb");
 const port = process.env.PORT;
-const ejs = require('ejs');
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const path = require('path');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
-const mongoose = require('mongoose');
-const bCrypt = require('bcryptjs');
-const expressSession = require('express-session');
-const User = require('./models/user');
-const flash = require('connect-flash');
-const { exec } = require("child_process");
+const ejs = require("ejs");
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const path = require("path");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const mongoose = require("mongoose");
+const bCrypt = require("bcryptjs");
+const expressSession = require("express-session");
+const User = require("./models/user");
+const flash = require("connect-flash");
+const {
+  exec
+} = require("child_process");
+const nodemailer = require("nodemailer");
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -24,56 +30,67 @@ app.use(bodyParser.urlencoded({
 app.use(express.json());
 
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // static files
-app.use(expressSession({ secret: process.env.secretKey, maxAge: 3600000 }));
-app.use(flash())
+app.use(expressSession({
+  secret: process.env.secretKey,
+  maxAge: 3600000
+}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.set('views', path.join(__dirname, 'views'))
+app.set("views", path.join(__dirname, "views"));
 
 // Static files
-app.use(express.static('public'));
-app.use(express.static('public/images'));
-app.use(express.static('public/js'));
-app.use('/css', express.static('/public/css')); // link naar je css folder
-app.use('/js', express.static('/public/js')); // link naar je js folder
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
-app.use(express.static('static'));
-app.use(express.static('public'));
+app.use(express.static("public"));
+app.use(express.static("public/images"));
+app.use(express.static("public/js"));
+app.use("/css", express.static("/public/css")); // link naar je css folder
+app.use("/js", express.static("/public/js")); // link naar je js folder
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(express.urlencoded({
+  extended: true
+}));
+app.set("view engine", "ejs");
+app.use(express.static("static"));
+app.use(express.static("public"));
 app.use(express.json());
 
 //database uri
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}%21@cluster0.fiihw.mongodb.net/test?authSource=admin&replicaSet=atlas-r4sakp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
 const db = new MongoClient(uri, {
   useUnifiedTopology: true
 });
 db.connect();
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: process.env.DB_NAME });
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: process.env.DB_NAME
+});
 const dbMongoose = mongoose.connection;
-dbMongoose.on('error', console.error.bind(console, 'connection error:'));
+dbMongoose.on("error", console.error.bind(console, "connection error:"));
 
 // Hashing and authentication code
 // Generates hash using bCrypt
 const createHash = (password) => {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-}
+};
 
 const isValidPassword = (user, password) => {
   return bCrypt.compareSync(password, user.password);
-}
+};
 
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    res.redirect('/login');
+    res.redirect("/login");
   }
-}
+};
 
 passport.serializeUser((user, done) => {
   done(null, user._id);
@@ -85,12 +102,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-// start server
-/*
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
-});
-*/
+
 // http listen
 http.listen(port, () => {
   console.log(`http://localhost:${port}/`);
@@ -112,10 +124,12 @@ async function run() {
 }
 run().catch(console.dir);
 
+
 // chatOverview route
-app.get('/chat', isAuthenticated, (req, res) => {
-  res.render('chat');
+app.get("/chat", isAuthenticated, (req, res) => {
+  res.render("chat");
 });
+
 
 //route
 app.get("/profiles", isAuthenticated, async (req, res) => {
@@ -145,78 +159,89 @@ app.get("/profiles", isAuthenticated, async (req, res) => {
   });
 });
 
+
 //GET index page
-app.get('/', (req, res) => {
-  res.render('index', { user: req.user });
+app.get("/", (req, res) => {
+  res.render("index", {
+    user: req.user
+  });
 });
 
 //GET login page
-app.get('/login', (req, res) => {
-  res.render('login', { message: req.flash('message') });
+app.get("/login", (req, res) => {
+  res.render("login", {
+    message: req.flash("message")
+  });
 });
 
-app.post('/login', passport.authenticate('login', {
+app.post("/login", passport.authenticate("login", {
   //route after succesfully log in
-  successRedirect: '/add',
-  failureRedirect: '/login',
+  successRedirect: "/add",
+  failureRedirect: "/login",
   failureFlash: true
 }));
 
-passport.use('login', new LocalStrategy({
-  passReqToCallback: true,
-},
+passport.use("login", new LocalStrategy({
+    passReqToCallback: true,
+  },
   (req, username, password, done) => {
-    User.findOne({ 'username': username },
+    User.findOne({
+        "username": username
+      },
       (err, user) => {
         // In case of any error, return using the done method
         if (err)
           return done(err);
         // Username does not exist, log error and redirect
         if (!user) {
-          console.log('User Not Found with username ' + username);
+          console.log("User Not Found with username " + username);
           return done(null, false,
-            req.flash('message', 'No user found with the username' + username));
+            req.flash("message", "No user found with the username" + username));
         }
         // User exists, wrong password, log the error
         if (!isValidPassword(user, password)) {
-          console.log('Invalid Password');
+          console.log("Invalid Password");
           return done(null, false,
-            req.flash('message', 'Invalid password!'));
+            req.flash("message", "Invalid password!"));
         }
         // User & password  match, return user
-        console.log('user exists and login is succeeded!')
+        console.log("user exists and login is succeeded!");
         return done(null, user);
       }
     );
   }));
 
-app.get('/signup', (req, res) => {
-  res.render('register', { message: req.flash('message') });
+app.get("/signup", (req, res) => {
+  res.render("register", {
+    message: req.flash("message")
+  });
 });
 
-app.post('/signup', passport.authenticate('signup', {
-  successRedirect: '/login',
-  failureRedirect: '/signup',
+app.post("/signup", passport.authenticate("signup", {
+  successRedirect: "/login",
+  failureRedirect: "/signup",
   failureFlash: true
 }));
 
-passport.use('signup', new LocalStrategy({
-  passReqToCallback: true
-},
+passport.use("signup", new LocalStrategy({
+    passReqToCallback: true
+  },
   (req, username, password, done) => {
     findOrCreateUser = () => {
       // find a user in the db with the provided username
-      User.findOne({ 'username': username }, (err, user) => {
+      User.findOne({
+        "username": username
+      }, (err, user) => {
         // In case of any error return the following
         if (err) {
-          req.flash('message', 'Error in SignUp: ' + err);
+          req.flash("message", "Error in SignUp: " + err);
           return done(err);
         }
         // already exists?
         if (user) {
-          console.log('User already exists');
+          console.log("User already exists");
           return done(null, false,
-            req.flash('message', 'User already exists!'));
+            req.flash("message", "User already exists!"));
         } else {
           // if there is no user with that email, create them
           const newCreatedUser = new User();
@@ -229,10 +254,10 @@ passport.use('signup', new LocalStrategy({
           // save the user
           newCreatedUser.save((err) => {
             if (err) {
-              req.flash('message', 'Error in Saving user: ' + err);
+              req.flash("message", "Error in Saving user: " + err);
               return;
             }
-            console.log('User Registration succesful');
+            console.log("User Registration succesful");
             return done(null, newCreatedUser);
           });
         }
@@ -245,23 +270,66 @@ passport.use('signup', new LocalStrategy({
   }));
 
 // if someone tries going to the 'signout' url they will be signed out, logout is passport middleware, straight out of documentation
-app.get('/signout', (req, res) => {
+app.get("/signout", (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect("/");
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
+app.post("/sendmail", (req, res) => {
+
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  //step 2
+  let mailOptions = {
+    name: req.body.name,
+    from: process.env.EMAIL,
+    to: req.body.email,
+    subject: req.body.subject,
+    text: req.body.message
+  };
+
+  //step 3
+  transporter.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      console.log("Error occured");
+    } else {
+      console.log("email sent!");
+    }
+  });
+
+  res.render("contactConfirm", {
+    title: "Email succesfully send",
+    mailOptions
+  });
+});
+
+
+app.get("/contactConfirm", (req, res) => {
+  res.render("contactConfirm");
 });
 
 
 // adding page
-app.get('/add', isAuthenticated, async (req, res, next) => {
+app.get("/add", isAuthenticated, async (req, res, next) => {
 
   MongoClient.connect(uri, async (err, db) => {
-    dbo = db.db('foodzen');
-    countries = await dbo.collection('countries').find({}, {
+    dbo = db.db("foodzen");
+    countries = await dbo.collection("countries").find({}, {
       sort: {
         naam: 1
       }
     }).toArray();
-    res.render('add', {
+    res.render("add", {
       countries
     });
   });
@@ -273,41 +341,46 @@ app.post("/dishAdded", (req, res) => {
     let dbo = db.db("foodzen");
 
     dbo.collection("dishes").insertOne({
-      image: req.body.image,
-      title: req.body.title,
-      ingredients: req.body.ingredients,
-      duration: req.body.duration,
-      instructions: req.body.instructions,
-      country: req.body.countries,
-      people: req.body.people
-    },
+        image: req.body.image,
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        duration: req.body.duration,
+        instructions: req.body.instructions,
+        country: req.body.countries,
+        people: req.body.people
+      },
       (err, result) => {
         if (err) throw err;
-        res.redirect('/'); // sent here after submit
+        res.redirect("/"); // sent here after submit
         db.close();
-      })
+      });
   });
 });
 
 
 // Display all dishes + filtermenu
-app.get('/thedishes', isAuthenticated, async (req, res) => {
+app.get("/thedishes", isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db) => {
     let dbo = db.db("foodzen");
-    const dish = await dbo.collection('dishes').find({}, { sort: {} }).toArray(); // data from database
-    res.render('thedishes', { text: '', dish });
+    const dish = await dbo.collection("dishes").find({}, {
+      sort: {}
+    }).toArray(); // data from database
+    res.render("thedishes", {
+      text: "",
+      dish
+    });
   });
 });
 
 // Filtering a specific dish
-app.post('/thedishes', async (req, res) => {
-  MongoClient.connect(uri, async function (err, db) {
-    let dbo = db.db('foodzen');
+app.post("/thedishes", async (req, res) => {
+  MongoClient.connect(uri, async function(err, db) {
+    let dbo = db.db("foodzen");
 
-    const allDishes = await dbo.collection('dishes').find({
+    const allDishes = await dbo.collection("dishes").find({
       country: req.body.countries,
       people: req.body.people,
-    }).toArray()
+    }).toArray();
 
 
 
@@ -315,44 +388,54 @@ app.post('/thedishes', async (req, res) => {
     console.log(req.body.countries);
     console.log(req.body.people);
 
-    res.render('thedishesresults', {
+    res.render("thedishesresults", {
       allDishes
     });
   });
 });
 
-// Detailpage of a single dish
-app.get('/thedishes/:dishesTitle', isAuthenticated, async (req, res) => {
+// Detailpage of one single dish
+app.get("/thedishes/:dishesTitle", isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db) => {
-    let dbo = db.db('foodzen');
-    const dish = await dbo.collection('dishes').findOne({ title: req.params.dishesTitle });
-    res.render('dishesdetails', { dish });
+    let dbo = db.db("foodzen");
+    const dish = await dbo.collection("dishes").findOne({
+      title: req.params.dishesTitle
+    });
+    res.render("dishesdetails", {
+      dish
+    });
   });
 });
 
 
 // getting your favorite dishes
-app.get('/favoritedishes', isAuthenticated, async (req, res) => {
+app.get("/favoritedishes", isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db) => {
-    let dbo = db.db('foodzen');
-    const dish = await dbo.collection('dishes');
-    const favoriteItems = await dbo.collection('favoriteDishes');
-    const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
+    let dbo = db.db("foodzen");
+    const dish = await dbo.collection("dishes");
+    const favoriteItems = await dbo.collection("favoriteDishes");
+    const objectID = new ObjectID("6059c82d95c0cc12b13d3f7b");
 
 
-    favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that will check saveditems
+    favoriteItems.findOne({
+      _id: objectID
+    }, (err, favoriteItemsObject) => { // object id that will check savedDishes
       if (err) {
         console.log(err);
       } else {
         dish
-          .find({ _id: { $in: favoriteItemsObject.saves } })
+          .find({
+            _id: {
+              $in: favoriteItemsObject.saves
+            }
+          })
           .toArray((err, savedDishes) => {
             if (err) {
               console.log(err);
             } else {
 
-              res.render('favoritedishes', {
-                title: 'Favorite Dishes',
+              res.render("favoritedishes", {
+                title: "Favorite Dishes",
                 savedDishes,
               });
             }
@@ -363,36 +446,44 @@ app.get('/favoritedishes', isAuthenticated, async (req, res) => {
 });
 
 // saving favorite dishes to show on the favorite page
-app.post('/favoritedishes', async (req, res) => {
+app.post("/favoritedishes", async (req, res) => {
   MongoClient.connect(uri, async (err, db) => {
-    let dbo = db.db('foodzen');
-    const dish = await dbo.collection('dishes');
-    const favoriteItems = await dbo.collection('favoriteDishes');
-    const objectID = new ObjectID('6059c82d95c0cc12b13d3f7b');
+    let dbo = db.db("foodzen");
+    const dish = await dbo.collection("dishes");
+    const favoriteItems = await dbo.collection("favoriteDishes");
+    const objectID = new ObjectID("6059c82d95c0cc12b13d3f7b");
     console.log(objectID);
-    const options = { upsert: true };
     const savedDish = new ObjectID(req.body.saveit);
 
-    await favoriteItems.updateOne(
-      { _id: objectID },
-      { $push: { saves: savedDish } }, options
-    );
+    await favoriteItems.updateOne({
+      _id: objectID
+    }, {
+      $push: {
+        saves: savedDish
+      }
+    });
 
     //Checking
-    favoriteItems.findOne({ _id: objectID }, (err, favoriteItemsObject) => { // object id that's in saveditems checking
+    favoriteItems.findOne({
+      _id: objectID
+    }, (err, favoriteItemsObject) => { // object id that's in savedDishes checking
       if (err) {
         console.log(err);
       } else {
         dish
-          .find({ _id: { $in: favoriteItemsObject.saves } })
+          .find({
+            _id: {
+              $in: favoriteItemsObject.saves
+            }
+          })
           .toArray((err, savedDishes) => {
             if (err) {
               console.log(err);
             } else {
               console.log(savedDishes);
 
-              res.render('favoritedishes', {
-                title: 'Favorite Dishes',
+              res.render("favoritedishes", {
+                title: "Favorite Dishes",
                 savedDishes,
               });
             }
@@ -402,19 +493,24 @@ app.post('/favoritedishes', async (req, res) => {
   });
 });
 
+// chatOverview route
+app.get("/chat", (req, res) => {
+  res.render("chat");
+});
+
 
 // dynamic room route
-app.get('/chat/id', isAuthenticated, (req, res) => {
+app.get("/chat/:id", isAuthenticated, (req, res) => {
   res.render(req.params.id);
 });
 
 // Socket setup & pass server
 
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
 
-  let roomName = '';
+  let roomName = "";
 
-  socket.on('join room', (data) => {
+  socket.on("join room", (data) => {
 
     socket.join(data);
 
@@ -424,17 +520,17 @@ io.on('connection', (socket) => {
 
 
 
-  console.log('made socket connection', socket.id);
+  console.log("made socket connection", socket.id);
 
 
 
   // Handle chat event
 
-  socket.on('chat', (data) => {
+  socket.on("chat", (data) => {
 
     // io.sockets.emit('chat', data);
 
-    socket.to(roomName).emit('chat', data);
+    socket.to(roomName).emit("chat", data);
 
   });
 
@@ -443,9 +539,9 @@ io.on('connection', (socket) => {
 
   // function typing...
 
-  socket.on('typing', function (data) {
+  socket.on("typing", function(data) {
 
-    socket.broadcast.emit('typing', data)
+    socket.broadcast.emit("typing", data);
 
   });
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <link rel="stylesheet" href="css/loggedIn.css">
+  <%- include('partials/head'); -%>
+</head>
+
+<body>
+  <header>
+    <%- include('partials/loggedHeader'); -%>
+  </header>
+
+  <main>
+    <section id="contactConfirmContainer">
+      <article>
+        <p>Hi! <%= mailOptions.name %>,</p>
+        <p>Thank you for your message, it has been succesfully recieved.</p>
+
+        <h3>Your message:</h3>
+        <p><strong>Subject:</strong> <%= mailOptions.subject %> </p>
+        <p><strong>Message:</strong> <%= mailOptions.text %> </p>
+        <button type="button" name="button"><a href="/add"> &#8592; Go back</a></button>
+
+      </article>
+    </section>
+  </main>
+
+  <%- include('../views/partials/footer.ejs') %>
+</body>
+
+</html>

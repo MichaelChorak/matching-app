@@ -7,17 +7,18 @@
     <div id="chat">
       <h2 class="chatH2">Sushi rolls with crab and cucumber</h2>
       <div id="chat-window">
-          <div id="output"></div>
-          <div id="feedback"></div>
+        <div id="output"></div>
+        <div id="feedback"></div>
       </div>
       <input id="handle" type="text" class="inputChat" placeholder="Name" />
       <input id="message" type="text" class="inputChat" placeholder="Message" />
-      <button id="send" class="sendChat" >Send</button>
+      <button id="send" class="sendChat">Send</button>
     </div>
   </main>
-   
 
-    <script src="/socket.io/socket.io.js"></script>
-    <%- include('../views/partials/footer.ejs') %>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <%- include('../views/partials/footer.ejs') %>
 </body>
+
 </html>
