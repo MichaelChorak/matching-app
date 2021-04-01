@@ -64,7 +64,7 @@ header>label {
   background-color: #fff;
   border-radius: 50%;
   border-width: 0;
-  display: inline-block;
+  display: block;
   margin: 1em;
   font-size: 1.5em;
   text-align: center;
@@ -272,6 +272,16 @@ header>input[type=checkbox]:checked ~ ul {
 
 /*Progressive Enhanced filtermenu*/
 
+#dishes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 9px;
+}
+
+#wholeMenu {
+  grid-column: 1 / -1;
+}
+
 #dishes>input[type=checkbox]{
   display: none;
 }
@@ -430,7 +440,6 @@ header>input[type=checkbox]:checked ~ ul {
 
 /*empty state*/
 #favorite>article:nth-of-type(1)>div {
-  display: block;
   margin: 1em;
   margin-top: 1.5em;
   font-size: 5em;
@@ -449,11 +458,11 @@ header>input[type=checkbox]:checked ~ ul {
 }
 
 #favorite>article:nth-of-type(1) {
-  z-index: -10;
   position: absolute;
-  display: block;
-  margin: 2.2em;
-  margin-top: 0;
+  left: 0;
+  right: 0;
+  z-index: -10;
+  margin: 3em;
   text-align: center;
 }
 
