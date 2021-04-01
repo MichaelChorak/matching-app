@@ -50,7 +50,7 @@ main.profilePage li {
 main.profilePage h2,
 h3,
 h4, section {
-  font-family: 'Merriweather', regular;
+  font-family: 'Merriweather', sans-serif;
 }
 
 /****************************************/
@@ -158,14 +158,15 @@ main.profilePage>section:nth-of-type(3)>article:nth-of-type(2)>ul:first-of-type 
 }
 
 /* arrow button */
-button#settingBnt {
+button#settingBnt>svg {
   transition: all 1s;
 }
 
+/*
 button#settingBnt.active {
   background-color: #1f283b;
   color           : #FFF;
-}
+}*/
 
 /* svg arrow - https://iconmonstr.com/arrow-80-svg/ */
 main.profilePage button>svg {
@@ -214,7 +215,6 @@ button.editBntTwo:hover {
   background-color: black;
   color           : #f2c1b7;
 }
-
 /*---------- END PROFILE PAGE ----------*/
 /****************************************/
 
