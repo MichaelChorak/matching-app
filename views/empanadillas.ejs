@@ -10,22 +10,27 @@
   <body>
     <%- include('partials/loggedHeader'); -%>
     <main>
-            <div id="chat">
+      <noscript>
+        Javascript is not enabled in your browser, you'll be redirected to another page.
+            <meta HTTP-EQUIV="REFRESH" content="5; url=https://matching-app-2-z8cjw.ondigitalocean.app/contact"> 
+        </noscript>
+            <section id="chat">
               <h2 class="chatH2">Empanadillas</h2>
-              <div id="chat-window">
-                <div id="output"></div>
-                <div id="feedback"></div>
-              </div>
+              <section id="chat-window">
+                <section id="output"></section>
+                <section id="feedback"></section>
+                </section>
               <input id="handle" type="text" class="inputChat" placeholder="Name" />
               <input id="message" type="text" class="inputChat" placeholder="Message" />
               <button id="send" class="sendChat">Send</button>
 
-            </div>
+            </section>
           </main>
 
 
           <script src="/socket.io/socket.io.js"></script>
           <%- include('../views/partials/footer.ejs') %>
+         
   </body>
 
 </html>
