@@ -59,8 +59,7 @@
   }
   
   button.sendChat {
-    background: #F89D8A;
-    background: rgb(248, 157, 139);
+    background-color: #ce796b;
     color: #fff;
     font-size: 18px;
     border: 0;
@@ -73,10 +72,16 @@
 
   /* css voor het overzicht van de chats */
 h2.chatH2 {
-    font-size: 2em;
+    font-size: 1.3em;
     padding: 10px 20px;
     color: #F89D8A;
-    margin-left: 2em;
+  }
+
+  .chatH2Overview {
+    font-size: 1.3em;
+    padding: 10px 20px;
+    color: #F89D8A;
+    margin-left: 3.5em;
   }
   
   ul.chatUl {
@@ -102,4 +107,14 @@ h2.chatH2 {
   .chatA:hover {
     color: white;
     background-color: #F89D8A;
+  }
+
+  .chatOverview {
+    /* background-color: #f8ecc5; */
+    padding-bottom: 8em;
+    padding-top: 2em;
+  }
+
+  noscript {
+    color: red;
   }
