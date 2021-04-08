@@ -215,6 +215,32 @@ button.editBntTwo:hover {
   background-color: black;
   color           : #f2c1b7;
 }
+/* ----------------------*/
+/* textarea*/
+.textArticle{
+  display: block;
+}
+.textArticle .textProfile{
+width: 30em;
+height: 5em;
+}
+/* button delete and add style*/
+button.bntStyleTwo{
+  text-align      : center;
+  width           : 12em;
+  height          : 2em;
+  cursor          : pointer;
+  background-color: #bfbbbb;
+  border-radius   : 0.6rem;
+  font-size       : 0.6em;
+  font-weight     : 500;
+  margin-bottom   : 1em;
+}
+
+button.bntStyleTwo:hover{
+  background-color: black;
+  color           : #ffffff;
+}
 /*---------- END PROFILE PAGE ----------*/
 /****************************************/
 

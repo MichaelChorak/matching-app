@@ -125,33 +125,116 @@ async function run() {
 run().catch(console.dir);
 
 
-
-
-
-//route
+//route profile
 app.get("/profiles", isAuthenticated, async (req, res) => {
   MongoClient.connect(uri, async (err, db) => {
-    let dbo = db.db('foodzen');
+    let dbo = db.db("foodzen");
+
+    let descriptionAdd = await
+      dbo.collection("descriptionProfile")
+        .find({})
+        .toArray();
+
     // create an empty list of profiles
     let profileData = {};
 
     try {
       // look for profile and show one
       profileData = await dbo
-        .collection('profiles')
+        .collection("profiles")
         .find({ $or: [{ "id": "A3" }] })
         .toArray();
       console.log(profileData);
-      res.render('profile.ejs', {
-        title: 'My Profile',
+      res.render("profile.ejs", {
+        title: "My Profile",
         profileData,
+        descriptionAdd
       });
       console.log("Page are loading, :)");
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
       console.log("error!: something went wronge");
     } finally {
-      console.log("Check")
+      console.log("Check");
+    }
+  });
+});
+
+/* ----add personal description ----*/
+app.post("/profiles/addDescr", isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db) => {
+    let dbo = db.db("foodzen");
+
+    /* show the add description */
+    let descriptionAdd = await
+      dbo.collection("descriptionProfile")
+        .find({})
+        .toArray();
+
+    /* add */
+    dbo.collection("descriptionProfile")
+      .insertOne({
+        description: req.body.description
+      });
+
+    /* show profile information */
+    let profileData = {};
+    // look for profile and show one
+    try {
+      profileData = await dbo
+        .collection("profile")
+        .find({ $or: [{ "id": "A3" }] })
+        .toArray();
+      console.log(profileData);
+      res.render("profile.ejs", {
+        title: "My profile",
+        profileData,
+        descriptionAdd
+      });
+      console.log("Page are loading, :)");
+    } catch (err) {
+      console.log(err);
+      console.log("error!: something went wronge");
+    } finally {
+      console.log("Check");
+    }
+  });
+});
+
+/* ----delete personal description ----*/
+app.post("/profiles/delete", isAuthenticated, async (req, res) => {
+  MongoClient.connect(uri, async (err, db) => {
+    let dbo = db.db("foodzen");
+    /* show the add description */
+    let descriptionAdd = await
+      dbo.collection("descriptionProfile")
+        .find({})
+        .toArray();
+
+    /* delete */
+    dbo.collection("descriptionProfile")
+      .deleteMany({});
+
+    /* show profile information */
+    let profileData = {};
+    // look for profile and show one
+    try {
+      profileData = await dbo
+        .collection("profile")
+        .find({ $or: [{ "id": "A3" }] })
+        .toArray();
+      console.log(profileData);
+      res.render("profile.ejs", {
+        title: "My profile",
+        profileData,
+        descriptionAdd
+      });
+      console.log("Page are loading, :)");
+    } catch (err) {
+      console.log(err);
+      console.log("error!: something went wronge");
+    } finally {
+      console.log("Check");
     }
   });
 });
@@ -179,12 +262,12 @@ app.post("/login", passport.authenticate("login", {
 }));
 
 passport.use("login", new LocalStrategy({
-    passReqToCallback: true,
-  },
+  passReqToCallback: true,
+},
   (req, username, password, done) => {
     User.findOne({
-        "username": username
-      },
+      "username": username
+    },
       (err, user) => {
         // In case of any error, return using the done method
         if (err)
@@ -221,8 +304,8 @@ app.post("/signup", passport.authenticate("signup", {
 }));
 
 passport.use("signup", new LocalStrategy({
-    passReqToCallback: true
-  },
+  passReqToCallback: true
+},
   (req, username, password, done) => {
     findOrCreateUser = () => {
       // find a user in the db with the provided username
@@ -338,14 +421,14 @@ app.post("/dishAdded", (req, res) => {
     let dbo = db.db("foodzen");
 
     dbo.collection("dishes").insertOne({
-        image: req.body.image,
-        title: req.body.title,
-        ingredients: req.body.ingredients,
-        duration: req.body.duration,
-        instructions: req.body.instructions,
-        country: req.body.countries,
-        people: req.body.people
-      },
+      image: req.body.image,
+      title: req.body.title,
+      ingredients: req.body.ingredients,
+      duration: req.body.duration,
+      instructions: req.body.instructions,
+      country: req.body.countries,
+      people: req.body.people
+    },
       (err, result) => {
         if (err) throw err;
         res.redirect("/"); // sent here after submit
@@ -371,7 +454,7 @@ app.get("/thedishes", isAuthenticated, async (req, res) => {
 
 // Filtering a specific dish
 app.post("/thedishes", async (req, res) => {
-  MongoClient.connect(uri, async function(err, db) {
+  MongoClient.connect(uri, async function (err, db) {
     let dbo = db.db("foodzen");
 
     const allDishes = await dbo.collection("dishes").find({
@@ -536,7 +619,7 @@ io.on("connection", (socket) => {
 
   // function typing...
 
-  socket.on("typing", function(data) {
+  socket.on("typing", function (data) {
 
     socket.broadcast.emit("typing", data);
 
