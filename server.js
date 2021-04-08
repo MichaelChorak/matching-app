@@ -32,6 +32,19 @@ app.use(express.json());
 
 app.set("view engine", "ejs");
 
+/* error handling*/
+// calling the error file
+const { handleError, ErrorHandler } = require("./handlingError/error");
+
+// error handling testen
+app.get("/error", (req, res) => {
+  throw new ErrorHandler(500, "not working !");
+});
+
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
+
 // static files
 app.use(expressSession({
   secret: process.env.secretKey,
@@ -212,8 +225,16 @@ app.post("/profiles/delete", isAuthenticated, async (req, res) => {
         .toArray();
 
     /* delete */
-    dbo.collection("descriptionProfile")
-      .deleteMany({});
+    try {
+      db.collection("descriptionProfile")
+        .deleteMany({});
+    }
+    catch (e) {
+      console.log(e);
+      throw new ErrorHandler("ooh noo, deleting its not working");
+    } finally {
+      console.log("test, collection delete done");
+    }
 
     /* show profile information */
     let profileData = {};
